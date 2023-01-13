@@ -18,7 +18,7 @@ export const CourseInfo = (props: CourseInfoProps) => {
 [SENG] 
 [Has Special Requirements]
 
-Pre reqs
+Pre reqs here
 
 
 Override Completed Date
