@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./coursePlanner/App";
+import { App } from "./coursePlanner/ProgramPlanner";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
