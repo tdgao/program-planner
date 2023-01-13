@@ -1,3 +1,5 @@
-# Course planner v2
+# UVic Program Planner
+
+The course planner v2
 
 TODO - add readme
