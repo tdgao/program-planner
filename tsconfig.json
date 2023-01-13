@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "checkJs": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.tsx", "src/**/*.ts"]
 }
