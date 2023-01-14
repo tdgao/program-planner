@@ -1,0 +1,163 @@
+{
+  "Biology (Bachelor of Science - Major)": {
+    "requirements": {
+      "year1": [
+        {
+          "Complete all of the following": [
+            { "Complete 1 of: ": ["BIOL184", "BIOL190B"] },
+            { "Complete 1 of: ": ["BIOL186", "BIOL190A"] },
+            { "Complete all of: ": ["CHEM101", "CHEM102"] },
+            {
+              "Complete  1  of the following": [
+                {
+                  "Complete all of the following": [
+                    { "Complete 1 of: ": ["MATH100", "MATH109"] },
+                    { "Complete all of: ": ["MATH101"] }
+                  ]
+                },
+                { "Complete all of: ": ["MATH102", "MATH151"] }
+              ]
+            },
+            {
+              "Complete  1  of the following": [
+                { "Complete all of: ": ["PHYS102"] },
+                { "Complete all of: ": ["PHYS102A", "PHYS102B"] },
+                { "Complete all of: ": ["PHYS110", "PHYS111"] },
+                { "Complete all of: ": ["PHYS120", "PHYS130"] }
+              ]
+            }
+          ]
+        }
+      ],
+      "year2": [
+        {
+          "Complete all of the following": [
+            { "Complete 1 of: ": ["BIOC299", "BIOC300A", "BIOC300B"] },
+            {
+              "Complete all of: ": ["BIOL215", "BIOL225", "BIOL230", "CHEM231"]
+            },
+            { "Complete 1 of: ": ["CHEM234", "CHEM235"] },
+            { "Complete 1 of: ": ["STAT255", "STAT260"] }
+          ]
+        }
+      ],
+      "year3": [
+        {
+          "Complete all of the following": [
+            { "Complete all of: ": ["BIOL355"] }
+          ]
+        }
+      ],
+      "year4": [
+        {
+          "Complete all of the following": [
+            {
+              "Complete 3 units from: ": [
+                "BIOL307",
+                "BIOL309",
+                "BIOL311",
+                "BIOL312",
+                "BIOL319",
+                "BIOL321",
+                "BIOL322",
+                "BIOL324",
+                "BIOL325",
+                "BIOL326",
+                "BIOL329",
+                "BIOL330",
+                "BIOL335",
+                "BIOL336",
+                "BIOL345",
+                "BIOL362",
+                "BIOL365",
+                "BIOL366",
+                "BIOL409B",
+                "BIOL410",
+                "BIOL418",
+                "BIOL448",
+                "BIOL449"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Software Engineering (Bachelor of Software Engineering)": {
+    "requirements": {
+      "year1": [
+        {
+          "Complete all of the following": [
+            {
+              "Complete all of: ": [
+                "CSC111",
+                "CSC115",
+                "ENGR110",
+                "ENGR120",
+                "ENGR130",
+                "ENGR141",
+                "MATH101",
+                "MATH110",
+                "PHYS110",
+                "PHYS111"
+              ]
+            },
+            { "Complete 1 of: ": ["MATH100", "MATH109"] }
+          ]
+        }
+      ],
+      "year2": [
+        {
+          "Complete all of the following": [
+            { "Complete 1 of: ": ["CSC230", "ECE255"] },
+            {
+              "Complete all of: ": [
+                "CHEM101",
+                "CSC225",
+                "ECE260",
+                "ECE310",
+                "ECON180",
+                "MATH122",
+                "SENG265",
+                "SENG275",
+                "SENG310",
+                "STAT260"
+              ]
+            }
+          ]
+        }
+      ],
+      "year3": [
+        {
+          "Complete all of the following": [
+            { "Complete 1 of: ": ["CSC355", "ECE355"] },
+            { "Complete 1 of: ": ["CSC361", "ECE458"] },
+            {
+              "Complete all of: ": [
+                "CSC226",
+                "CSC320",
+                "CSC360",
+                "CSC370",
+                "ECE360",
+                "SENG321",
+                "SENG350",
+                "SENG360",
+                "SENG371"
+              ]
+            }
+          ]
+        }
+      ],
+      "year4": [
+        {
+          "Complete all of the following": [
+            { "Complete 1 of: ": ["CSC460", "ECE455"] },
+            {
+              "Complete all of: ": ["SENG401", "SENG426", "SENG440", "SENG499"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
