@@ -1,0 +1,655 @@
+{
+  "BIOL184": {
+    "full_title": "BIOL184 - Evolution and Biodiversity",
+    "requirements": [
+      {
+        "Complete  1  of the following": [
+          {
+            "Complete 1 of: ": ["BIOL150A", "BIOL150B", "BIOL186"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/613eb4dde872572b8c59a5ae",
+    "units": "1.5"
+  },
+  "BIOL186": {
+    "full_title": "BIOL186 - Physiology and Cell Biology",
+    "requirements": [
+      {
+        "Complete  1  of the following": [
+          {
+            "Complete 1 of: ": ["BIOL150A", "BIOL150B", "BIOL184"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/613ebd3f73306fb87583ddc9",
+    "units": "1.5"
+  },
+  "CHEM101": {
+    "course_name": "CHEM101",
+    "full_title": "CHEM101 - Fundamentals of Chemistry from Atoms to Materials",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete  1  of the following": [
+              {
+                "Complete all of: ": ["MATH120"]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d781350a50c3624007f55c8",
+    "units": "1.5"
+  },
+  "CSC111": {
+    "course_name": "CSC111",
+    "full_title": "CSC111 - Fundamentals of Programming with Engineering Applications",
+    "requirements": [
+      {
+        "Complete  1  of the following": [
+          {
+            "Complete  1  of the following": [
+              "Foundations of Math 12",
+              "Mathematics 12",
+              "Pre-Calculus 12"
+            ]
+          },
+          {
+            "Complete 1 of: ": ["MATH100", "MATH109", "MATH120"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4e404ce072400155ec0",
+    "units": "1.5"
+  },
+  "CSC115": {
+    "course_name": "CSC115",
+    "full_title": "CSC115 - Fundamentals of Programming II",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["CSC110", "CSC111"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4e567a5c324003b0bb6",
+    "units": "1.5"
+  },
+  "ENGR110": {
+    "course_name": "ENGR110",
+    "full_title": "ENGR110 - Design and Communication I",
+    "requirements": [],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5e8bc9e16fd5672600958d7e",
+    "units": "2.5"
+  },
+  "ENGR120": {
+    "course_name": "ENGR120",
+    "full_title": "ENGR120 - Design and Communication II",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete  1  of the following": [
+              {
+                "Complete 1 of: ": ["ENGR110", "ENGR111"]
+              },
+              {
+                "Complete all of the following": [
+                  {
+                    "Complete all of: ": ["ENGR112"]
+                  },
+                  {
+                    "Complete 1 of: ": ["ATWP135", "ENGL135"]
+                  }
+                ]
+              },
+              {
+                "Complete all of the following": [
+                  {
+                    "Complete all of: ": ["ELEC199"]
+                  },
+                  {
+                    "Complete 1 of: ": ["ATWP135", "ENGL135"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Complete  1  of the following": [
+              {
+                "Complete all of: ": ["CSC110"]
+              },
+              {
+                "Completed or concurrently enrolled in all of: ": ["CSC111"]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5e8bc7a86fd5672600958d67",
+    "units": "2.5"
+  },
+  "ENGR130": {
+    "course_name": "ENGR130",
+    "full_title": "ENGR130 - Introduction to Professional Practice",
+    "requirements": [],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf5fa56bbef2400c2f0aa",
+    "units": "0.5"
+  },
+  "ENGR141": {
+    "course_name": "ENGR141",
+    "full_title": "ENGR141 - Engineering Mechanics",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["MATH100", "MATH109"]
+          },
+          {
+            "Completed or concurrently enrolled in 1 of: ": [
+              "MATH110",
+              "MATH211"
+            ]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf5fb04ce072400155fb3",
+    "units": "1.5"
+  },
+  "MATH101": {
+    "course_name": "MATH101",
+    "full_title": "MATH101 - Calculus II",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["MATH100", "MATH109"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d1f72acd2bc1524008cb36a",
+    "units": "1.5"
+  },
+  "MATH110": {
+    "course_name": "MATH110",
+    "full_title": "MATH110 - Matrix Algebra for Engineers",
+    "requirements": [],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d1f67c789944f24002acd1e",
+    "units": "1.5"
+  },
+  "PHYS110": {
+    "course_name": "PHYS110",
+    "full_title": "PHYS110 - Introductory Physics I",
+    "requirements": [
+      {
+        "Completed or concurrently enrolled in 1 of: ": [
+          "MATH100",
+          "MATH102",
+          "MATH109"
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5c4ffe7d1a3fd924005f0289",
+    "units": "1.5"
+  },
+  "PHYS111": {
+    "course_name": "PHYS111",
+    "full_title": "PHYS111 - Introductory Physics II",
+    "requirements": [
+      {
+        "Complete all of: ": ["PHYS110"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5c4ffe7d1a3fd924005f028b",
+    "units": "1.5"
+  },
+  "MATH100": {
+    "course_name": "MATH100",
+    "full_title": "MATH100 - Calculus I",
+    "requirements": [
+      {
+        "Complete  1  of the following": [
+          {
+            "Earn a minimum grade of C+ in each of the following: ": ["MATH120"]
+          },
+          "Completed Pre-Calculus 12 or Principles of Mathematics 12  with a minimum grade of B (73%) ",
+          "or permission of the department."
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d1f76d989944f24002ad913",
+    "units": "1.5"
+  },
+  "MATH109": {
+    "course_name": "MATH109",
+    "full_title": "MATH109 - Introduction to Calculus",
+    "requirements": [
+      {
+        "Complete  1  of the following": [
+          {
+            "Earn a minimum grade of C+ in each of the following: ": ["MATH120"]
+          },
+          "Completed Pre-Calculus 12 or Principles of Mathematics 12  with a minimum grade of B (73%) ",
+          "permission of the department."
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d1f76e089944f24002ad91c",
+    "units": "1.5"
+  },
+  "CSC230": {
+    "course_name": "CSC230",
+    "full_title": "CSC230 - Introduction to Computer Architecture",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["CSC115", "CSC116"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4ec67a5c324003b0bc3",
+    "units": "1.5"
+  },
+  "ECE255": {
+    "course_name": "ECE255",
+    "full_title": "ECE255 - Introduction to Computer Architecture",
+    "requirements": [
+      {
+        "Complete all of: ": ["CSC111"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf57704ce072400155f52",
+    "units": "1.5"
+  },
+  "CSC225": {
+    "course_name": "CSC225",
+    "full_title": "CSC225 - Algorithms and Data Structures I",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["CSC115", "CSC116"]
+          },
+          {
+            "Complete all of: ": ["MATH122"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4ea67a5c324003b0bbd",
+    "units": "1.5"
+  },
+  "ECE260": {
+    "course_name": "ECE260",
+    "full_title": "ECE260 - Continuous-Time Signals and Systems",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["MATH101"]
+          },
+          {
+            "Complete  1  of the following": [
+              {
+                "Complete all of: ": ["MATH110"]
+              },
+              {
+                "Completed or concurrently enrolled in all of: ": ["MATH211"]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf57867a5c324003b0c2c",
+    "units": "1.5"
+  },
+  "ECE310": {
+    "course_name": "ECE310",
+    "full_title": "ECE310 - Digital Signal Processing I",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["ECE260", "ELEC260"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf57c04ce072400155f56",
+    "units": "1.5"
+  },
+  "ECON180": {
+    "course_name": "ECON180",
+    "full_title": "ECON180 - Introduction to Economics and Financial Project Evaluation",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["MATH101"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5db1ccf574176e2400275679",
+    "units": "1.5"
+  },
+  "MATH122": {
+    "course_name": "MATH122",
+    "full_title": "MATH122 - Logic and Foundations",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["MATH100", "MATH102", "MATH109", "MATH151"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d1f76e2fb68f3240022d7d6",
+    "units": "1.5"
+  },
+  "SENG265": {
+    "course_name": "SENG265",
+    "full_title": "SENG265 - Software Development Methods",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["CSC115", "CSC116"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65404ce072400156009",
+    "units": "1.5"
+  },
+  "SENG275": {
+    "course_name": "SENG275",
+    "full_title": "SENG275 - Software Testing",
+    "requirements": [
+      {
+        "Complete all of: ": ["SENG265"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d3f7d1bc79bf72400540ef3",
+    "units": "1.5"
+  },
+  "SENG310": {
+    "course_name": "SENG310",
+    "full_title": "SENG310 - Human Computer Interaction",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["SENG221", "SENG265", "CENG241", "ECE241"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65656bbef2400c2f0e6",
+    "units": "1.5"
+  },
+  "STAT260": {
+    "course_name": "STAT260",
+    "full_title": "STAT260 - Introduction to Probability and Statistics I",
+    "requirements": [
+      {
+        "Completed or concurrently enrolled in 1 of: ": ["MATH101", "MATH208"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5e615e517eb8e0250078b7da",
+    "units": "1.5"
+  },
+  "CSC355": {
+    "course_name": "CSC355",
+    "full_title": "CSC355 - Digital Logic and Computer Organization",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["CSC230", "CENG255", "ECE255"]
+          },
+          {
+            "Complete all of: ": ["MATH122"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4f404ce072400155ed6",
+    "units": "1.5"
+  },
+  "ECE355": {
+    "course_name": "ECE355",
+    "full_title": "ECE355 - Microprocessor-Based Systems",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["ECE241", "CENG241", "MATH122"]
+          },
+          {
+            "Complete 1 of: ": ["ECE255", "CENG255", "CSC230"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf5822a310a240068a563",
+    "units": "1.5"
+  },
+  "CSC361": {
+    "course_name": "CSC361",
+    "full_title": "CSC361 - Computer Communications and Networks",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["SENG265"]
+          },
+          {
+            "Complete 1 of: ": ["CSC230", "CENG255", "ECE255"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5e50307b7ea20d2500081e92",
+    "units": "1.5"
+  },
+  "ECE458": {
+    "course_name": "ECE458",
+    "full_title": "ECE458 - Communication Networks",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["ECE255", "CENG255", "CSC230"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf59e67a5c324003b0c5a",
+    "units": "1.5"
+  },
+  "CSC226": {
+    "course_name": "CSC226",
+    "full_title": "CSC226 - Algorithms and Data Structures II",
+    "requirements": [
+      {
+        "Complete all of: ": ["CSC225"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4eb67a5c324003b0bc0",
+    "units": "1.5"
+  },
+  "CSC320": {
+    "course_name": "CSC320",
+    "full_title": "CSC320 - Foundations of Computer Science",
+    "requirements": [
+      {
+        "Complete all of: ": ["CSC226"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4ef67a5c324003b0bc6",
+    "units": "1.5"
+  },
+  "CSC360": {
+    "course_name": "CSC360",
+    "full_title": "CSC360 - Operating Systems",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["SENG265"]
+          },
+          {
+            "Complete 1 of: ": ["CSC230", "CENG255", "ECE255"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4f504ce072400155ed8",
+    "units": "1.5"
+  },
+  "CSC370": {
+    "course_name": "CSC370",
+    "full_title": "CSC370 - Database Systems",
+    "requirements": [
+      {
+        "Complete all of: ": ["CSC226", "SENG265"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf4f867a5c324003b0bd2",
+    "units": "1.5"
+  },
+  "ECE360": {
+    "course_name": "ECE360",
+    "full_title": "ECE360 - Control Theory and Systems I",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["ECE260", "ELEC260"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf58404ce072400155f60",
+    "units": "1.5"
+  },
+  "SENG321": {
+    "course_name": "SENG321",
+    "full_title": "SENG321 - Requirements Engineering",
+    "requirements": [
+      {
+        "Complete all of: ": ["SENG265"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65767a5c324003b0e6f",
+    "units": "1.5"
+  },
+  "SENG350": {
+    "course_name": "SENG350",
+    "full_title": "SENG350 - Software Architecture and Design",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["SENG275"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65904ce072400156011",
+    "units": "1.5"
+  },
+  "SENG360": {
+    "course_name": "SENG360",
+    "full_title": "SENG360 - Security Engineering",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete all of: ": ["SENG265"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65a56bbef2400c2f0e9",
+    "units": "1.5"
+  },
+  "SENG371": {
+    "course_name": "SENG371",
+    "full_title": "SENG371 - Software Evolution",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["SENG271", "SENG275", "SENG299", "SENG321"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65a2a310a240068a734",
+    "units": "1.5"
+  },
+  "CSC460": {
+    "course_name": "CSC460",
+    "full_title": "CSC460 - Design and Analysis of Real-time Systems",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["CSC355", "CENG355", "ECE355"]
+          },
+          {
+            "Complete all of: ": ["CSC360"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5e50324ce9601d2500427f83",
+    "units": "1.5"
+  },
+  "ECE455": {
+    "course_name": "ECE455",
+    "full_title": "ECE455 - Real Time Computer Systems Design Project",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["ECE355", "CENG355", "CSC355"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf59b67a5c324003b0c57",
+    "units": "1.5"
+  },
+  "SENG401": {
+    "course_name": "SENG401",
+    "full_title": "SENG401 - Social and Professional Issues",
+    "requirements": [],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf65b04ce072400156015",
+    "units": "1.5"
+  },
+  "SENG426": {
+    "course_name": "SENG426",
+    "full_title": "SENG426 - Software Quality Engineering",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["SENG321", "SENG371", "CENG356", "ECE356"]
+          },
+          {
+            "Complete all of: ": ["SENG275"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5d3f81c194ce2b2400f55cbd",
+    "units": "1.5"
+  },
+  "SENG440": {
+    "course_name": "SENG440",
+    "full_title": "SENG440 - Embedded Systems",
+    "requirements": [
+      {
+        "Complete 1 of: ": ["CENG355", "CSC355", "ECE355"]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5cbdf6612a310a240068a739",
+    "units": "1.5"
+  },
+  "SENG499": {
+    "course_name": "SENG499",
+    "full_title": "SENG499 - Design Project II",
+    "requirements": [
+      {
+        "Complete all of the following": [
+          {
+            "Complete 1 of: ": ["SENG299", "SENG350"]
+          },
+          {
+            "Complete 1 of: ": ["CENG460", "CSC361", "ECE458"]
+          },
+          {
+            "Complete all of: ": ["ENGR002", "CSC370", "SENG321"]
+          }
+        ]
+      }
+    ],
+    "url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/view/5df13bc59c4ef42500f71121",
+    "units": "1.5"
+  }
+}
