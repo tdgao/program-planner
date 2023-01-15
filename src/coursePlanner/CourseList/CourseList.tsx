@@ -1,24 +1,30 @@
+import { useAtom } from "jotai";
 import styled from "styled-components";
+import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
 
 const LayoutDiv = styled.div`
-  display: grid;
+  display: flex;
+  column-gap: 48px;
 `;
 
-export interface CourseListProps {
-  courses: string[];
-}
+export const CourseList = () => {
+  const [programCourses] = useAtom(programCoursesAtom);
+  const [addedCourses] = useAtom(addedCoursesAtom);
 
-export const CourseList = (props: CourseListProps) => {
   return (
     <LayoutDiv>
       <div>
-        From Degree
-        <div>courses</div>
+        <strong>From Program</strong>
+        {programCourses.map((course: any) => (
+          <div>{course}</div>
+        ))}
       </div>
 
       <div>
-        Added Courses
-        <div>courses</div>
+        <strong>Added Courses</strong>
+        {addedCourses.map((course: any) => (
+          <div>{course}</div>
+        ))}
       </div>
     </LayoutDiv>
   );

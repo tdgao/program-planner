@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {
   addCourseAtom,
   addedCoursesAtom,
+  coursesAtom,
   currentProgramAtom,
   programCoursesAtom,
   removeCourseAtom,
@@ -20,15 +21,13 @@ const CourseInput = styled.input`
 const inputAtom = atom("");
 
 export const AddCourses = () => {
-  const [input, setInput] = useAtom(inputAtom);
+  const [, setInput] = useAtom(inputAtom);
 
-  const [addedCourses] = useAtom(addedCoursesAtom);
+  const [, setCurrentProgram] = useAtom(currentProgramAtom);
+
+  const [courseInput] = useAtom(inputAtom);
   const [, addCourse] = useAtom(addCourseAtom);
-
-  const [currentProgram, setCurrentProgram] = useAtom(currentProgramAtom);
-  const programCourses = useAtom(programCoursesAtom);
-
-  console.log(currentProgram, programCourses);
+  const [courses] = useAtom(coursesAtom);
 
   return (
     <LayoutDiv>
@@ -53,12 +52,16 @@ export const AddCourses = () => {
         <CourseInput
           type="text"
           placeholder={`Search courses, e.g. "SENG 275" or "Math 211"`}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) =>
+            setInput(e.target.value.toUpperCase().replace(/\s/g, ""))
+          }
         />
         <br />
         <button
           onClick={() => {
-            addCourse(input);
+            courses[courseInput]
+              ? addCourse(courseInput)
+              : console.log("Could not find course");
           }}
         >
           Add course

@@ -6,6 +6,7 @@ import programs from "../assets/programs.json";
 export const coursesAtom = atom<any>(courses);
 export const programsAtom = atom<any>(programs);
 
+// Program courses
 export const currentProgramAtom = atom(
   "Software Engineering (Bachelor of Software Engineering)"
 );
@@ -34,11 +35,15 @@ export const programCoursesAtom = atom((get) => {
   return courses;
 });
 
-// a list of courses, can add and remove courses
+// Added courses
 export const addedCoursesAtom = atom<any>([]);
-export const addCourseAtom = atom(null, (get, set, course) => {
-  course && set(addedCoursesAtom, [...get(addedCoursesAtom), course]);
+
+export const addCourseAtom = atom(null, (get, set, course: string) => {
+  course &&
+    !get(addedCoursesAtom).includes(course) && // do not add duplicate
+    set(addedCoursesAtom, [...get(addedCoursesAtom), course]);
 });
+
 export const removeCourseAtom = atom(null, (get, set, course) => {
   set(addedCoursesAtom, [
     ...get(addedCoursesAtom).filter((item: any) => item != course),

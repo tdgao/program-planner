@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { AddCourses } from "./AddCourse/AddCourses";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
+import { CourseList } from "./CourseList/CourseList";
 
 export const PageDiv = styled.div`
   display: grid;
@@ -12,6 +13,7 @@ export const ProgramPlanner = () => {
     <PageDiv>
       <AddCourses />
       <CourseInfo />
+      <CourseList />
     </PageDiv>
   );
 };
