@@ -20,7 +20,6 @@ export const CourseInfo = () => {
       <input
         type="text"
         placeholder={`Search courses, e.g. "SENG 275" or "Math 211"`}
-        style={{ width: "350px" }}
         onChange={(e) => {
           setCourse(e.target.value.toUpperCase().replace(/\s/g, ""));
         }}

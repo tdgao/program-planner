@@ -14,10 +14,6 @@ const LayoutDiv = styled.div`
   row-gap: 12px;
 `;
 
-const CourseInput = styled.input`
-  width: 350px;
-`;
-
 const inputAtom = atom("");
 
 export const AddCourses = () => {
@@ -47,16 +43,15 @@ export const AddCourses = () => {
           </option>
         </select>
       </div>
-      <div>
+      <div style={{ display: "grid" }}>
         <div>Add single course</div>
-        <CourseInput
+        <input
           type="text"
           placeholder={`Search courses, e.g. "SENG 275" or "Math 211"`}
           onChange={(e) =>
             setInput(e.target.value.toUpperCase().replace(/\s/g, ""))
           }
         />
-        <br />
         <button
           onClick={() => {
             courses[courseInput]
