@@ -1,10 +1,10 @@
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
 
 // TODO read jotai typescript section
-const coursesAtom = atom<any>(courses);
-const programsAtom = atom<any>(programs);
+export const coursesAtom = atom<any>(courses);
+export const programsAtom = atom<any>(programs);
 
 export const currentProgramAtom = atom(
   "Software Engineering (Bachelor of Software Engineering)"
