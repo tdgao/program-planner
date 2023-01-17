@@ -7,12 +7,13 @@ import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 export const PageDiv = styled.div`
   display: grid;
   grid-template-columns: 370px auto;
-  column-gap: 32px;
+  column-gap: 48px;
 `;
 
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 24px;
+  height: max-content;
 `;
 
 export const ProgramPlanner = () => {

@@ -16,14 +16,14 @@ export const CourseList = () => {
       <div>
         <strong>From Program</strong>
         {programCourses.map((course: any) => (
-          <div>{course}</div>
+          <div key={course}>{course}</div>
         ))}
       </div>
 
       <div>
         <strong>Added Courses</strong>
         {addedCourses.map((course: any) => (
-          <div>{course}</div>
+          <div key={course}>{course}</div>
         ))}
       </div>
     </LayoutDiv>
