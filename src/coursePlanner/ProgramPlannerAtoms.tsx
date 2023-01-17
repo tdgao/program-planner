@@ -1,6 +1,12 @@
 import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
+import {
+  fillTerm,
+  initScheduleCourses,
+  maxCoursesFamily,
+  numYearsAtom,
+} from "./ProgramSchedule/useProgramSchedule";
 
 // TODO read jotai typescript section
 export const coursesAtom = atom<any>(courses);

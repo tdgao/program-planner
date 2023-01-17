@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MaxCoursesInput } from "./MaxCoursesInput";
 import { useProgramSchedule } from "./useProgramSchedule";
 
 const LayoutDiv = styled.div`
@@ -30,17 +31,13 @@ export const ProgramScheduleView = (props: ProgramScheduleProps) => {
   return (
     <LayoutDiv>
       {schedule &&
-        schedule.map((year: yearType, yearNum: any) => (
-          <YearDiv key={yearNum} data-year={yearNum + 1}>
-            <strong>Year {yearNum + 1}</strong>
-            <input
-              type="number"
-              data-term={"fall"}
-              value={year.fall.maxCourses}
-              onChange={(e) => {}}
-            />
-            <input type="number" data-term={"spring"} onChange={(e) => {}} />
-            <input type="number" data-term={"summer"} onChange={(e) => {}} />
+        schedule.map((year: yearType, i: number) => (
+          <YearDiv key={i} data-year={i + 1}>
+            <strong>Year {i + 1}</strong>
+
+            <MaxCoursesInput id={i + "fall"} />
+            <MaxCoursesInput id={i + "spring"} />
+            <MaxCoursesInput id={i + "summer"} />
 
             <pre>{JSON.stringify(year, null, 2)}</pre>
           </YearDiv>
