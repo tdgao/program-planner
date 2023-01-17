@@ -1,30 +1,10 @@
 import { atom, useAtom } from "jotai";
-import { useEffect } from "react";
-import {
-  addedCoursesAtom,
-  coursesAtom,
-  currentProgramAtom,
-  programCoursesAtom,
-} from "../ProgramPlannerAtoms";
-import { courseType, termType, yearType } from "./ProgramSchedule";
+import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
+import { courseType } from "./ProgramSchedule";
+
+// https://www.jsnow.io/p/javascript/react/persisting-data-in-react-usestate - to persist input stateone day
 
 const numYearsAtom = atom(5);
-const initSchedule = (numYears: number): yearType[] => {
-  return Array(numYears).fill({
-    fall: {
-      courses: [],
-      maxCourses: 6,
-    },
-    spring: {
-      courses: [],
-      maxCourses: 6,
-    },
-    summer: {
-      courses: [],
-      maxCourses: 6,
-    },
-  });
-};
 
 //sort courses by implicit year
 const sortCourses = (a: courseType, b: courseType) => {
@@ -43,10 +23,10 @@ const meetsPrereqs = (course: courseType): boolean => {
 };
 
 const fillTerm = (
-  term: termType,
+  maxCourses: number,
   scheduleCourses: courseType[]
 ): courseType[] => {
-  return [...Array(term.maxCourses)].map((_, index) => {
+  return [...Array(maxCourses)].map((_) => {
     for (const i in scheduleCourses) {
       const course = scheduleCourses[i];
 
@@ -60,34 +40,33 @@ const fillTerm = (
   });
 };
 
-// schedule atom
-
 export const useProgramSchedule = () => {
   const [numYears] = useAtom(numYearsAtom);
   const [programCourses] = useAtom(programCoursesAtom);
   const [addedCourses] = useAtom(addedCoursesAtom);
 
-  const emptySchedule = initSchedule(numYears);
+  // const emptySchedule = initSchedule(numYears);
   const scheduleCourses = initScheduleCourses(programCourses, addedCourses);
 
   let schedule = null;
-  schedule = emptySchedule.map((year) => {
-    // TODO this part better?
+  schedule = [...Array(numYears)].map((_) => {
     return {
       fall: {
-        courses: fillTerm(year.fall, scheduleCourses),
-        maxCourses: year.fall.maxCourses,
+        courses: fillTerm(6, scheduleCourses),
+        maxCourses: 6,
       },
       spring: {
-        courses: fillTerm(year.spring, scheduleCourses),
-        maxCourses: year.spring.maxCourses,
+        courses: fillTerm(6, scheduleCourses),
+        maxCourses: 6,
       },
       summer: {
-        courses: fillTerm(year.summer, scheduleCourses),
-        maxCourses: year.summer.maxCourses,
+        courses: fillTerm(6, scheduleCourses),
+        maxCourses: 6,
       },
     };
   });
 
-  return { schedule: schedule };
+  return {
+    schedule: schedule,
+  };
 };

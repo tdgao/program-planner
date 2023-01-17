@@ -1,4 +1,3 @@
-import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import { useProgramSchedule } from "./useProgramSchedule";
 
@@ -27,17 +26,25 @@ export interface ProgramScheduleProps {
 }
 export const ProgramScheduleView = (props: ProgramScheduleProps) => {
   const { schedule } = props;
+
   return (
     <LayoutDiv>
-      <>
-        {schedule &&
-          schedule.map((year: any, yearNum: any) => (
-            <YearDiv key={yearNum}>
-              <strong>Year {yearNum + 1}</strong>
-              <pre>{JSON.stringify(year, null, 2)}</pre>
-            </YearDiv>
-          ))}
-      </>
+      {schedule &&
+        schedule.map((year: yearType, yearNum: any) => (
+          <YearDiv key={yearNum} data-year={yearNum + 1}>
+            <strong>Year {yearNum + 1}</strong>
+            <input
+              type="number"
+              data-term={"fall"}
+              value={year.fall.maxCourses}
+              onChange={(e) => {}}
+            />
+            <input type="number" data-term={"spring"} onChange={(e) => {}} />
+            <input type="number" data-term={"summer"} onChange={(e) => {}} />
+
+            <pre>{JSON.stringify(year, null, 2)}</pre>
+          </YearDiv>
+        ))}
     </LayoutDiv>
   );
 };
