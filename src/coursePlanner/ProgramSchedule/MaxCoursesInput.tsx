@@ -11,6 +11,8 @@ export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   const [maxCourses, setMaxCourses] = useAtom(maxCoursesFamily({ id: id }));
 
   const [, setSchedule] = useAtom(setScheduleAtom);
+  // causing a lot of re-renders with each input
+  // TODO search on internet on how to not call on mount
   useEffect(() => {
     setSchedule();
   }, [maxCourses]);

@@ -18,11 +18,9 @@ const inputAtom = atom("");
 
 export const AddCourses = () => {
   const [, setInput] = useAtom(inputAtom);
-
   const [, setCurrentProgram] = useAtom(currentProgramAtom);
-
-  const [courseInput] = useAtom(inputAtom);
   const [, addCourse] = useAtom(addCourseAtom);
+  const [courseInput] = useAtom(inputAtom);
   const [courses] = useAtom(coursesAtom);
 
   return (

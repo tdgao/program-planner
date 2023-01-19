@@ -5,9 +5,10 @@ import { CourseList } from "./CourseList/CourseList";
 import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
 export const PageDiv = styled.div`
-  display: grid;
-  grid-template-columns: 370px auto;
+  display: flex;
   column-gap: 48px;
+
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 const LayoutDiv = styled.div`

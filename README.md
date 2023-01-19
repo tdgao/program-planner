@@ -3,4 +3,8 @@
 The course planner v2
 
 TODO - add readme
-test
+
+rabbit hole (possible todo):
+problem - course's req does not exist in to schedule list
+
+- an take a program's requirements and create a front end select courses to schedule

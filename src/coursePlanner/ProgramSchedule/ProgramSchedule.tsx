@@ -1,6 +1,10 @@
+import { useAtom } from "jotai";
 import styled from "styled-components";
 import { MaxCoursesInput } from "./MaxCoursesInput";
-import { useProgramSchedule } from "./useProgramSchedule";
+import {
+  unscheduledCoursesAtom,
+  useProgramSchedule,
+} from "./useProgramSchedule";
 
 const LayoutDiv = styled.div`
   display: grid;
@@ -25,13 +29,23 @@ export type yearType = {
 export interface ProgramScheduleProps {
   schedule: yearType[] | null;
 }
+// TODO unHVC this
 export const ProgramScheduleView = (props: ProgramScheduleProps) => {
   const { schedule } = props;
+  const [unscheduledCourses] = useAtom(unscheduledCoursesAtom);
 
   return (
     <LayoutDiv>
+      <div>
+        <strong>Unscheduled Courses</strong>
+        <br />
+        {unscheduledCourses.map((course, i) => (
+          <div key={i}>{course}</div>
+        ))}
+      </div>
+
       {schedule &&
-        schedule.map((year: yearType, i: number) => (
+        schedule.map((year: yearType, i) => (
           <YearDiv key={i} data-year={i + 1}>
             <strong>Year {i + 1}</strong>
 
