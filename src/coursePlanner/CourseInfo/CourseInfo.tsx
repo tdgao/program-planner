@@ -6,10 +6,10 @@ const LayoutDiv = styled.div`
   display: grid;
 `;
 
-const courseAtom = atom("");
+export const courseInfoAtom = atom("");
 
 export const CourseInfo = () => {
-  const [course, setCourse] = useAtom(courseAtom);
+  const [course, setCourse] = useAtom(courseInfoAtom);
   const [courses] = useAtom(coursesAtom);
 
   const courseExists = !!courses[course];
@@ -20,6 +20,7 @@ export const CourseInfo = () => {
       <input
         type="text"
         placeholder={`Search courses, e.g. "SENG 275" or "Math 211"`}
+        value={course}
         onChange={(e) => {
           setCourse(e.target.value.toUpperCase().replace(/\s/g, ""));
         }}

@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import styled from "styled-components";
+import { Course } from "../Course";
 import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
 
 const LayoutDiv = styled.div`
@@ -16,14 +17,14 @@ export const CourseList = () => {
       <div>
         <strong>From Program</strong>
         {programCourses.map((course: any) => (
-          <div key={course}>{course}</div>
+          <Course key={course}>{course}</Course>
         ))}
       </div>
 
       <div>
         <strong>Added Courses</strong>
         {addedCourses.map((course: any) => (
-          <div key={course}>{course}</div>
+          <Course key={course}>{course}</Course>
         ))}
       </div>
     </LayoutDiv>
