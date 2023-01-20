@@ -19,9 +19,5 @@ export const Course = (props: CourseProps) => {
     courseId && setCourseInfo(courseId);
   };
 
-  /**
-   * onClick - opens coure info
-   */
-
   return <CourseDiv onClick={showCourseInfo}>{courseId}</CourseDiv>;
 };
