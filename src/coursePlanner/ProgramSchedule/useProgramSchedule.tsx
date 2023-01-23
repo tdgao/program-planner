@@ -82,8 +82,9 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
   const schedule = [...Array(numYears)].map((_, i) => {
     const maxCourses: (number | undefined)[] = ["fall", "spring", "summer"].map(
       (term) => {
-        return get(maxCoursesFamily({ id: i + term, value: 5, term: term }))
-          .value;
+        return get(
+          maxCoursesFamily({ id: `year-${i}-${term}`, value: 5, term: term })
+        ).value;
       }
     );
 

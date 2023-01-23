@@ -49,9 +49,9 @@ export const ProgramScheduleView = (props: ProgramScheduleProps) => {
           <YearDiv key={i} data-year={i + 1}>
             <strong>Year {i + 1}</strong>
 
-            <MaxCoursesInput id={i + "fall"} />
-            <MaxCoursesInput id={i + "spring"} />
-            <MaxCoursesInput id={i + "summer"} />
+            <MaxCoursesInput id={`year-${i}-fall`} />
+            <MaxCoursesInput id={`year-${i}-spring`} />
+            <MaxCoursesInput id={`year-${i}-summer`} />
 
             <pre>{JSON.stringify(year, null, 2)}</pre>
           </YearDiv>
