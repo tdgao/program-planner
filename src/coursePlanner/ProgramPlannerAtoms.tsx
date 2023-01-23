@@ -50,3 +50,5 @@ export const removeCourseAtom = atom(null, (get, set, course) => {
     ...get(addedCoursesAtom).filter((item: any) => item != course),
   ]);
 });
+
+// add Force course taking date atoms

@@ -80,28 +80,26 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
   };
 
   const schedule = [...Array(numYears)].map((_, i) => {
-    const maxCourses: (number | undefined)[] = ["fall", "spring", "summer"].map(
-      (term) => {
-        return get(
-          maxCoursesFamily({ id: `year-${i}-${term}`, value: 5, term: term })
-        ).value;
-      }
-    );
+    const maxCourses: any = {};
+    ["fall", "spring", "summer"].forEach((term) => {
+      maxCourses[term] = get(
+        maxCoursesFamily({ id: `year-${i}-${term}`, value: 5, term: term })
+      ).value;
+    });
 
-    return {
-      fall: {
-        courses: fillTerm(maxCourses[0], scheduleCourses, courses, curSchedule),
-        maxCourses: maxCourses[0],
-      },
-      spring: {
-        courses: fillTerm(maxCourses[1], scheduleCourses, courses, curSchedule),
-        maxCourses: maxCourses[1],
-      },
-      summer: {
-        courses: fillTerm(maxCourses[2], scheduleCourses, courses, curSchedule),
-        maxCourses: maxCourses[2],
-      },
-    };
+    const year: any = {};
+    ["fall", "spring", "summer"].forEach((term) => {
+      year[term] = {
+        courses: fillTerm(
+          maxCourses[term],
+          scheduleCourses,
+          courses,
+          curSchedule
+        ),
+        maxCourses: maxCourses[term],
+      };
+    });
+    return year;
   });
 
   set(unscheduledCoursesAtom, scheduleCourses);
