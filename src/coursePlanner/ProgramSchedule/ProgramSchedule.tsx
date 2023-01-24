@@ -1,6 +1,10 @@
+import { Info } from "@mui/icons-material";
+import { Alert, Typography } from "@mui/joy";
 import { useAtom } from "jotai";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Course } from "../Course";
 import { MaxCoursesInput } from "./MaxCoursesInput";
+import { UnscheduledAlert } from "./UnscheduledAlert";
 import {
   unscheduledCoursesAtom,
   useProgramSchedule,
@@ -8,12 +12,25 @@ import {
 
 const LayoutDiv = styled.div`
   display: grid;
-  row-gap: 32px;
+  row-gap: 16px;
 `;
-
 const YearDiv = styled.div`
   display: grid;
-  row-gap: 12px;
+  row-gap: 0px;
+`;
+const YearInnerDiv = styled.div`
+  display: flex;
+  column-gap: 12px;
+  border: 1px solid #c7c7c7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0 -4px;
+`;
+const TermDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100px;
 `;
 
 export type courseType = string | null;
@@ -26,40 +43,50 @@ export type yearType = {
   spring: termType;
   summer: termType;
 };
-export interface ProgramScheduleProps {
-  schedule: yearType[] | null;
-}
-// TODO unHVC this
-export const ProgramScheduleView = (props: ProgramScheduleProps) => {
-  const { schedule } = props;
+
+export const ProgramSchedule = () => {
+  const { schedule } = useProgramSchedule();
   const [unscheduledCourses] = useAtom(unscheduledCoursesAtom);
 
   return (
     <LayoutDiv>
-      <div>
-        <strong>Unscheduled Courses</strong>
-        <br />
-        {unscheduledCourses.map((course, i) => (
-          <div key={i}>{course}</div>
-        ))}
-      </div>
+      <Typography level="mainHeading">Program Schedule</Typography>
+
+      {unscheduledCourses && (
+        <UnscheduledAlert unscheduledCourses={unscheduledCourses} />
+      )}
 
       {schedule &&
-        schedule.map((year: yearType, i) => (
+        schedule.map((year: yearType, i: number) => (
           <YearDiv key={i} data-year={i + 1}>
-            <strong>Year {i + 1}</strong>
+            <Typography level="h5">Year {i + 1}</Typography>
 
-            <MaxCoursesInput id={`year-${i}-fall`} />
-            <MaxCoursesInput id={`year-${i}-spring`} />
-            <MaxCoursesInput id={`year-${i}-summer`} />
-
-            <pre>{JSON.stringify(year, null, 2)}</pre>
+            <YearInnerDiv>
+              {/* TODO refactor this to use one component/mapping */}
+              <TermDiv>
+                <Typography fontWeight="500">Fall</Typography>
+                <MaxCoursesInput id={`year-${i}-fall`} />
+                {year.fall.courses.map(
+                  (course, i) => course && <Course key={i}>{course}</Course>
+                )}
+              </TermDiv>
+              <TermDiv>
+                <Typography fontWeight="500">Spring</Typography>
+                <MaxCoursesInput id={`year-${i}-spring`} />
+                {year.spring.courses.map(
+                  (course, i) => course && <Course key={i}>{course}</Course>
+                )}
+              </TermDiv>
+              <TermDiv>
+                <Typography fontWeight="500">Summer</Typography>
+                <MaxCoursesInput id={`year-${i}-summer`} />
+                {year.summer.courses.map(
+                  (course, i) => course && <Course key={i}>{course}</Course>
+                )}
+              </TermDiv>
+            </YearInnerDiv>
           </YearDiv>
         ))}
     </LayoutDiv>
   );
-};
-
-export const ProgramSchedule = () => {
-  return <ProgramScheduleView {...useProgramSchedule()} />;
 };

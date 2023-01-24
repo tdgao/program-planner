@@ -1,38 +1,53 @@
-import { FormLabel, Input } from "@mui/joy";
+import { Select, Option, Typography } from "@mui/joy";
 import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { maxCoursesFamily, setScheduleAtom } from "./useProgramSchedule";
 
 interface MaxCoursesInputProps {
   id: string;
 }
-const InputDiv = styled(Input)`
-  max-width: 150px;
+const LayoutDiv = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 45px;
+  column-gap: 12px;
 `;
 
 export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   const { id } = props;
   const [maxCourses, setMaxCourses] = useAtom(maxCoursesFamily({ id: id }));
-
   const [, setSchedule] = useAtom(setScheduleAtom);
-  // causing a lot of re-renders with each input
-  // TODO search on internet on how to not call on mount
+  const action = useRef(null);
+
+  const isMounted = useRef(false);
   useEffect(() => {
-    setSchedule();
+    if (isMounted.current) setSchedule();
+    else isMounted.current = true;
   }, [maxCourses]);
 
-  const handleOnChange = (e: any) => {
-    const val = parseInt(e.target.value);
-    val >= 0 && setMaxCourses({ ...maxCourses, value: val });
-  };
-
   return (
-    <InputDiv
-      type="number"
-      data-term={maxCourses.term}
-      value={maxCourses.value}
-      onChange={handleOnChange}
-    />
+    <LayoutDiv>
+      <Typography level="body2" textColor="neutral.500">
+        Max:
+      </Typography>
+      <Select
+        action={action}
+        variant="plain"
+        size="sm"
+        defaultValue={maxCourses.value}
+        value={maxCourses.value}
+        onChange={(e, newValue) => {
+          newValue && setMaxCourses({ ...maxCourses, value: newValue });
+        }}
+      >
+        <Option value={1}>1</Option>
+        <Option value={2}>2</Option>
+        <Option value={3}>3</Option>
+        <Option value={4}>4</Option>
+        <Option value={5}>5</Option>
+        <Option value={6}>6</Option>
+      </Select>
+    </LayoutDiv>
   );
 };
