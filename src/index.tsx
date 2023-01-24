@@ -4,6 +4,14 @@ import ReactDOM from "react-dom/client";
 import { ProgramPlanner } from "./coursePlanner/ProgramPlanner";
 import reportWebVitals from "./reportWebVitals";
 
+declare module "@mui/joy/styles" {
+  interface TypographySystemOverrides {
+    body1Bold: true;
+    mainHeading: true;
+    subHeading: true;
+  }
+}
+
 const theme = extendTheme({
   components: {
     JoyTypography: {
@@ -14,7 +22,7 @@ const theme = extendTheme({
           h1: "h1",
           h2: "h1",
           h3: "h1",
-          h4: "h2",
+          h4: "h1",
           h5: "h3",
           h6: "h4",
           body1: "p",
@@ -24,6 +32,25 @@ const theme = extendTheme({
           body5: "span",
         },
       },
+    },
+  },
+  typography: {
+    body1Bold: {
+      fontSize: "var(--joy-fontSize-sm)",
+      fontWeight: "var(--joy-fontWeight-lg)",
+      lineHeight: "var(--joy-lineHeight-lg)",
+    },
+    mainHeading: {
+      fontSize: "var(--joy-fontSize-xl2)",
+      fontWeight: "var(--joy-fontWeight-md)",
+      lineHeight: "var(--joy-lineHeight-lg)",
+      color: "#4a4a4a",
+    },
+    subHeading: {
+      fontSize: "var(--joy-fontSize-xl)",
+      fontWeight: "400",
+      lineHeight: "var(--joy-lineHeight-xl)",
+      color: "#5a5a72",
     },
   },
 });

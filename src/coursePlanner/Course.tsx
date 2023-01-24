@@ -1,3 +1,4 @@
+import { Typography } from "@mui/joy";
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
@@ -5,7 +6,7 @@ import { courseType } from "./ProgramSchedule/ProgramSchedule";
 
 const CourseDiv = styled.div`
   display: grid;
-  padding: 3px 0;
+  width: max-content;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -24,5 +25,9 @@ export const Course = (props: CourseProps) => {
     courseId && setCourseInfo(courseId);
   };
 
-  return <CourseDiv onClick={showCourseInfo}>{courseId}</CourseDiv>;
+  return (
+    <CourseDiv onClick={showCourseInfo}>
+      <Typography level="body1">{courseId}</Typography>
+    </CourseDiv>
+  );
 };

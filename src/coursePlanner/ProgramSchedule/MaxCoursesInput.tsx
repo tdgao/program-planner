@@ -1,10 +1,15 @@
+import { FormLabel, Input } from "@mui/joy";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
+import styled from "styled-components";
 import { maxCoursesFamily, setScheduleAtom } from "./useProgramSchedule";
 
 interface MaxCoursesInputProps {
   id: string;
 }
+const InputDiv = styled(Input)`
+  max-width: 150px;
+`;
 
 export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   const { id } = props;
@@ -23,7 +28,7 @@ export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   };
 
   return (
-    <input
+    <InputDiv
       type="number"
       data-term={maxCourses.term}
       value={maxCourses.value}

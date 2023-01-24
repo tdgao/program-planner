@@ -8,11 +8,11 @@ import {
   currentProgramAtom,
 } from "../ProgramPlannerAtoms";
 
-const LayoutDiv = styled.div`
+export const LayoutDiv = styled.div`
   display: grid;
   row-gap: 16px;
 `;
-const SectionDiv = styled.div`
+export const SectionDiv = styled.div`
   display: grid;
   row-gap: 8px;
 `;
@@ -30,10 +30,10 @@ export const AddCourses = () => {
 
   return (
     <LayoutDiv>
-      <Typography level="h4">Add Courses</Typography>
+      <Typography level="mainHeading">Add Courses</Typography>
 
       <SectionDiv>
-        <Typography level="h6">Include all from a degree</Typography>
+        <Typography level="subHeading">Include all from a degree</Typography>
         <Select
           action={programSelect}
           value={currentProgram}
@@ -50,7 +50,7 @@ export const AddCourses = () => {
       </SectionDiv>
 
       <SectionDiv>
-        <Typography level="h6">Add single course</Typography>
+        <Typography level="subHeading">Add single course</Typography>
 
         <Input
           placeholder={`Search courses, e.g. "SENG 275" or "Math 211"`}

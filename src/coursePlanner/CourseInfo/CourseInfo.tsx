@@ -38,7 +38,7 @@ export const CourseInfo = () => {
 
   return (
     <LayoutDiv>
-      <Typography level="h4">Course Details</Typography>
+      <Typography level="mainHeading">Course Details</Typography>
 
       {!!courseInfo ? (
         <CourseInfoContent courseInfo={courseInfo} />
@@ -55,11 +55,13 @@ const CourseInfoContent = ({ courseInfo }: any) => {
   // parse course info
   const title = courseInfo.full_title;
   const url = courseInfo.url;
-  const prereqs = JSON.stringify(courseInfo.requirements, null, 2);
+  const prereqs = JSON.stringify(courseInfo.requirements[0], null, 2);
 
   return (
     <InfoDiv>
-      <Typography level="h5">{title}</Typography>
+      <Typography level="body1" textColor="neutral.700" fontWeight="500">
+        {title}
+      </Typography>
       <LinkDiv
         href={url}
         target="_blank"
@@ -70,10 +72,8 @@ const CourseInfoContent = ({ courseInfo }: any) => {
       </LinkDiv>
       <PrereqsDiv>
         <Typography level="body1">
-          <Typography level="body1" fontWeight="500">
-            Prerequisites
-          </Typography>
-          <PrereqsPre>{prereqs}</PrereqsPre>
+          <Typography>Prerequisites</Typography>
+          <PrereqsPre>{prereqs ? prereqs : <>No Prerequisites</>}</PrereqsPre>
         </Typography>
       </PrereqsDiv>
     </InfoDiv>

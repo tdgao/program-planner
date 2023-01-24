@@ -6,7 +6,9 @@ import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
 export const PageDiv = styled.div`
   display: flex;
+  justify-content: center;
   column-gap: 48px;
+  padding: 24px;
 
   font-family: Arial, Helvetica, sans-serif;
 `;
