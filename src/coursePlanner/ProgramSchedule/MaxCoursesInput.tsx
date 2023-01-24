@@ -12,6 +12,7 @@ const LayoutDiv = styled.div`
   align-items: center;
   grid-template-columns: 1fr 45px;
   column-gap: 12px;
+  margin-bottom: 4px; // TODO - remove this after using component for each term (replace with row gap)
 `;
 
 export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
