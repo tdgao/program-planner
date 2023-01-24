@@ -13,6 +13,7 @@ export const PageDiv = styled.div`
 
 const LayoutDiv = styled.div`
   display: grid;
+  width: 400px;
   row-gap: 24px;
   height: max-content;
 `;
@@ -23,8 +24,10 @@ export const ProgramPlanner = () => {
       <LayoutDiv>
         <AddCourses />
         <CourseInfo />
-        <CourseList />
       </LayoutDiv>
+      <div>
+        <CourseList />
+      </div>
       <div>
         <ProgramSchedule />
       </div>

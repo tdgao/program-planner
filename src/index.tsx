@@ -1,14 +1,41 @@
+import { CssVarsProvider, extendTheme } from "@mui/joy";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ProgramPlanner } from "./coursePlanner/ProgramPlanner";
 import reportWebVitals from "./reportWebVitals";
+
+const theme = extendTheme({
+  components: {
+    JoyTypography: {
+      defaultProps: {
+        levelMapping: {
+          display1: "h1",
+          display2: "h1",
+          h1: "h1",
+          h2: "h1",
+          h3: "h1",
+          h4: "h2",
+          h5: "h3",
+          h6: "h4",
+          body1: "p",
+          body2: "span",
+          body3: "span",
+          body4: "span",
+          body5: "span",
+        },
+      },
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ProgramPlanner />
+    <CssVarsProvider theme={theme}>
+      <ProgramPlanner />
+    </CssVarsProvider>
   </React.StrictMode>
 );
 

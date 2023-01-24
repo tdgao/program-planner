@@ -5,6 +5,11 @@ import { courseType } from "./ProgramSchedule/ProgramSchedule";
 
 const CourseDiv = styled.div`
   display: grid;
+  padding: 3px 0;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 interface CourseProps {
