@@ -1,7 +1,6 @@
 import { Link } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
 import { atom, useAtom } from "jotai";
-import { useEffect } from "react";
 import styled from "styled-components";
 import { coursesAtom } from "../ProgramPlannerAtoms";
 import Launch from "@mui/icons-material/Launch";
