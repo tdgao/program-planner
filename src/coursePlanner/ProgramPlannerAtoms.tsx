@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
+import { termType } from "./ProgramSchedule/ProgramSchedule";
 
 export const coursesAtom = atom<any>(courses);
 export const programsAtom = atom<any>(programs);
@@ -52,3 +53,29 @@ export const removeCourseAtom = atom(null, (get, set, course) => {
 });
 
 // add Force course taking date atoms
+type forceScheduleType = Record<
+  number,
+  {
+    year: number;
+    term: "fall" | "spring" | "summer";
+  }
+>;
+export const forceScheduleAtom = atom<forceScheduleType>({});
+
+export const addForceScheduleAtom = atom(
+  null,
+  (get, set, courseSchedule: forceScheduleType) => {
+    courseSchedule &&
+      set(forceScheduleAtom, { ...get(forceScheduleAtom), ...courseSchedule });
+  }
+);
+
+export const removeForceScheduleAtom = atom(
+  null,
+  (get, set, courseId: forceScheduleType) => {
+    courseId &&
+      set(forceScheduleAtom, {
+        ...get(addedCoursesAtom).filter((item: any) => item != courseId),
+      });
+  }
+);
