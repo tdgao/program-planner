@@ -20,16 +20,16 @@ interface CourseProps {
   children: string;
 }
 
-type paramType = {
+export type forceScheduleType = {
   courseId: string;
   scheduleSlot: string; // year-{1}-{term}, i.e. year-1-spring
 };
 export const forceScheduleFamily = atomFamily(
-  (param: paramType) =>
+  (param: forceScheduleType) =>
     atom({
       scheduleSlot: param.scheduleSlot,
     }),
-  (a: paramType, b: paramType) => a.courseId === b.courseId
+  (a: forceScheduleType, b: forceScheduleType) => a.courseId === b.courseId
 );
 
 export const Course = (props: CourseProps) => {

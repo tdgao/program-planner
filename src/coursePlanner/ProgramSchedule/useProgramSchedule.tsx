@@ -1,6 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
+import { forceScheduleFamily, forceScheduleType } from "../Course";
 import {
   addedCoursesAtom,
   coursesAtom,
@@ -23,6 +24,7 @@ const initScheduleCourses = (addedCourses: any, programCourses: any) => {
   return courses.sort(sortCourses);
 };
 
+export type termType = "fall" | "spring" | "summer";
 export type curScheduleType = {
   completed: courseType[];
   currentTerm: courseType[];
@@ -31,23 +33,44 @@ const fillTerm = (
   maxCourses: number | undefined,
   scheduleCourses: courseType[],
   courses: any,
-  curSchedule: curScheduleType
+  curSchedule: curScheduleType,
+  forceSchedule: forceScheduleType[],
+  slot: {
+    year: number;
+    term: termType;
+  }
 ): courseType[] => {
-  curSchedule.currentTerm = [];
-  const term = [...Array(maxCourses || 0)].map((_) => {
-    for (const i in scheduleCourses) {
-      const course = scheduleCourses[i];
-      const prereqs = getPrereqs(course, courses);
+  const forceScheduleTerm = forceSchedule
+    .filter(
+      (item) => item.scheduleSlot === `year-${slot.year + 1}-${slot.term}`
+    )
+    .map((item) => {
+      scheduleCourses.splice(scheduleCourses.indexOf(item.courseId), 1); // remove course from list
+      return item.courseId;
+    });
+  curSchedule.currentTerm = [...forceScheduleTerm];
 
-      if (meetsPrereqs(prereqs, curSchedule) === true) {
-        curSchedule.currentTerm.push(course);
-        scheduleCourses.splice(parseInt(i), 1); // remove course from list
-        return course;
+  const numFillTerm = Math.max(0, (maxCourses || 0) - forceScheduleTerm.length);
+
+  const autoTerm = [...Array(numFillTerm)].map((_) => {
+    for (const i in scheduleCourses) {
+      const courseId = scheduleCourses[i];
+      const prereqs = getPrereqs(courseId, courses);
+      if (
+        courseId &&
+        !forceSchedule.map((item) => item.courseId).includes(courseId)
+      ) {
+        if (meetsPrereqs(prereqs, curSchedule) === true) {
+          curSchedule.currentTerm.push(courseId);
+          scheduleCourses.splice(parseInt(i), 1); // remove course from list
+          return courseId;
+        }
       }
     }
 
     return null;
   });
+  const term = [...forceScheduleTerm, ...autoTerm];
 
   curSchedule.completed.push(...term);
   return term;
@@ -74,6 +97,17 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
   const scheduleCourses = initScheduleCourses(programCourses, addedCourses);
   const courses = get(coursesAtom);
 
+  const forceSchedule = scheduleCourses
+    .map((courseId: string) => {
+      return {
+        courseId: courseId,
+        ...get(
+          forceScheduleFamily({ courseId: courseId, scheduleSlot: "auto" })
+        ),
+      };
+    })
+    .filter((item) => item.scheduleSlot !== "auto");
+
   const curSchedule = {
     completed: [...ASSUME_COMPLETED],
     currentTerm: [],
@@ -94,7 +128,12 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
           maxCourses[term],
           scheduleCourses,
           courses,
-          curSchedule
+          curSchedule,
+          forceSchedule,
+          {
+            year: i,
+            term: term as termType,
+          }
         ),
         maxCourses: maxCourses[term],
       };

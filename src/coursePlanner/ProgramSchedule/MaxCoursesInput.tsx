@@ -18,9 +18,9 @@ const LayoutDiv = styled.div`
 export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   const { id } = props;
   const [maxCourses, setMaxCourses] = useAtom(maxCoursesFamily({ id: id }));
-  const [, setSchedule] = useAtom(setScheduleAtom);
   const action = useRef(null);
 
+  const [, setSchedule] = useAtom(setScheduleAtom);
   const isMounted = useRef(false);
   useEffect(() => {
     if (isMounted.current) setSchedule();

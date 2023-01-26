@@ -1,7 +1,6 @@
 import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
-import { termType } from "./ProgramSchedule/ProgramSchedule";
 
 export const coursesAtom = atom<any>(courses);
 export const programsAtom = atom<any>(programs);

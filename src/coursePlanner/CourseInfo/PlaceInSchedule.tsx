@@ -1,8 +1,9 @@
 import { Typography, Select, Option } from "@mui/joy";
 import { useAtom } from "jotai";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { forceScheduleFamily } from "../Course";
+import { setScheduleAtom } from "../ProgramSchedule/useProgramSchedule";
 
 const PlaceInDiv = styled.div`
   display: flex;
@@ -24,6 +25,11 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
     forceScheduleFamily({ courseId: courseId, scheduleSlot: "auto" })
   );
   const isAuto = forceSchedule.scheduleSlot === "auto";
+
+  const [, setSchedule] = useAtom(setScheduleAtom);
+  useEffect(() => {
+    setSchedule();
+  }, [forceSchedule]);
 
   return (
     <PlaceInDiv>

@@ -36,14 +36,14 @@ const TermDiv = styled.div`
 `;
 
 export type courseType = string | null;
-export type termType = {
+type scheduleTermType = {
   courses: courseType[];
   maxCourses: number;
 };
 export type yearType = {
-  fall: termType;
-  spring: termType;
-  summer: termType;
+  fall: scheduleTermType;
+  spring: scheduleTermType;
+  summer: scheduleTermType;
 };
 
 export const ProgramSchedule = () => {
