@@ -39,9 +39,11 @@ export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
         defaultValue={maxCourses.value}
         value={maxCourses.value}
         onChange={(e, newValue) => {
-          newValue && setMaxCourses({ ...maxCourses, value: newValue });
+          (newValue || newValue === 0) &&
+            setMaxCourses({ ...maxCourses, value: newValue });
         }}
       >
+        <Option value={0}>0</Option>
         <Option value={1}>1</Option>
         <Option value={2}>2</Option>
         <Option value={3}>3</Option>

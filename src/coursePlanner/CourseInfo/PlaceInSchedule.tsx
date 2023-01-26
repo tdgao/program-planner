@@ -38,7 +38,7 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
         defaultValue="auto"
         value={forceSchedule.scheduleSlot}
         size="sm"
-        variant={isAuto ? "soft" : "solid"}
+        variant={"soft"}
         color={isAuto ? "success" : "primary"}
         onChange={(e, scheduleSlot) =>
           scheduleSlot && setForceSchedule({ scheduleSlot: scheduleSlot })
