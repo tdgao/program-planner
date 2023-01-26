@@ -31,7 +31,7 @@ export const CourseList = () => {
       <CoursesDiv>
         <CourseListDiv>
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
-            From Programs
+            From Program
           </Typography>
           {programCourses.map(
             (course: courseType) =>

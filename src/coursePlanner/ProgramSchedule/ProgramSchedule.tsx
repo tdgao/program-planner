@@ -13,6 +13,7 @@ import {
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 16px;
+  width: 360px;
 `;
 const YearDiv = styled.div`
   display: grid;
@@ -20,6 +21,7 @@ const YearDiv = styled.div`
 `;
 const YearInnerDiv = styled.div`
   display: flex;
+  justify-content: space-between;
   column-gap: 12px;
   border: 1px solid #c7c7c7;
   border-radius: 8px;
