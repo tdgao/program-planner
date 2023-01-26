@@ -53,14 +53,14 @@ const fillTerm = (
   return term;
 };
 
-type ParamType = {
+type paramType = {
   id: string;
   value?: number;
   term?: string;
 };
 export const maxCoursesFamily = atomFamily(
-  (param: ParamType) => atom({ value: param.value, term: param.term }),
-  (a: ParamType, b: ParamType) => a.id === b.id
+  (param: paramType) => atom({ value: param.value, term: param.term }),
+  (a: paramType, b: paramType) => a.id === b.id
 );
 
 export const numYearsAtom = atom(6);

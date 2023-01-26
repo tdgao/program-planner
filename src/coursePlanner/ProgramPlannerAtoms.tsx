@@ -51,31 +51,3 @@ export const removeCourseAtom = atom(null, (get, set, course) => {
     ...get(addedCoursesAtom).filter((item: any) => item != course),
   ]);
 });
-
-// add Force course taking date atoms
-type forceScheduleType = Record<
-  number,
-  {
-    year: number;
-    term: "fall" | "spring" | "summer";
-  }
->;
-export const forceScheduleAtom = atom<forceScheduleType>({});
-
-export const addForceScheduleAtom = atom(
-  null,
-  (get, set, courseSchedule: forceScheduleType) => {
-    courseSchedule &&
-      set(forceScheduleAtom, { ...get(forceScheduleAtom), ...courseSchedule });
-  }
-);
-
-export const removeForceScheduleAtom = atom(
-  null,
-  (get, set, courseId: forceScheduleType) => {
-    courseId &&
-      set(forceScheduleAtom, {
-        ...get(addedCoursesAtom).filter((item: any) => item != courseId),
-      });
-  }
-);
