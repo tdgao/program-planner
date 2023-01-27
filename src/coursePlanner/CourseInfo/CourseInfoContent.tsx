@@ -6,7 +6,16 @@ import Launch from "@mui/icons-material/Launch";
 import { Close } from "@mui/icons-material";
 import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
+import { ScrollBarStyles } from "../CourseList/CourseList";
 
+const LayoutDiv = styled.div`
+  width: 100%;
+  display: grid;
+  row-gap: 24px;
+  max-height: calc(100vh - 400px);
+  overflow-y: scroll;
+  ${ScrollBarStyles}
+`;
 const SectionDiv = styled.div`
   display: grid;
   row-gap: 4px;
@@ -57,7 +66,7 @@ export const CourseInfoContent = (props: CourseContentProps) => {
   );
 
   return (
-    <>
+    <LayoutDiv>
       <SectionDiv>
         <Typography
           level="body1"
@@ -84,6 +93,6 @@ export const CourseInfoContent = (props: CourseContentProps) => {
           <PrereqsPre>{prereqs ? prereqs : <>No Prerequisites</>}</PrereqsPre>
         </Typography>
       </PrereqsDiv>
-    </>
+    </LayoutDiv>
   );
 };

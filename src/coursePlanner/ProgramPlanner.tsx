@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { AddCourses } from "./AddCourse/AddCourses";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
 import { CourseList } from "./CourseList/CourseList";
@@ -9,30 +9,44 @@ export const PageDiv = styled.div`
   justify-content: center;
   column-gap: 48px;
   padding: 24px;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
 
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-const LayoutDiv = styled.div`
+const layoutStyles = css`
   display: grid;
+  height: max-content;
+  padding: 0 12px;
+`;
+
+const AddCoursesDiv = styled.div`
+  ${layoutStyles}
   width: 400px;
   row-gap: 24px;
-  height: max-content;
+`;
+const CourseListDiv = styled.div`
+  ${layoutStyles}
+`;
+const ProgramScheduleDiv = styled.div`
+  ${layoutStyles}
 `;
 
 export const ProgramPlanner = () => {
   return (
     <PageDiv>
-      <LayoutDiv>
+      <AddCoursesDiv>
         <AddCourses />
         <CourseInfo />
-      </LayoutDiv>
-      <div>
+      </AddCoursesDiv>
+      <CourseListDiv>
         <CourseList />
-      </div>
-      <div>
+      </CourseListDiv>
+      <ProgramScheduleDiv>
         <ProgramSchedule />
-      </div>
+      </ProgramScheduleDiv>
     </PageDiv>
   );
 };

@@ -47,6 +47,6 @@ export const addCourseAtom = atom(null, (get, set, course: string) => {
 
 export const removeCourseAtom = atom(null, (get, set, course) => {
   set(addedCoursesAtom, [
-    ...get(addedCoursesAtom).filter((item: any) => item != course),
+    ...get(addedCoursesAtom).filter((item: any) => item !== course),
   ]);
 });

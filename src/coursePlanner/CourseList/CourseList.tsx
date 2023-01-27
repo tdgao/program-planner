@@ -1,15 +1,41 @@
 import { Input, Typography } from "@mui/joy";
 import { useAtom } from "jotai";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
 import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
 
+export const ScrollBarStyles = css`
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: #ebebef white;
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ebebef;
+    border-radius: 20px;
+    border: 3px solid white;
+  }
+`;
+
 const CoursesDiv = styled.div`
   display: flex;
   column-gap: 32px;
   min-width: 280px;
+  height: 100%;
+  max-height: calc(100vh - 190px);
+  overflow-y: scroll;
+  ${ScrollBarStyles}
 `;
 const CourseListDiv = styled.div`
   display: grid;

@@ -1,8 +1,8 @@
-import { Info } from "@mui/icons-material";
-import { Alert, Typography } from "@mui/joy";
+import { Typography } from "@mui/joy";
 import { useAtom } from "jotai";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Course } from "../Course";
+import { ScrollBarStyles } from "../CourseList/CourseList";
 import { MaxCoursesInput } from "./MaxCoursesInput";
 import { UnscheduledAlert } from "./UnscheduledAlert";
 import {
@@ -13,7 +13,7 @@ import {
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 16px;
-  width: 360px;
+  width: 400px;
 `;
 const YearDiv = styled.div`
   display: grid;
@@ -26,13 +26,21 @@ const YearInnerDiv = styled.div`
   border: 1px solid #c7c7c7;
   border-radius: 8px;
   padding: 8px 12px;
-  margin: 0 -4px;
 `;
 const TermDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100px;
+`;
+const ScheduleDiv = styled.div`
+  display: grid;
+  row-gap: 16px;
+  max-height: calc(100vh - 190px);
+  overflow-y: scroll;
+  ${ScrollBarStyles}
+  padding: 0 8px;
+  margin: 0 -8px;
 `;
 
 export type courseType = string | null;
@@ -58,37 +66,41 @@ export const ProgramSchedule = () => {
         <UnscheduledAlert unscheduledCourses={unscheduledCourses} />
       )}
 
-      {schedule &&
-        schedule.map((year: yearType, i: number) => (
-          <YearDiv key={i} data-year={i + 1}>
-            <Typography level="h5">Year {i + 1}</Typography>
+      <ScheduleDiv>
+        {schedule &&
+          schedule.map((year: yearType, i: number) => (
+            <YearDiv key={i} data-year={i + 1}>
+              <Typography level="h5" sx={{ ml: "4px" }}>
+                Year {i + 1}
+              </Typography>
 
-            <YearInnerDiv>
-              {/* TODO refactor this to use one component/mapping */}
-              <TermDiv>
-                <Typography fontWeight="500">Fall</Typography>
-                <MaxCoursesInput id={`year-${i}-fall`} />
-                {year.fall.courses.map(
-                  (course, i) => course && <Course key={i}>{course}</Course>
-                )}
-              </TermDiv>
-              <TermDiv>
-                <Typography fontWeight="500">Spring</Typography>
-                <MaxCoursesInput id={`year-${i}-spring`} />
-                {year.spring.courses.map(
-                  (course, i) => course && <Course key={i}>{course}</Course>
-                )}
-              </TermDiv>
-              <TermDiv>
-                <Typography fontWeight="500">Summer</Typography>
-                <MaxCoursesInput id={`year-${i}-summer`} />
-                {year.summer.courses.map(
-                  (course, i) => course && <Course key={i}>{course}</Course>
-                )}
-              </TermDiv>
-            </YearInnerDiv>
-          </YearDiv>
-        ))}
+              <YearInnerDiv>
+                {/* TODO refactor this to use one component/mapping */}
+                <TermDiv>
+                  <Typography fontWeight="500">Fall</Typography>
+                  <MaxCoursesInput id={`year-${i}-fall`} />
+                  {year.fall.courses.map(
+                    (course, i) => course && <Course key={i}>{course}</Course>
+                  )}
+                </TermDiv>
+                <TermDiv>
+                  <Typography fontWeight="500">Spring</Typography>
+                  <MaxCoursesInput id={`year-${i}-spring`} />
+                  {year.spring.courses.map(
+                    (course, i) => course && <Course key={i}>{course}</Course>
+                  )}
+                </TermDiv>
+                <TermDiv>
+                  <Typography fontWeight="500">Summer</Typography>
+                  <MaxCoursesInput id={`year-${i}-summer`} />
+                  {year.summer.courses.map(
+                    (course, i) => course && <Course key={i}>{course}</Course>
+                  )}
+                </TermDiv>
+              </YearInnerDiv>
+            </YearDiv>
+          ))}
+      </ScheduleDiv>
     </LayoutDiv>
   );
 };
