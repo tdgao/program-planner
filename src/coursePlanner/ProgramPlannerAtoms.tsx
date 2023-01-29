@@ -2,22 +2,22 @@ import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
 
-interface courseType {
+export interface courseObjType {
   courseId: string;
   title: string;
   pid: string;
   parsedRequirements: any;
   url: string;
 }
-type coursesAtomType = Record<string, courseType>;
-export const coursesAtom = atom<coursesAtomType>(courses);
+export type coursesObjType = Record<string, courseObjType>;
+export const coursesAtom = atom<coursesObjType>(courses);
 
-interface programType {
+interface programObjType {
   programId: string;
   requirements: any;
 }
-type programsAtomType = Record<string, programType>;
-export const programsAtom = atom<programsAtomType>(programs);
+type programsObjType = Record<string, programObjType>;
+export const programsAtom = atom<programsObjType>(programs);
 
 // Program courses
 export const currentProgramAtom = atom(
