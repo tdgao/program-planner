@@ -16,7 +16,7 @@ export const SectionDiv = styled.div`
 const programs = Object.values(programsJson).map(
   (program) => program.programId
 );
-export const currentProgramAtom = atom(programs[0]);
+export const currentProgramAtom = atom(programs[254]);
 
 export const AddCourses = () => {
   const [currentProgram, setCurrentProgram] = useAtom(currentProgramAtom);

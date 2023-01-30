@@ -8,6 +8,7 @@ import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
 import { ScrollBarStyles } from "../CourseList/CourseList";
 import { courseObjType } from "../ProgramPlannerAtoms";
+import { activeCourseAtom } from "../Course";
 
 const LayoutDiv = styled.div`
   display: grid;
@@ -51,6 +52,7 @@ export interface CourseContentProps {
 export const CourseInfoContent = (props: CourseContentProps) => {
   const { courseInfo, courseId } = props;
   const [, setCourse] = useAtom(courseInfoAtom);
+  const [, setActiveCourse] = useAtom(activeCourseAtom);
 
   // parse course info
   const title = courseInfo.title;
@@ -59,7 +61,10 @@ export const CourseInfoContent = (props: CourseContentProps) => {
 
   const buttonSlot = (
     <Button
-      onClick={() => setCourse("")}
+      onClick={() => {
+        setCourse("");
+        setActiveCourse("");
+      }}
       endDecorator={<Close />}
       size="sm"
       variant="plain"

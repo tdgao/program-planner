@@ -65,7 +65,7 @@ const fillTerm = (
         courseId &&
         !forceSchedule.map((item) => item.courseId).includes(courseId)
       ) {
-        console.log("Course going in: ", courseId);
+        // console.log("Course going in: ", courseId);
         if (meetsPrereqs(prereqs, curSchedule) === true) {
           curSchedule.currentTerm.push(courseId);
           scheduleCourses.splice(parseInt(i), 1); // remove course from list
