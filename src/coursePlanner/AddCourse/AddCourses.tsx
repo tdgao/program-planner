@@ -1,12 +1,9 @@
-import { Select, Typography, Option, Input, Button } from "@mui/joy";
+import { Typography, Input, Button, Autocomplete } from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import { useRef } from "react";
 import styled from "styled-components";
-import {
-  addCourseAtom,
-  coursesAtom,
-  currentProgramAtom,
-} from "../ProgramPlannerAtoms";
+import { addCourseAtom, coursesAtom } from "../ProgramPlannerAtoms";
+import programs from "../../assets/programs.json";
 
 export const LayoutDiv = styled.div`
   display: grid;
@@ -18,6 +15,8 @@ export const SectionDiv = styled.div`
 `;
 
 const inputAtom = atom("");
+const options = Object.values(programs);
+export const currentProgramAtom = atom(options[0]);
 
 export const AddCourses = () => {
   const [, setInput] = useAtom(inputAtom);
@@ -26,27 +25,23 @@ export const AddCourses = () => {
   const [courseInput] = useAtom(inputAtom);
   const [courses] = useAtom(coursesAtom);
 
-  const programSelect = useRef(null);
-
   return (
     <LayoutDiv>
       <Typography level="mainHeading">Add Courses</Typography>
 
       <SectionDiv>
         <Typography level="subHeading">Include all from a degree</Typography>
-        <Select
-          action={programSelect}
+        <Autocomplete
+          // @ts-ignore
+          options={options}
+          // @ts-ignore
+          getOptionLabel={(option) => option.programId}
           value={currentProgram}
-          defaultValue="Software Engineering (Bachelor of Software Engineering)"
+          // defaultValue={options[0]}
           onChange={(e, newValue) => {
             newValue && setCurrentProgram(newValue);
           }}
-        >
-          <Option value="Software Engineering (Bachelor of Software Engineering)">
-            Software Engineering
-          </Option>
-          <Option value="Biology (Bachelor of Science - Major)">Biology</Option>
-        </Select>
+        ></Autocomplete>
       </SectionDiv>
 
       <SectionDiv>

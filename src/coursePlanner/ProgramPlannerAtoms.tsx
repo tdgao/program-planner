@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
+import { currentProgramAtom } from "./AddCourse/AddCourses";
 
 export interface courseObjType {
   courseId: string;
@@ -19,24 +20,18 @@ interface programObjType {
 type programsObjType = Record<string, programObjType>;
 export const programsAtom = atom<programsObjType>(programs);
 
-// Program courses
-export const currentProgramAtom = atom(
-  "Software Engineering (Bachelor of Software Engineering)"
-);
-
+// returns all course ids that are in program
 export const programCoursesAtom = atom((get) => {
   const programs = get(programsAtom);
-  const program = get(currentProgramAtom);
+  const program = get(currentProgramAtom).programId;
 
-  // return all course ids that are in program
-  // grabbing only "Complete all of: " ones
-  // TODO refactor object handling
   let courses: any = [];
   const programReqs = programs[program].requirements;
 
   for (let k in programReqs) {
     if (programReqs.hasOwnProperty(k)) {
-      programReqs[k][0]["Complete all of the following"].forEach((req: any) => {
+      const reqs = programReqs[k][0]["Complete all of the following"] || [];
+      reqs.forEach((req: any) => {
         const reqCompleteAll = req["Complete all of: "]
           ? req["Complete all of: "]
           : [];

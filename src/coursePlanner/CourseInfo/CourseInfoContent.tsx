@@ -7,12 +7,17 @@ import { Close } from "@mui/icons-material";
 import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
 import { ScrollBarStyles } from "../CourseList/CourseList";
+import { courseObjType } from "../ProgramPlannerAtoms";
 
 const LayoutDiv = styled.div`
+  display: grid;
+  row-gap: 0px;
+`;
+const ContentDiv = styled.div`
   width: 100%;
   display: grid;
   row-gap: 24px;
-  max-height: calc(100vh - 400px);
+  max-height: calc(100vh - 470px);
   overflow-y: scroll;
   ${ScrollBarStyles}
 `;
@@ -39,7 +44,7 @@ const headerStyles = {
 };
 
 export interface CourseContentProps {
-  courseInfo: any;
+  courseInfo: courseObjType;
   courseId: string;
 }
 
@@ -48,9 +53,9 @@ export const CourseInfoContent = (props: CourseContentProps) => {
   const [, setCourse] = useAtom(courseInfoAtom);
 
   // parse course info
-  const title = courseInfo.full_title;
+  const title = courseInfo.title;
   const url = courseInfo.url;
-  const prereqs = JSON.stringify(courseInfo.requirements[0], null, 2);
+  const prereqs = JSON.stringify(courseInfo.parsedRequirements[0], null, 2);
 
   const buttonSlot = (
     <Button
@@ -67,32 +72,35 @@ export const CourseInfoContent = (props: CourseContentProps) => {
 
   return (
     <LayoutDiv>
-      <SectionDiv>
-        <Typography
-          level="body1"
-          textColor="neutral.700"
-          fontWeight="500"
-          sx={headerStyles}
-        >
-          {title}
-          {buttonSlot}
-        </Typography>
-        <LinkDiv
-          href={url}
-          target="_blank"
-          rel="noopener"
-          endDecorator={<Launch fontSize="small" />}
-        >
-          See course in UVic
-        </LinkDiv>
-      </SectionDiv>
-      <PlaceInSchedule courseId={courseId} />
-      <PrereqsDiv>
-        <Typography level="body1" component="span">
-          <Typography textColor="neutral.700">Prerequisites</Typography>
-          <PrereqsPre>{prereqs ? prereqs : <>No Prerequisites</>}</PrereqsPre>
-        </Typography>
-      </PrereqsDiv>
+      <Typography level="mainHeading">{courseId}</Typography>
+      <ContentDiv>
+        <SectionDiv>
+          <Typography
+            level="body1"
+            textColor="neutral.700"
+            fontWeight="500"
+            sx={headerStyles}
+          >
+            {title}
+            {buttonSlot}
+          </Typography>
+          <LinkDiv
+            href={url}
+            target="_blank"
+            rel="noopener"
+            endDecorator={<Launch fontSize="small" />}
+          >
+            See course in UVic
+          </LinkDiv>
+        </SectionDiv>
+        <PlaceInSchedule courseId={courseId} />
+        <PrereqsDiv>
+          <Typography level="body1" component="span">
+            <Typography textColor="neutral.700">Prerequisites</Typography>
+            <PrereqsPre>{prereqs ? prereqs : <>No Prerequisites</>}</PrereqsPre>
+          </Typography>
+        </PrereqsDiv>
+      </ContentDiv>
     </LayoutDiv>
   );
 };
