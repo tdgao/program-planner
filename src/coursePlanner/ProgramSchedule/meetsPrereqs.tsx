@@ -1,4 +1,4 @@
-import { coursesObjType } from "../ProgramPlannerAtoms";
+import { coursesObjType, requirementsType } from "../ProgramPlannerAtoms";
 import { courseType } from "./ProgramSchedule";
 import { curScheduleType } from "./useProgramSchedule";
 
@@ -41,7 +41,7 @@ const parseReqTitle = (reqTitle: string): reqTitleType => {
 
 type resultType = boolean;
 export const meetsPrereqs = (
-  prereqs: any,
+  prereqs: requirementsType,
   curSchedule: curScheduleType
 ): resultType => {
   if (!prereqs) return true;
@@ -55,7 +55,7 @@ export const meetsPrereqs = (
   // if req is an array objects
   if (typeof reqs[0] === "object") {
     const results: resultType[] = [];
-    reqs.forEach((req: any) => {
+    reqs.forEach((req: requirementsType) => {
       results.push(meetsPrereqs(req, curSchedule));
     });
 

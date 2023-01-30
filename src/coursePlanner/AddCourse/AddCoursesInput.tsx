@@ -17,14 +17,20 @@ coursePrefixes.forEach((prefix) => {
   );
 });
 
-const handleSetOptions = (input: string, setCourseOptions: any) => {
+const handleSetOptions = (
+  input: string,
+  setCourseOptions: (options: courseObjType[]) => void
+) => {
   const inputPrefix = toPrefix(input.toUpperCase());
   if (coursePrefixes.includes(inputPrefix))
     setCourseOptions(courseOptionsMap[inputPrefix]);
   else if (inputPrefix === "") setCourseOptions([]);
 };
 
-const addCourses = (addCourse: any, coursesToAdd: courseObjType[]) => {
+const addCourses = (
+  addCourse: (courseId: string) => void,
+  coursesToAdd: courseObjType[]
+) => {
   coursesToAdd.forEach((course) => {
     addCourse(course.courseId);
   });

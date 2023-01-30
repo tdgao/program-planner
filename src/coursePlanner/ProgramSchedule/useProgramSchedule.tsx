@@ -1,16 +1,21 @@
 import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
+import { currentProgramAtom } from "../AddCourse/AddCourses";
 import { forceScheduleFamily, forceScheduleType } from "../Course";
 import {
   addedCoursesAtom,
   coursesAtom,
+  coursesObjType,
   programCoursesAtom,
 } from "../ProgramPlannerAtoms";
 import { getPrereqs, meetsPrereqs } from "./meetsPrereqs";
 import { courseType } from "./ProgramSchedule";
 
-const initScheduleCourses = (addedCourses: any, programCourses: any) => {
+const initScheduleCourses = (
+  addedCourses: string[],
+  programCourses: string[]
+) => {
   // get courses to schedule
   const courses = [...addedCourses, ...programCourses];
 
@@ -32,7 +37,7 @@ export type curScheduleType = {
 const fillTerm = (
   maxCourses: number | undefined,
   scheduleCourses: courseType[],
-  courses: any,
+  courses: coursesObjType,
   curSchedule: curScheduleType,
   forceSchedule: forceScheduleType[],
   slot: {
@@ -148,10 +153,11 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
 export const useProgramSchedule = () => {
   const [schedule] = useAtom(scheduleAtom);
   const [, setSchedule] = useAtom(setScheduleAtom);
+  const [currentProgram] = useAtom(currentProgramAtom);
 
   useEffect(() => {
     setSchedule();
-  }, []);
+  }, [currentProgram]);
 
   return {
     schedule: schedule,
