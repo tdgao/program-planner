@@ -10,10 +10,6 @@ const coursePrefixes: string[] = [
   ...new Set(courses.map((course) => toPrefix(course.courseId))),
 ]; // ENGR, MATH, etc... creating a set makes unique items
 
-const toPrefix = (courseId: string) => {
-  return courseId.replace(/\d+/g, "");
-};
-
 let courseOptionsMap: Record<string, courseObjType[]> = {};
 coursePrefixes.forEach((prefix) => {
   courseOptionsMap[prefix] = courses.filter(
@@ -72,3 +68,7 @@ export const AddCoursesInput = () => {
     </>
   );
 };
+
+function toPrefix(courseId: string) {
+  return courseId.replace(/\d+/g, "");
+}

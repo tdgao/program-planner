@@ -62,7 +62,7 @@ export const ProgramSchedule = () => {
     <LayoutDiv>
       <Typography level="mainHeading">Program Schedule</Typography>
 
-      {unscheduledCourses && (
+      {unscheduledCourses.length > 0 && (
         <UnscheduledAlert unscheduledCourses={unscheduledCourses} />
       )}
 
