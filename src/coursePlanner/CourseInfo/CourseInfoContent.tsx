@@ -18,7 +18,8 @@ const ContentDiv = styled.div`
   width: 100%;
   display: grid;
   row-gap: 24px;
-  max-height: calc(100vh - 470px);
+  grid-template-rows: max-content max-content max-content;
+  height: calc(100vh - 470px);
   overflow-y: scroll;
   ${ScrollBarStyles}
 `;

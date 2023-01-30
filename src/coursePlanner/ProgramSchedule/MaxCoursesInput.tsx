@@ -18,7 +18,6 @@ const LayoutDiv = styled.div`
 export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
   const { id } = props;
   const [maxCourses, setMaxCourses] = useAtom(maxCoursesFamily({ id: id }));
-  const action = useRef(null);
 
   const [, setSchedule] = useAtom(setScheduleAtom);
   const isMounted = useRef(false);
@@ -33,7 +32,6 @@ export const MaxCoursesInput = (props: MaxCoursesInputProps) => {
         Max:
       </Typography>
       <Select
-        action={action}
         variant="plain"
         size="sm"
         defaultValue={maxCourses.value}

@@ -34,7 +34,7 @@ const CoursesDiv = styled.div`
   min-width: 280px;
   height: 100%;
   max-height: calc(100vh - 190px);
-  overflow-y: scroll;
+  overflow: auto;
   ${ScrollBarStyles}
 `;
 const CourseListDiv = styled.div`

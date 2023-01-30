@@ -14,9 +14,7 @@ const CourseDiv = styled.div<{ active: boolean }>`
     active &&
     css`
       border-radius: 4px;
-      padding: 0 4px;
-      margin: 0 -4px;
-      background-color: #ddf1ff;
+      background-color: rgba(251, 247, 25, 0.5);
     `}
 `;
 const CourseTextStyles = {

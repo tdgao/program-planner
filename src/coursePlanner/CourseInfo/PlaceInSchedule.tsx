@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { forceScheduleFamily } from "../Course";
+import { ScrollBarStyles } from "../CourseList/CourseList";
 import { setScheduleAtom } from "../ProgramSchedule/useProgramSchedule";
 
 const PlaceInDiv = styled.div`
@@ -13,6 +14,7 @@ const PlaceInDiv = styled.div`
 const ContainerDiv = styled.div`
   max-height: 250px;
   overflow: auto;
+  ${ScrollBarStyles}
 `;
 
 interface PlaceInScheduleProps {
@@ -33,7 +35,9 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
 
   return (
     <PlaceInDiv>
-      <Typography textColor="neutral.700">Place in schedule:</Typography>
+      <Typography textColor="neutral.700" sx={{ width: "max-content" }}>
+        Place in schedule:
+      </Typography>
       <Select
         defaultValue="auto"
         value={forceSchedule.scheduleSlot}
@@ -43,6 +47,11 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
         onChange={(e, scheduleSlot) =>
           scheduleSlot && setForceSchedule({ scheduleSlot: scheduleSlot })
         }
+        slotProps={{
+          listbox: {
+            placement: "top",
+          },
+        }}
       >
         <ContainerDiv>
           <Option value="auto">Auto</Option>
