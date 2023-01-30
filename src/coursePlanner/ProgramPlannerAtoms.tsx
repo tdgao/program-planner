@@ -23,7 +23,7 @@ export const programsAtom = atom<programsObjType>(programs);
 // returns all course ids that are in program
 export const programCoursesAtom = atom((get) => {
   const programs = get(programsAtom);
-  const program = get(currentProgramAtom).programId;
+  const program = get(currentProgramAtom);
 
   let courses: any = [];
   const programReqs = programs[program].requirements;
