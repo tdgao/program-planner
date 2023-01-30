@@ -20,6 +20,7 @@ type reqTitleType =
 const parseReqTitle = (reqTitle: string): reqTitleType => {
   if (
     reqTitle === "Complete all of the following" ||
+    reqTitle === "Complete  all  of the following" ||
     reqTitle === "Complete all of: "
   )
     return "COMPLETE-ALL" as reqTitleType;
@@ -48,6 +49,13 @@ export const meetsPrereqs = (
 
   const reqKey = Object.keys(prereqs)[0]; // assume one key for every object
   const reqTitle = parseReqTitle(reqKey);
+
+  // @ts-ignore
+  if (typeof reqTitle.uncaught === "string") {
+    // @ts-ignore
+    console.warn("Uncaught prereq case: ", reqTitle.uncaught);
+  }
+
   const reqs = prereqs[reqKey];
 
   if (reqs.length === 0) return true;

@@ -37,9 +37,7 @@ const CoursesDiv = styled.div`
   overflow-y: scroll;
   ${ScrollBarStyles}
 `;
-const CourseListDiv = styled.div`
-  display: grid;
-`;
+const CourseListDiv = styled.div``;
 
 export const CourseList = () => {
   const [programCourses] = useAtom(programCoursesAtom);

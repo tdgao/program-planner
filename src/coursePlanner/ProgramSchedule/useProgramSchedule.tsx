@@ -65,6 +65,7 @@ const fillTerm = (
         courseId &&
         !forceSchedule.map((item) => item.courseId).includes(courseId)
       ) {
+        console.log("Course going in: ", courseId);
         if (meetsPrereqs(prereqs, curSchedule) === true) {
           curSchedule.currentTerm.push(courseId);
           scheduleCourses.splice(parseInt(i), 1); // remove course from list
@@ -154,10 +155,10 @@ export const useProgramSchedule = () => {
   const [schedule] = useAtom(scheduleAtom);
   const [, setSchedule] = useAtom(setScheduleAtom);
   const [currentProgram] = useAtom(currentProgramAtom);
-
+  const [addedCourses] = useAtom(addedCoursesAtom);
   useEffect(() => {
     setSchedule();
-  }, [currentProgram]);
+  }, [currentProgram, addedCourses]);
 
   return {
     schedule: schedule,
