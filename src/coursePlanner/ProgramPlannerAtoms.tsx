@@ -10,6 +10,7 @@ export interface courseObjType {
   title: string;
   pid: string;
   parsedRequirements: requirementsType;
+  htmlRequirements: string | null;
   url: string;
 }
 export type coursesObjType = Record<string, courseObjType>;
