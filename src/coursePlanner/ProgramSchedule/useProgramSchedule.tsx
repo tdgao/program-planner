@@ -187,7 +187,9 @@ const ASSUME_COMPLETED = [
   "Foundations of Math 12",
   "Mathematics 12",
   "Pre-Calculus 12",
+  "Chemistry 11",
   "Chemistry 12",
-  // "MATH120", // bandaid for incorrect chem 101 course reqs scraping
+  "Pre-Calculus 12 or Principles of Mathematics 12",
+  "admission to BEng or BSEng program",
 ];
 const WORKTERM_COURSES = ["ENGR001", "ENGR002", "ENGR003", "ENGR004"];
