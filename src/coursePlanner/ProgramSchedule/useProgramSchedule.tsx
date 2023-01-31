@@ -57,7 +57,7 @@ const fillTerm = (
 
   const numFillTerm = Math.max(0, (maxCourses || 0) - forceScheduleTerm.length);
 
-  const autoTerm = [...Array(numFillTerm)].map((_) => {
+  let autoTerm = [...Array(numFillTerm)].map((_) => {
     for (const i in scheduleCourses) {
       const courseId = scheduleCourses[i];
       const prereqs = getPrereqs(courseId, courses);
@@ -76,6 +76,18 @@ const fillTerm = (
 
     return null;
   });
+
+  const workterm = getWorkTerm([...forceScheduleTerm, ...autoTerm]);
+  if (workterm) {
+    if (getWorkTerm(autoTerm)) {
+      autoTerm.splice(autoTerm.indexOf(workterm), 1);
+      scheduleCourses.push(...autoTerm);
+      autoTerm = [workterm];
+    } else {
+      autoTerm = [];
+    }
+  }
+
   const term = [...forceScheduleTerm, ...autoTerm];
 
   curSchedule.completed.push(...term);
@@ -165,6 +177,14 @@ export const useProgramSchedule = () => {
   };
 };
 
+function getWorkTerm(courses: (string | null)[]) {
+  let workterm = null;
+  courses.forEach((courseId) => {
+    if (WORKTERM_COURSES.includes(courseId || "")) workterm = courseId;
+  });
+  return workterm;
+}
+
 const ASSUME_COMPLETED = [
   "Foundations of Math 12",
   "Mathematics 12",
@@ -172,3 +192,4 @@ const ASSUME_COMPLETED = [
   "Chemistry 12",
   // "MATH120", // bandaid for incorrect chem 101 course reqs scraping
 ];
+const WORKTERM_COURSES = ["ENGR001", "ENGR002", "ENGR003", "ENGR004"];

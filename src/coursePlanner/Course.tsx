@@ -14,7 +14,7 @@ const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
     active &&
     css`
       border-radius: 4px;
-      background-color: ${theme.vars.palette.primary[200]};
+      background-color: ${theme.vars.palette.info[200]};
     `}
 `;
 const CourseTextStyles = {
@@ -65,7 +65,7 @@ export const Course = (props: CourseProps) => {
         level="body1"
         textColor={forcedSchedule ? "primary.500" : "neutral.800"}
         sx={CourseTextStyles}
-        fontWeight={active ? "500" : "400"}
+        // fontWeight={active ? "500" : "400"}
       >
         {courseId}
       </Typography>
