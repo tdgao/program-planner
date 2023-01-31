@@ -1,20 +1,20 @@
-import { Typography } from "@mui/joy";
+import { styled as styled2, Theme, Typography, useTheme } from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 
-const CourseDiv = styled.div<{ active: boolean }>`
+const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
   display: flex;
   align-items: center;
   width: max-content;
   cursor: pointer;
 
-  ${({ active }) =>
+  ${({ active, theme }) =>
     active &&
     css`
       border-radius: 4px;
-      background-color: rgba(251, 247, 25, 0.5);
+      background-color: ${theme.vars.palette.primary[200]};
     `}
 `;
 const CourseTextStyles = {
@@ -42,6 +42,7 @@ export const forceScheduleFamily = atomFamily(
 export const activeCourseAtom = atom("false");
 
 export const Course = (props: CourseProps) => {
+  const theme = useTheme();
   const { children: courseId } = props;
   const [, setCourseInfo] = useAtom(courseInfoAtom);
   const [forceSchedule] = useAtom(
@@ -59,7 +60,7 @@ export const Course = (props: CourseProps) => {
   };
 
   return (
-    <CourseDiv onClick={showCourseInfo} active={active}>
+    <CourseDiv onClick={showCourseInfo} active={active} theme={theme}>
       <Typography
         level="body1"
         textColor={forcedSchedule ? "primary.500" : "neutral.800"}
