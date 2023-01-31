@@ -27,26 +27,28 @@ interface CourseProps {
   children: string;
 }
 
-export type forceScheduleType = {
+export type courseDataType = {
   courseId: string;
   scheduleSlot: string; // year-{1}-{term}, i.e. year-1-spring
+  unhandledCases?: string[];
 };
-export const forceScheduleFamily = atomFamily(
-  (param: forceScheduleType) =>
+export const courseDataFamily = atomFamily(
+  (param: courseDataType) =>
     atom({
       scheduleSlot: param.scheduleSlot,
+      unhandledCases: param.unhandledCases,
     }),
-  (a: forceScheduleType, b: forceScheduleType) => a.courseId === b.courseId
+  (a: courseDataType, b: courseDataType) => a.courseId === b.courseId
 );
 
-export const activeCourseAtom = atom("false");
+export const activeCourseAtom = atom("");
 
 export const Course = (props: CourseProps) => {
   const theme = useTheme();
   const { children: courseId } = props;
   const [, setCourseInfo] = useAtom(courseInfoAtom);
   const [forceSchedule] = useAtom(
-    forceScheduleFamily({ courseId: courseId, scheduleSlot: "auto" })
+    courseDataFamily({ courseId: courseId, scheduleSlot: "auto" })
   );
   const forcedSchedule = forceSchedule.scheduleSlot !== "auto";
   const [activeCourse, setActiveCourse] = useAtom(activeCourseAtom);

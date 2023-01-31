@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
 import { currentProgramAtom } from "../AddCourse/AddCourses";
-import { forceScheduleFamily, forceScheduleType } from "../Course";
+import { courseDataFamily, courseDataType } from "../Course";
 import {
   addedCoursesAtom,
   coursesAtom,
@@ -39,7 +39,7 @@ const fillTerm = (
   scheduleCourses: courseType[],
   courses: coursesObjType,
   curSchedule: curScheduleType,
-  forceSchedule: forceScheduleType[],
+  forceSchedule: courseDataType[],
   slot: {
     year: number;
     term: termType;
@@ -104,7 +104,7 @@ export const maxCoursesFamily = atomFamily(
   (a: paramType, b: paramType) => a.id === b.id
 );
 
-export const numYearsAtom = atom(6);
+export const numYearsAtom = atom(7);
 export const scheduleAtom = atom<any>([]);
 export const unscheduledCoursesAtom = atom<courseType[]>([]);
 export const setScheduleAtom = atom(null, (get, set, _) => {
@@ -119,9 +119,7 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
     .map((courseId: string) => {
       return {
         courseId: courseId,
-        ...get(
-          forceScheduleFamily({ courseId: courseId, scheduleSlot: "auto" })
-        ),
+        ...get(courseDataFamily({ courseId: courseId, scheduleSlot: "auto" })),
       };
     })
     .filter((item) => item.scheduleSlot !== "auto");
