@@ -45,6 +45,12 @@ const headerStyles = {
   justifyContent: "space-between",
   alignItems: "center",
 };
+const HtmlPrereqsDiv = styled.div`
+  a,
+  a:visited {
+    color: rgb(9, 107, 222);
+  }
+`;
 
 const showCodeAtom = atom(false);
 const htmlParseOptions = {
@@ -145,7 +151,9 @@ export const CourseInfoContent = (props: CourseContentProps) => {
                   {prereqs ? prereqs : <>No Prerequisites</>}
                 </PrereqsPre>
               ) : (
-                <>{prereqs ? htmlPrereqs : <>No Prerequisites</>}</>
+                <HtmlPrereqsDiv>
+                  {prereqs ? htmlPrereqs : <>No Prerequisites</>}
+                </HtmlPrereqsDiv>
               )}
             </>
           </Typography>
