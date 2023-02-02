@@ -64,6 +64,7 @@ const fillTerm = (
       if (
         courseId &&
         !forceSchedule.map((item) => item.courseId).includes(courseId)
+        // && isOffered(courseId)
       ) {
         // console.log("Course going in: ", courseId);
         if (meetsPrereqs(prereqs, curSchedule) === true) {
@@ -119,7 +120,7 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
     .map((courseId: string) => {
       return {
         courseId: courseId,
-        ...get(courseDataFamily({ courseId: courseId, scheduleSlot: "auto" })),
+        ...get(courseDataFamily({ courseId: courseId })),
       };
     })
     .filter((item) => item.scheduleSlot !== "auto");

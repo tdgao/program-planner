@@ -8,7 +8,7 @@ import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
 import { ScrollBarStyles } from "../CourseList/CourseList";
 import { courseObjType } from "../ProgramPlannerAtoms";
-import { activeCourseAtom } from "../Course";
+import { activeCourseAtom, courseDataFamily } from "../Course";
 import parse from "html-react-parser";
 
 const LayoutDiv = styled.div`
@@ -70,6 +70,7 @@ export interface CourseContentProps {
 }
 export const CourseInfoContent = (props: CourseContentProps) => {
   const { courseInfo, courseId } = props;
+  const [courseData] = useAtom(courseDataFamily({ courseId: courseId }));
   const [, setCourse] = useAtom(courseInfoAtom);
   const [, setActiveCourse] = useAtom(activeCourseAtom);
   const [showCode, setShowCode] = useAtom(showCodeAtom);
@@ -135,6 +136,7 @@ export const CourseInfoContent = (props: CourseContentProps) => {
           >
             See course in UVic
           </LinkDiv>
+          <Typography>{JSON.stringify(courseData, null, 2)}</Typography>
         </SectionDiv>
         <PlaceInSchedule courseId={courseId} />
         <PrereqsDiv>

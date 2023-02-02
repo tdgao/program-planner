@@ -44,7 +44,7 @@ const scheduleSlots = [
 export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
   const { courseId } = props;
   const [courseData, setCourseData] = useAtom(
-    courseDataFamily({ courseId: courseId, scheduleSlot: "auto" })
+    courseDataFamily({ courseId: courseId })
   );
   const isAuto = courseData.scheduleSlot === "auto";
 

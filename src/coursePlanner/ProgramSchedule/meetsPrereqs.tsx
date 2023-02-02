@@ -53,7 +53,7 @@ export const meetsPrereqs = (
   // @ts-ignore
   if (typeof reqTitle.uncaught === "string") {
     // @ts-ignore
-    console.warn("Uncaught prereq case: ", reqTitle.uncaught);
+    // console.log("Uncaught prereq case: ", reqTitle.uncaught);
   }
 
   const reqs = prereqs[reqKey];
