@@ -43,7 +43,8 @@ const fillTerm = (
   slot: {
     year: number;
     term: termType;
-  }
+  },
+  coursesData: courseDataType[]
 ): courseType[] => {
   const forceScheduleTerm = forceSchedule
     .filter(
@@ -61,10 +62,11 @@ const fillTerm = (
     for (const i in scheduleCourses) {
       const courseId = scheduleCourses[i];
       const prereqs = getPrereqs(courseId, courses);
+      const courseData = coursesData.find((item) => item.courseId === courseId);
       if (
         courseId &&
-        !forceSchedule.map((item) => item.courseId).includes(courseId)
-        // && isOffered(courseId)
+        !forceSchedule.map((item) => item.courseId).includes(courseId) &&
+        courseData?.offered?.[slot.term] !== "NO"
       ) {
         // console.log("Course going in: ", courseId);
         if (meetsPrereqs(prereqs, curSchedule) === true) {
@@ -113,8 +115,15 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
   const numYears = get(numYearsAtom);
   const programCourses = get(programCoursesAtom);
   const addedCourses = get(addedCoursesAtom);
-  const scheduleCourses = initScheduleCourses(programCourses, addedCourses);
   const courses = get(coursesAtom);
+  const scheduleCourses = initScheduleCourses(programCourses, addedCourses);
+
+  const coursesData = scheduleCourses.map((courseId: string) => {
+    return {
+      courseId: courseId,
+      ...get(courseDataFamily({ courseId: courseId })),
+    };
+  });
 
   const forceSchedule = scheduleCourses
     .map((courseId: string) => {
@@ -150,7 +159,8 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
           {
             year: i,
             term: term as termType,
-          }
+          },
+          coursesData
         ),
         maxCourses: maxCourses[term],
       };

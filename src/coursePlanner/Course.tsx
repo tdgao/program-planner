@@ -1,9 +1,16 @@
-import { styled as styled2, Theme, Typography, useTheme } from "@mui/joy";
+import {
+  styled as styled2,
+  Theme,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
+import { ErrorOutline } from "@mui/icons-material";
 
 const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
   display: flex;
@@ -23,6 +30,15 @@ const CourseTextStyles = {
     textDecoration: "underline",
   },
 };
+const warningIcon = (
+  <Tooltip
+    title="This course may not be offered"
+    variant="solid"
+    placement="top"
+  >
+    <ErrorOutline color="warning" />
+  </Tooltip>
+);
 
 type yearsOfferedType = {
   FALL: number[];
@@ -64,16 +80,21 @@ export const courseDataFamily = atomFamily(
 export const activeCourseAtom = atom("");
 
 interface CourseProps {
+  term?: "fall" | "spring" | "summer";
+  inSchedule?: boolean;
   children: string;
 }
 export const Course = (props: CourseProps) => {
+  const { children: courseId, term, inSchedule } = props;
   const theme = useTheme();
-  const { children: courseId } = props;
   const [, setCourseInfo] = useAtom(courseInfoAtom);
-  const [forceSchedule] = useAtom(courseDataFamily({ courseId: courseId }));
-  const forcedSchedule = forceSchedule.scheduleSlot !== "auto";
+  const [courseData] = useAtom(courseDataFamily({ courseId: courseId }));
+  const forcedSchedule = courseData.scheduleSlot !== "auto";
   const [activeCourse, setActiveCourse] = useAtom(activeCourseAtom);
   const active = activeCourse === courseId;
+
+  const offeringWarning =
+    inSchedule && term && courseData.offered[term] === "MAYBE";
 
   const showCourseInfo = () => {
     if (courseId) {
@@ -88,7 +109,7 @@ export const Course = (props: CourseProps) => {
         level="body1"
         textColor={forcedSchedule ? "primary.500" : "neutral.800"}
         sx={CourseTextStyles}
-        // fontWeight={active ? "500" : "400"}
+        endDecorator={offeringWarning && warningIcon}
       >
         {courseId}
       </Typography>

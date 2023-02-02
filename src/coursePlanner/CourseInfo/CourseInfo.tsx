@@ -7,7 +7,7 @@ import { CourseInfoContent } from "./CourseInfoContent";
 const LayoutDiv = styled.div`
   width: 100%;
   display: grid;
-  row-gap: 24px;
+  row-gap: 12px;
 `;
 
 export const courseInfoAtom = atom("");
