@@ -63,10 +63,14 @@ const fillTerm = (
       const courseId = scheduleCourses[i];
       const prereqs = getPrereqs(courseId, courses);
       const courseData = coursesData.find((item) => item.courseId === courseId);
+
+      const offered = courseData?.forceOffered?.[slot.term]
+        ? courseData.forceOffered[slot.term]
+        : courseData?.offered?.[slot.term];
       if (
         courseId &&
         !forceSchedule.map((item) => item.courseId).includes(courseId) &&
-        courseData?.offered?.[slot.term] !== "NO"
+        offered !== "NO"
       ) {
         // console.log("Course going in: ", courseId);
         if (meetsPrereqs(prereqs, curSchedule) === true) {
@@ -119,18 +123,12 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
   const scheduleCourses = initScheduleCourses(programCourses, addedCourses);
 
   const coursesData = scheduleCourses.map((courseId: string) => {
-    return {
-      courseId: courseId,
-      ...get(courseDataFamily({ courseId: courseId })),
-    };
+    return get(courseDataFamily({ courseId: courseId }));
   });
 
   const forceSchedule = scheduleCourses
     .map((courseId: string) => {
-      return {
-        courseId: courseId,
-        ...get(courseDataFamily({ courseId: courseId })),
-      };
+      return get(courseDataFamily({ courseId: courseId }));
     })
     .filter((item) => item.scheduleSlot !== "auto");
 
