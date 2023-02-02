@@ -1,5 +1,6 @@
+import { Close } from "@mui/icons-material";
 import { Input, Typography } from "@mui/joy";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
 import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
@@ -41,9 +42,12 @@ const CourseListDiv = styled.div`
   overflow: visible;
 `;
 
+const searchAtom = atom("");
+
 export const CourseList = () => {
   const [programCourses] = useAtom(programCoursesAtom);
   const [addedCourses] = useAtom(addedCoursesAtom);
+  const [search, setSearch] = useAtom(searchAtom);
 
   return (
     <LayoutDiv>
@@ -51,7 +55,19 @@ export const CourseList = () => {
 
       <SectionDiv>
         <Typography level="subHeading">Search scheduled courses </Typography>
-        <Input placeholder={`e.g. "SENG 275" or "Math 211"`} />
+        <Input
+          placeholder={`e.g. "SENG 275" or "Math 211"`}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          endDecorator={
+            search && (
+              <Close
+                sx={{ cursor: "pointer", color: "grey" }}
+                onClick={() => setSearch("")}
+              />
+            )
+          }
+        />
       </SectionDiv>
 
       <CoursesDiv>
@@ -59,20 +75,28 @@ export const CourseList = () => {
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
             From Program
           </Typography>
-          {programCourses.map(
-            (course: courseType) =>
-              course && <Course key={course}>{course}</Course>
-          )}
+          {programCourses
+            .filter(
+              (item) => (search ? item === search.toUpperCase().trim() : true) // TODO - nice to have: better search
+            )
+            .map(
+              (course: courseType) =>
+                course && <Course key={course}>{course}</Course>
+            )}
         </CourseListDiv>
 
         <CourseListDiv>
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
             Added Courses
           </Typography>
-          {addedCourses.map(
-            (course: courseType) =>
-              course && <Course key={course}>{course}</Course>
-          )}
+          {addedCourses
+            .filter((item) =>
+              search ? item === search.toUpperCase().trim() : true
+            )
+            .map(
+              (course: courseType) =>
+                course && <Course key={course}>{course}</Course>
+            )}
         </CourseListDiv>
       </CoursesDiv>
     </LayoutDiv>
