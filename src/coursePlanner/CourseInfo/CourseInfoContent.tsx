@@ -10,6 +10,7 @@ import { ScrollBarStyles } from "../CourseList/CourseList";
 import { courseObjType } from "../ProgramPlannerAtoms";
 import { activeCourseAtom, courseDataFamily } from "../Course";
 import parse from "html-react-parser";
+import { CourseOfferings } from "./CourseOfferings";
 
 const LayoutDiv = styled.div`
   display: grid;
@@ -37,6 +38,7 @@ const PrereqsDiv = styled.div`
 `;
 const PrereqsPre = styled.pre`
   margin: 0;
+  padding: 12px 0;
   white-space: pre-wrap; /* Since CSS 2.1 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 `;
@@ -136,14 +138,15 @@ export const CourseInfoContent = (props: CourseContentProps) => {
           >
             See course in UVic
           </LinkDiv>
-          <Typography>{JSON.stringify(courseData, null, 2)}</Typography>
         </SectionDiv>
         <PlaceInSchedule courseId={courseId} />
+        <CourseOfferings courseId={courseId} />
         <PrereqsDiv>
           <Typography level="body1" component="span">
             <>
               <Typography
                 textColor="neutral.700"
+                fontWeight={500}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
                 Prerequisites {showCodeSlot}

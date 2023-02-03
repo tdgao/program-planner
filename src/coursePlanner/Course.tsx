@@ -12,6 +12,12 @@ import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
 import { ErrorOutline } from "@mui/icons-material";
 
+const LayoutDiv = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+`;
+
 const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
   display: flex;
   align-items: center;
@@ -22,8 +28,10 @@ const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
     active &&
     css`
       border-radius: 4px;
+      padding: 0 2px;
       background-color: ${theme.vars.palette.info[200]};
     `}
+  transition: padding 200ms;
 `;
 const CourseTextStyles = {
   "&:hover": {
@@ -47,7 +55,7 @@ type yearsOfferedType = {
 };
 const courseOffered: Record<string, yearsOfferedType> = courseOfferedJson;
 
-type termOfferedType = "YES" | "MAYBE" | "NO";
+export type termOfferedType = "YES" | "MAYBE" | "NO";
 
 export type courseDataType = {
   courseId: string;
@@ -57,6 +65,11 @@ export type courseDataType = {
     spring: termOfferedType;
     summer: termOfferedType;
   };
+  forceOffered?: {
+    fall: termOfferedType | null;
+    spring: termOfferedType | null;
+    summer: termOfferedType | null;
+  };
   offeredYears?: yearsOfferedType;
 };
 export const courseDataFamily = atomFamily(
@@ -64,13 +77,19 @@ export const courseDataFamily = atomFamily(
     const { courseId, scheduleSlot = "auto" } = params;
     const offeredYears = courseOffered[courseId];
 
-    return atom({
+    return atom<Required<courseDataType>>({
+      courseId: courseId,
       scheduleSlot: scheduleSlot,
       offeredYears: offeredYears,
       offered: {
         fall: isTermOffered(offeredYears.FALL),
         spring: isTermOffered(offeredYears.SPRING),
         summer: isTermOffered(offeredYears.SUMMER),
+      },
+      forceOffered: {
+        fall: null,
+        spring: null,
+        summer: null,
       },
     });
   },
@@ -94,26 +113,28 @@ export const Course = (props: CourseProps) => {
   const active = activeCourse === courseId;
 
   const offeringWarning =
-    inSchedule && term && courseData.offered[term] === "MAYBE";
+    inSchedule && term && courseData.offered?.[term] === "MAYBE";
 
   const showCourseInfo = () => {
     if (courseId) {
-      setCourseInfo(courseId);
-      setActiveCourse(courseId);
+      setCourseInfo(activeCourse && active ? "" : courseId);
+      setActiveCourse(activeCourse && active ? "" : courseId);
     }
   };
 
   return (
-    <CourseDiv onClick={showCourseInfo} active={active} theme={theme}>
-      <Typography
-        level="body1"
-        textColor={forcedSchedule ? "primary.500" : "neutral.800"}
-        sx={CourseTextStyles}
-        endDecorator={offeringWarning && warningIcon}
-      >
-        {courseId}
-      </Typography>
-    </CourseDiv>
+    <LayoutDiv>
+      <CourseDiv onClick={showCourseInfo} active={active} theme={theme}>
+        <Typography
+          level="body1"
+          textColor={forcedSchedule ? "primary.500" : "neutral.800"}
+          sx={CourseTextStyles}
+        >
+          {courseId}
+        </Typography>
+      </CourseDiv>
+      {offeringWarning && warningIcon}
+    </LayoutDiv>
   );
 };
 
@@ -125,7 +146,7 @@ export const Course = (props: CourseProps) => {
  * @param yearsOffered
  * @returns termOfferedType
  */
-function isTermOffered(yearsOffered: number[]): termOfferedType {
+export function isTermOffered(yearsOffered: number[]): termOfferedType {
   if (yearsOffered.length === 0) return "NO";
 
   const current_year = 2020; // TODO: replace this with a global year one day
