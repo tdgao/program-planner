@@ -24,28 +24,39 @@ type programsObjType = Record<string, programObjType>;
 export const programsAtom = atom<programsObjType>(programs);
 
 // returns all course ids that are in program
-export const programCoursesAtom = atom((get) => {
-  const programs = get(programsAtom);
-  const program = get(currentProgramAtom);
+type programCoursesByYearType = Record<string, string[]>;
+export const programCoursesByYearAtom = atom<programCoursesByYearType>(
+  (get) => {
+    const programs = get(programsAtom);
+    const program = get(currentProgramAtom);
 
-  let courses: string[] = [];
-  const programReqs = programs[program].requirements;
+    let courses: any = {};
+    const programReqs = programs[program].requirements;
 
-  for (let k in programReqs) {
-    if (programReqs.hasOwnProperty(k)) {
-      const reqs = programReqs[k][0]["Complete all of the following"] || [];
+    for (let k in programReqs) {
+      courses[k] = [];
+      const reqs =
+        programReqs?.[k]?.[0]?.["Complete all of the following"] || [];
       reqs.forEach((req: requirementsType) => {
-        const reqCompleteAll = req["Complete all of: "]
-          ? req["Complete all of: "]
-          : [];
-        courses.push(...reqCompleteAll);
+        const reqCompleteAll = req?.["Complete all of: "] || [];
+        courses[k].push(...reqCompleteAll);
 
         // bandaid solution for missing/needing to select courses to schedule
-        const reqCompleteOne = req["Complete 1 of: "];
-        reqCompleteOne && courses.push(reqCompleteOne[0]);
+        const reqCompleteOne = req?.["Complete 1 of: "];
+        reqCompleteOne && courses[k].push(reqCompleteOne[0]);
       });
     }
+
+    return courses;
   }
+);
+export const programCoursesAtom = atom<string[]>((get) => {
+  const coursesByYear = get(programCoursesByYearAtom);
+
+  const courses: string[] = [];
+  Object.keys(coursesByYear).forEach((k) => {
+    courses.push(...coursesByYear[k]);
+  });
 
   return courses;
 });

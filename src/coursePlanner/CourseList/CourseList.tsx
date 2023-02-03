@@ -4,7 +4,11 @@ import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
 import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
-import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
+import {
+  addedCoursesAtom,
+  programCoursesAtom,
+  programCoursesByYearAtom,
+} from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
 
 export const ScrollBarStyles = css`
@@ -45,7 +49,7 @@ const CourseListDiv = styled.div`
 const searchAtom = atom("");
 
 export const CourseList = () => {
-  const [programCourses] = useAtom(programCoursesAtom);
+  const [programCourses] = useAtom(programCoursesByYearAtom);
   const [addedCourses] = useAtom(addedCoursesAtom);
   const [search, setSearch] = useAtom(searchAtom);
 
@@ -75,17 +79,25 @@ export const CourseList = () => {
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
             From Program
           </Typography>
-          {programCourses
-            .filter(
-              (item) =>
-                search
-                  ? item.match(search.toUpperCase().replaceAll(" ", ""))
-                  : true // TODO - nice to have: better search
-            )
-            .map(
-              (course: courseType) =>
-                course && <Course key={course}>{course}</Course>
-            )}
+          {/* TODO - remove the component margin */}
+          {Object.keys(programCourses).map((yearName) => (
+            <div key={yearName}>
+              <Typography
+                level="body3"
+                sx={{
+                  marginTop: "12px",
+                  marginBottom: "4px",
+                  textTransform: "uppercase",
+                }}
+              >
+                {yearName.replace("-", " ")} courses
+              </Typography>
+              {programCourses[yearName].map(
+                (course: string) =>
+                  course && <Course key={course}>{course}</Course>
+              )}
+            </div>
+          ))}
         </CourseListDiv>
 
         <CourseListDiv>
