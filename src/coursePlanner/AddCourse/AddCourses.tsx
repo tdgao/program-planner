@@ -26,7 +26,7 @@ export const AddCourses = () => {
       <Typography level="mainHeading">Set Your Courses</Typography>
 
       <SectionDiv>
-        <Typography level="subHeading">Include all from a degree</Typography>
+        <Typography level="subHeading">Include all from a program</Typography>
         <Autocomplete
           options={programs}
           value={currentProgram}

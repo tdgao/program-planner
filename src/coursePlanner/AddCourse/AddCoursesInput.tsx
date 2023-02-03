@@ -43,7 +43,7 @@ export const AddCoursesInput = () => {
 
   return (
     <>
-      <Typography level="subHeading">Add courses</Typography>
+      <Typography level="subHeading">Add single courses</Typography>
       <Autocomplete
         placeholder="Add courses"
         noOptionsText="Search courses, e.g MATH101"
@@ -61,7 +61,7 @@ export const AddCoursesInput = () => {
       />
       <Button
         size="sm"
-        variant="solid"
+        variant="soft"
         color="neutral"
         style={{ width: "max-content" }}
         onClick={() => {

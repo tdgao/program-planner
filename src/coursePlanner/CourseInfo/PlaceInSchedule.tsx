@@ -7,13 +7,10 @@ import { setScheduleAtom } from "../ProgramSchedule/useProgramSchedule";
 
 const PlaceInDiv = styled.div`
   display: flex;
-  align-items: center;
-  column-gap: 8px;
+  flex-direction: column;
+  /* align-items: center; */
+  row-gap: 8px;
 `;
-
-interface PlaceInScheduleProps {
-  courseId: string;
-}
 
 const scheduleSlots = [
   {
@@ -41,6 +38,9 @@ const scheduleSlots = [
   });
 });
 
+interface PlaceInScheduleProps {
+  courseId: string;
+}
 export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
   const { courseId } = props;
   const [courseData, setCourseData] = useAtom(
@@ -55,8 +55,8 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
 
   return (
     <PlaceInDiv>
-      <Typography textColor="neutral.700" sx={{ width: "max-content" }}>
-        Place in schedule:
+      <Typography fontWeight={500} sx={{ width: "max-content" }}>
+        Scheduled Slot
       </Typography>
       <Autocomplete
         options={scheduleSlots}
@@ -70,7 +70,7 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
           data &&
           setCourseData({
             ...courseData,
-            ...{ scheduleSlot: data.value },
+            scheduleSlot: data.value,
           })
         }
         size="sm"
