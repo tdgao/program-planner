@@ -78,7 +78,9 @@ export const CourseList = () => {
           {programCourses
             .filter(
               (item) =>
-                search ? item.match(search.toUpperCase().trim()) : true // TODO - nice to have: better search
+                search
+                  ? item.match(search.toUpperCase().replaceAll(" ", ""))
+                  : true // TODO - nice to have: better search
             )
             .map(
               (course: courseType) =>
@@ -92,7 +94,9 @@ export const CourseList = () => {
           </Typography>
           {addedCourses
             .filter((item) =>
-              search ? item.match(search.toUpperCase().trim()) : true
+              search
+                ? item.match(search.toUpperCase().replaceAll(" ", ""))
+                : true
             )
             .map(
               (course: courseType) =>
