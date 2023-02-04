@@ -1,5 +1,6 @@
 import { Typography, Autocomplete } from "@mui/joy";
 import { atom, useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import styled from "styled-components";
 import programsJson from "../../assets/programs.json";
 import { AddCoursesInput } from "./AddCoursesInput";
@@ -16,7 +17,10 @@ export const SectionDiv = styled.div`
 const programs = Object.values(programsJson).map(
   (program) => program.programId
 );
-export const currentProgramAtom = atom(programs[254]);
+export const currentProgramAtom = atomWithStorage(
+  "currentProgramAtom",
+  programs[254]
+);
 
 export const AddCourses = () => {
   const [currentProgram, setCurrentProgram] = useAtom(currentProgramAtom);

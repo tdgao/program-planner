@@ -6,7 +6,7 @@ import {
   useTheme,
 } from "@mui/joy";
 import { atom, useAtom } from "jotai";
-import { atomFamily } from "jotai/utils";
+import { atomFamily, atomWithStorage } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
@@ -77,7 +77,8 @@ export const courseDataFamily = atomFamily(
     const { courseId, scheduleSlot = "auto" } = params;
     const offeredYears = courseOffered[courseId] || null;
 
-    return atom<Required<courseDataType>>({
+    // note: courseData is not scoped to the selected program
+    return atomWithStorage<Required<courseDataType>>(courseId, {
       courseId: courseId,
       scheduleSlot: scheduleSlot,
       offeredYears: offeredYears,

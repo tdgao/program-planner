@@ -5,7 +5,7 @@ import { curScheduleType } from "./useProgramSchedule";
 export const getPrereqs = (courseId: courseType, courses: coursesObjType) => {
   if (courseId === null) return;
   const course = courses[courseId];
-  const prereqs = course.parsedRequirements[0];
+  const prereqs = course?.parsedRequirements?.[0];
   return prereqs;
 };
 

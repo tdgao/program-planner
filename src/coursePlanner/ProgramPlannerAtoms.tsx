@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
 import { currentProgramAtom } from "./AddCourse/AddCourses";
@@ -62,7 +63,10 @@ export const programCoursesAtom = atom<string[]>((get) => {
 });
 
 // Added courses
-export const addedCoursesAtom = atom<string[]>([]);
+export const addedCoursesAtom = atomWithStorage<string[]>(
+  "addedCoursesAtom",
+  []
+);
 
 export const addCourseAtom = atom(null, (get, set, course: string) => {
   course && set(addedCoursesAtom, [...get(addedCoursesAtom), course]);
