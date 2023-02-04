@@ -1,5 +1,7 @@
-import { Typography, Autocomplete } from "@mui/joy";
+import { CloseRounded } from "@mui/icons-material";
+import { Typography, Autocomplete, Select, Option, IconButton } from "@mui/joy";
 import { useAtom } from "jotai";
+import React from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { courseDataFamily } from "../Course";
@@ -12,30 +14,24 @@ const PlaceInDiv = styled.div`
   row-gap: 8px;
 `;
 
-const scheduleSlots = [
-  {
-    label: "Auto",
-    value: "auto",
-    year: "Select a slot",
-  },
-];
+const yearGroupStyles = { textTransform: "uppercase", padding: "4px 8px" };
 
+const scheduleSlots: Record<string, { label: string; value: string }[]> = {};
 [1, 2, 3, 4, 5, 6, 7].forEach((year) => {
-  scheduleSlots.push({
-    label: `Year ${year} ⋅ Fall`,
-    value: `year-${year}-fall`,
-    year: `Year ${year}`,
-  });
-  scheduleSlots.push({
-    label: `Year ${year} ⋅ Spring`,
-    value: `year-${year}-spring`,
-    year: `Year ${year}`,
-  });
-  scheduleSlots.push({
-    label: `Year ${year} ⋅ Summer`,
-    value: `year-${year}-summer`,
-    year: `Year ${year}`,
-  });
+  scheduleSlots[`Year ${year}`] = [
+    {
+      label: `Year ${year} · Fall`,
+      value: `year-${year}-fall`,
+    },
+    {
+      label: `Year ${year} · Spring`,
+      value: `year-${year}-spring`,
+    },
+    {
+      label: `Year ${year} · Summer`,
+      value: `year-${year}-summer`,
+    },
+  ];
 });
 
 interface PlaceInScheduleProps {
@@ -58,19 +54,13 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
       <Typography fontWeight={500} sx={{ width: "max-content" }}>
         Scheduled Slot
       </Typography>
-      <Autocomplete
-        options={scheduleSlots}
-        groupBy={(option) => option.year}
-        disableClearable
-        defaultValue={scheduleSlots[0]}
-        value={scheduleSlots.find(
-          (obj) => obj.value === courseData.scheduleSlot
-        )}
+      <Select
+        value={courseData.scheduleSlot}
         onChange={(e, data) =>
           data &&
           setCourseData({
             ...courseData,
-            scheduleSlot: data.value,
+            scheduleSlot: data,
           })
         }
         size="sm"
@@ -79,11 +69,45 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
         sx={{ fontWeight: "500" }}
         slotProps={{
           listbox: {
-            // placement: "top",
-            sx: { maxHeight: "300px" },
+            placement: "top",
+            sx: { maxHeight: "300px", overflow: "auto" },
           },
         }}
-      />
+        endDecorator={
+          !isAuto && (
+            <IconButton
+              size="sm"
+              variant="plain"
+              color="neutral"
+              onMouseDown={(e) => e.stopPropagation()} // don't open the popup when clicking on this button
+              onClick={() =>
+                setCourseData({
+                  ...courseData,
+                  scheduleSlot: "auto",
+                })
+              }
+            >
+              <CloseRounded />
+            </IconButton>
+          )
+        }
+      >
+        <Option key={"auto"} value={"auto"}>
+          Auto
+        </Option>
+        {Object.entries(scheduleSlots).map(([year, slots]) => (
+          <div key={year}>
+            <Typography level="body3" sx={yearGroupStyles}>
+              {year}
+            </Typography>
+            {slots.map((slot) => (
+              <Option key={slot.value} value={slot.value}>
+                {slot.label}
+              </Option>
+            ))}
+          </div>
+        ))}
+      </Select>
     </PlaceInDiv>
   );
 };
