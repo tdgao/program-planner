@@ -52,7 +52,7 @@ export const CourseOfferings = (props: CourseOfferingsProps) => {
           <div>
             <SelectOffering term="fall" courseId={courseId} />
             <Typography level="body3" component="p">
-              Previous years offered: {offeredYears.FALL.join(", ") || "none"}
+              Previous years offered: {offeredYears?.FALL.join(", ") || "none"}
             </Typography>
           </div>
         </ListItem>
@@ -60,7 +60,8 @@ export const CourseOfferings = (props: CourseOfferingsProps) => {
           <div>
             <SelectOffering term="spring" courseId={courseId} />
             <Typography level="body3" component="p">
-              Previous years offered: {offeredYears.SPRING.join(", ")}
+              Previous years offered:{" "}
+              {offeredYears?.SPRING.join(", ") || "none"}
             </Typography>
           </div>
         </ListItem>
@@ -68,7 +69,8 @@ export const CourseOfferings = (props: CourseOfferingsProps) => {
           <div>
             <SelectOffering term="summer" courseId={courseId} />
             <Typography level="body3" component="p">
-              Previous years offered: {offeredYears.SUMMER.join(", ")}
+              Previous years offered:{" "}
+              {offeredYears?.SUMMER.join(", ") || "none"}
             </Typography>
           </div>
         </ListItem>

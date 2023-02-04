@@ -75,16 +75,16 @@ export type courseDataType = {
 export const courseDataFamily = atomFamily(
   (params: courseDataType) => {
     const { courseId, scheduleSlot = "auto" } = params;
-    const offeredYears = courseOffered[courseId];
+    const offeredYears = courseOffered[courseId] || null;
 
     return atom<Required<courseDataType>>({
       courseId: courseId,
       scheduleSlot: scheduleSlot,
       offeredYears: offeredYears,
       offered: {
-        fall: isTermOffered(offeredYears.FALL),
-        spring: isTermOffered(offeredYears.SPRING),
-        summer: isTermOffered(offeredYears.SUMMER),
+        fall: isTermOffered(offeredYears?.FALL),
+        spring: isTermOffered(offeredYears?.SPRING),
+        summer: isTermOffered(offeredYears?.SUMMER),
       },
       forceOffered: {
         fall: null,
@@ -147,6 +147,8 @@ export const Course = (props: CourseProps) => {
  * @returns termOfferedType
  */
 export function isTermOffered(yearsOffered: number[]): termOfferedType {
+  if (!yearsOffered) return "MAYBE";
+
   if (yearsOffered.length === 0) return "NO";
 
   const current_year = 2020; // TODO: replace this with a global year one day
