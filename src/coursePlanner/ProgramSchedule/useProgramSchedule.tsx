@@ -91,6 +91,7 @@ const fillTerm = (
       scheduleCourses.push(...autoTerm);
       autoTerm = [workterm];
     } else {
+      scheduleCourses.push(...autoTerm);
       autoTerm = [];
     }
   }
