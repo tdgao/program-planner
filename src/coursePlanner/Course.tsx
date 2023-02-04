@@ -10,7 +10,7 @@ import { atomFamily, atomWithStorage } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
-import { ErrorOutline } from "@mui/icons-material";
+import { CheckCircleOutlineRounded, ErrorOutline } from "@mui/icons-material";
 
 const LayoutDiv = styled.div`
   display: flex;
@@ -38,6 +38,16 @@ const CourseTextStyles = {
     textDecoration: "underline",
   },
 };
+
+const checkIcon = (
+  <Tooltip
+    title="Course is manually slotted" // TODO better tooltip copy
+    variant="solid"
+    placement="top"
+  >
+    <CheckCircleOutlineRounded color="primary" />
+  </Tooltip>
+);
 const warningIcon = (
   <Tooltip
     title="This course may not be offered"
@@ -126,15 +136,12 @@ export const Course = (props: CourseProps) => {
   return (
     <LayoutDiv>
       <CourseDiv onClick={showCourseInfo} active={active} theme={theme}>
-        <Typography
-          level="body1"
-          textColor={forcedSchedule ? "primary.500" : "neutral.800"}
-          sx={CourseTextStyles}
-        >
+        <Typography level="body1" sx={CourseTextStyles}>
           {courseId}
         </Typography>
       </CourseDiv>
-      {offeringWarning && warningIcon}
+      {forcedSchedule && checkIcon}
+      {offeringWarning && !forcedSchedule && warningIcon}
     </LayoutDiv>
   );
 };
@@ -148,9 +155,7 @@ export const Course = (props: CourseProps) => {
  * @returns termOfferedType
  */
 export function isTermOffered(yearsOffered: number[]): termOfferedType {
-  if (!yearsOffered) return "MAYBE";
-
-  if (yearsOffered.length === 0) return "NO";
+  if (!yearsOffered || yearsOffered.length === 0) return "NO";
 
   const current_year = 2020; // TODO: replace this with a global year one day
   const numValidatingYears = 4;
