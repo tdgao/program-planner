@@ -1,4 +1,4 @@
-import { Close } from "@mui/icons-material";
+import { CloseRounded } from "@mui/icons-material";
 import { Input, Typography } from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
@@ -6,7 +6,6 @@ import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
 import {
   addedCoursesAtom,
-  programCoursesAtom,
   programCoursesByYearAtom,
 } from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
@@ -65,7 +64,7 @@ export const CourseList = () => {
           onChange={(e) => setSearch(e.target.value)}
           endDecorator={
             search && (
-              <Close
+              <CloseRounded
                 sx={{ cursor: "pointer", color: "grey" }}
                 onClick={() => setSearch("")}
               />

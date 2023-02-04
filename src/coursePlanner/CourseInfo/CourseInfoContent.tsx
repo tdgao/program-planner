@@ -3,7 +3,7 @@ import Typography from "@mui/joy/Typography";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import Launch from "@mui/icons-material/Launch";
-import { Close } from "@mui/icons-material";
+import { CloseRounded } from "@mui/icons-material";
 import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
 import { ScrollBarStyles } from "../CourseList/CourseList";
@@ -92,7 +92,7 @@ export const CourseInfoContent = (props: CourseContentProps) => {
         setCourse("");
         setActiveCourse("");
       }}
-      endDecorator={<Close />}
+      endDecorator={<CloseRounded />}
       size="sm"
       variant="plain"
       color="neutral"

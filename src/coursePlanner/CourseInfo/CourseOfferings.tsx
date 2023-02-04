@@ -1,14 +1,5 @@
-import { Close } from "@mui/icons-material";
-import {
-  Typography,
-  Autocomplete,
-  List,
-  ListItem,
-  Button,
-  Select,
-  Option,
-  Chip,
-} from "@mui/joy";
+import { CloseRounded } from "@mui/icons-material";
+import { Typography, List, ListItem, Select, Option, Chip } from "@mui/joy";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import styled from "styled-components";
@@ -143,7 +134,7 @@ const SelectOffering = (props: SelectOfferingProps) => {
         }}
         endDecorator={
           termForceOffered && (
-            <Close
+            <CloseRounded
               onMouseDown={(event) => {
                 // don't open the popup when clicking on this button
                 event.stopPropagation();
