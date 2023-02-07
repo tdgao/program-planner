@@ -62,7 +62,7 @@ export const AddCoursesInput = () => {
       <Button
         size="sm"
         variant="soft"
-        color="neutral"
+        color={coursesToAdd.length > 0 ? "primary" : "neutral"}
         style={{ width: "max-content" }}
         onClick={() => {
           addCourses(addCourse, coursesToAdd);
