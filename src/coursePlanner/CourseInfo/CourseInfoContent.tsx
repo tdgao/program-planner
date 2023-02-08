@@ -21,9 +21,6 @@ const ContentDiv = styled.div`
   display: grid;
   row-gap: 24px;
   grid-template-rows: max-content max-content max-content;
-  height: calc(100vh - 470px);
-  overflow-y: scroll;
-  ${ScrollBarStyles}
 `;
 const SectionDiv = styled.div`
   display: grid;

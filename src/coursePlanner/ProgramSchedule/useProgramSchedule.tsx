@@ -1,8 +1,8 @@
 import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
-import { currentProgramAtom } from "../AddCourse/AddCourses";
 import { courseDataFamily, courseDataType } from "../Course";
+import { currentProgramAtom } from "../ProgramInfo/ProgramInfo";
 import {
   addedCoursesAtom,
   coursesAtom,

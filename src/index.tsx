@@ -44,7 +44,7 @@ const theme = extendTheme({
       fontSize: "var(--joy-fontSize-xl2)",
       fontWeight: "var(--joy-fontWeight-md)",
       lineHeight: "var(--joy-lineHeight-lg)",
-      color: "#4a4a4a",
+      color: "#25252d",
     },
     subHeading: {
       fontSize: "var(--joy-fontSize-xl)",

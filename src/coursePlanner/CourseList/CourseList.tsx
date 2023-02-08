@@ -1,13 +1,10 @@
 import { CloseRounded } from "@mui/icons-material";
-import { Input, Typography } from "@mui/joy";
+import { FormControl, FormLabel, Input, Typography } from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
 import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
-import {
-  addedCoursesAtom,
-  programCoursesByYearAtom,
-} from "../ProgramPlannerAtoms";
+import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
 
 export const ScrollBarStyles = css`
@@ -48,67 +45,58 @@ const CourseListDiv = styled.div`
 const searchAtom = atom("");
 
 export const CourseList = () => {
-  const [programCourses] = useAtom(programCoursesByYearAtom);
+  const [programCourses] = useAtom(programCoursesAtom);
   const [addedCourses] = useAtom(addedCoursesAtom);
   const [search, setSearch] = useAtom(searchAtom);
+
+  const searchFilter = (item: string) =>
+    search ? item.match(search.toUpperCase().replaceAll(" ", "")) : true;
 
   return (
     <LayoutDiv>
       <Typography level="mainHeading">Scheduled Courses</Typography>
 
       <SectionDiv>
-        <Typography level="subHeading">Search scheduled courses </Typography>
-        <Input
-          placeholder={`e.g. "SENG 275" or "Math 211"`}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          endDecorator={
-            search && (
-              <CloseRounded
-                sx={{ cursor: "pointer", color: "grey" }}
-                onClick={() => setSearch("")}
-              />
-            )
-          }
-        />
+        <FormControl>
+          <FormLabel>
+            <Typography fontWeight={500}>Search scheduled courses</Typography>
+          </FormLabel>
+          <Input
+            placeholder={`e.g. "SENG 275" or "Math 211"`}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            endDecorator={
+              search && (
+                <CloseRounded
+                  sx={{ cursor: "pointer", color: "grey" }}
+                  onClick={() => setSearch("")}
+                />
+              )
+            }
+          />
+        </FormControl>
       </SectionDiv>
 
       <CoursesDiv>
         <CourseListDiv>
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
-            From Program
+            Program courses
           </Typography>
           {/* TODO - remove the component margin */}
-          {Object.keys(programCourses).map((yearName) => (
-            <div key={yearName}>
-              <Typography
-                level="body3"
-                sx={{
-                  marginTop: "12px",
-                  marginBottom: "4px",
-                  textTransform: "uppercase",
-                }}
-              >
-                {yearName.replace("-", " ")} courses
-              </Typography>
-              {programCourses[yearName].map(
-                (course: string) =>
-                  course && <Course key={course}>{course}</Course>
-              )}
-            </div>
-          ))}
+          {programCourses
+            .filter(searchFilter)
+            .map(
+              (course: courseType) =>
+                course && <Course key={course}>{course}</Course>
+            )}
         </CourseListDiv>
 
         <CourseListDiv>
           <Typography level="body1" fontWeight="500" textColor="neutral.700">
-            Added Courses
+            Added courses
           </Typography>
           {addedCourses
-            .filter((item) =>
-              search
-                ? item.match(search.toUpperCase().replaceAll(" ", ""))
-                : true
-            )
+            .filter(searchFilter)
             .map(
               (course: courseType) =>
                 course && <Course key={course}>{course}</Course>

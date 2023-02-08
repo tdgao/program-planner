@@ -1,0 +1,18 @@
+import { Typography } from "@mui/joy";
+import { useAtom } from "jotai";
+import { SectionDiv } from "./AddCourses";
+import { School } from "@mui/icons-material";
+import { currentProgramAtom } from "../ProgramInfo/ProgramInfo";
+
+export const ProgramDisplay = () => {
+  const [currentProgram] = useAtom(currentProgramAtom);
+
+  return (
+    <SectionDiv>
+      <Typography fontWeight={500}>Your program</Typography>
+      <Typography color="primary" fontWeight={500} startDecorator={<School />}>
+        {currentProgram}
+      </Typography>
+    </SectionDiv>
+  );
+};

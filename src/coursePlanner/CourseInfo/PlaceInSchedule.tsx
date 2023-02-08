@@ -65,7 +65,8 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
         }
         size="sm"
         variant={"soft"}
-        color={isAuto ? "success" : "primary"}
+        // color={isAuto ? "success" : "primary"}
+        color="primary"
         sx={{ fontWeight: "500" }}
         slotProps={{
           listbox: {

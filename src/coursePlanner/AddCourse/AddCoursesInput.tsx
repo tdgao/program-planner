@@ -1,7 +1,19 @@
-import { Typography, Button, Autocomplete } from "@mui/joy";
+import {
+  Typography,
+  Button,
+  Autocomplete,
+  FormControl,
+  FormLabel,
+} from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import { addCourseAtom, courseObjType } from "../ProgramPlannerAtoms";
 import coursesJson from "../../assets/courses.json";
+import styled from "styled-components";
+
+const LayoutDiv = styled.div`
+  display: grid;
+  row-gap: 8px;
+`;
 
 const coursesToAddAtom = atom<courseObjType[]>([]);
 const courseOptionsAtom = atom<courseObjType[]>([]);
@@ -42,36 +54,40 @@ export const AddCoursesInput = () => {
   const [courseOptions, setCourseOptions] = useAtom(courseOptionsAtom);
 
   return (
-    <>
-      <Typography level="subHeading">Add single courses</Typography>
-      <Autocomplete
-        placeholder="Add courses"
-        noOptionsText="Search courses, e.g MATH101"
-        size="sm"
-        multiple
-        value={coursesToAdd}
-        options={courseOptions}
-        getOptionLabel={(option) => option.courseId}
-        onInputChange={(e, inputVal) => {
-          handleSetOptions(inputVal, setCourseOptions);
-        }}
-        onChange={(e, newValue) => {
-          newValue && setCoursesToAdd(newValue);
-        }}
-      />
-      <Button
-        size="sm"
-        variant="soft"
-        color={coursesToAdd.length > 0 ? "primary" : "neutral"}
-        style={{ width: "max-content" }}
-        onClick={() => {
-          addCourses(addCourse, coursesToAdd);
-          setCoursesToAdd([]);
-        }}
-      >
-        Add courses
-      </Button>
-    </>
+    <FormControl>
+      <FormLabel>
+        <Typography fontWeight={500}>Add courses</Typography>
+      </FormLabel>
+      <LayoutDiv>
+        <Autocomplete
+          placeholder="Search courses..."
+          noOptionsText="Search courses, e.g MATH101"
+          size="sm"
+          multiple
+          value={coursesToAdd}
+          options={courseOptions}
+          getOptionLabel={(option) => option.courseId}
+          onInputChange={(e, inputVal) => {
+            handleSetOptions(inputVal, setCourseOptions);
+          }}
+          onChange={(e, newValue) => {
+            newValue && setCoursesToAdd(newValue);
+          }}
+        />
+        <Button
+          size="sm"
+          variant="soft"
+          color={coursesToAdd.length > 0 ? "primary" : "neutral"}
+          sx={{ width: "max-content" }}
+          onClick={() => {
+            addCourses(addCourse, coursesToAdd);
+            setCoursesToAdd([]);
+          }}
+        >
+          Add courses
+        </Button>
+      </LayoutDiv>
+    </FormControl>
   );
 };
 

@@ -24,8 +24,6 @@ export const CourseInfo = () => {
 
   return (
     <LayoutDiv>
-      <Typography level="mainHeading">Course Details</Typography>
-
       {!!courseInfo ? (
         <CourseInfoContent {...courseContentProps} />
       ) : (
