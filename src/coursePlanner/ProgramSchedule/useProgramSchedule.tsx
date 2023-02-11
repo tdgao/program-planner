@@ -7,7 +7,7 @@ import {
   addedCoursesAtom,
   coursesAtom,
   coursesObjType,
-  programCoursesAtom,
+  currentProgramCoursesAtom,
 } from "../ProgramPlannerAtoms";
 import { getPrereqs, meetsPrereqs } from "./meetsPrereqs";
 import { courseType } from "./ProgramSchedule";
@@ -118,7 +118,7 @@ export const unscheduledCoursesAtom = atom<courseType[]>([]);
 export const setScheduleAtom = atom(null, (get, set, _) => {
   console.log("running set schedule");
   const numYears = get(numYearsAtom);
-  const programCourses = get(programCoursesAtom);
+  const programCourses = get(currentProgramCoursesAtom);
   const addedCourses = get(addedCoursesAtom);
   const courses = get(coursesAtom);
   const scheduleCourses = initScheduleCourses(programCourses, addedCourses);

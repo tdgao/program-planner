@@ -4,7 +4,10 @@ import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
 import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
-import { addedCoursesAtom, programCoursesAtom } from "../ProgramPlannerAtoms";
+import {
+  addedCoursesAtom,
+  currentProgramCoursesAtom,
+} from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
 
 export const ScrollBarStyles = css`
@@ -45,7 +48,7 @@ const CourseListDiv = styled.div`
 const searchAtom = atom("");
 
 export const CourseList = () => {
-  const [programCourses] = useAtom(programCoursesAtom);
+  const [programCourses] = useAtom(currentProgramCoursesAtom);
   const [addedCourses] = useAtom(addedCoursesAtom);
   const [search, setSearch] = useAtom(searchAtom);
 

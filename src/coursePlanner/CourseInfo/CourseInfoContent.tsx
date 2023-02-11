@@ -44,10 +44,13 @@ const headerStyles = {
   justifyContent: "space-between",
   alignItems: "center",
 };
-const HtmlPrereqsDiv = styled.div`
+export const HtmlPrereqsDiv = styled.div`
   a,
   a:visited {
     color: rgb(9, 107, 222);
+  }
+  ul {
+    padding-left: 24px;
   }
 `;
 
