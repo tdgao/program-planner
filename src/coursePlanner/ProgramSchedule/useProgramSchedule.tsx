@@ -2,7 +2,7 @@ import { atom, useAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
 import { courseDataFamily, courseDataType } from "../Course";
-import { currentProgramAtom } from "../ProgramInfo/ProgramInfo";
+import { currentProgramAtom } from "../ProgramDetails/ProgramDetails";
 import {
   addedCoursesAtom,
   coursesAtom,
@@ -19,14 +19,7 @@ const initScheduleCourses = (
   // get courses to schedule
   const courses = [...addedCourses, ...programCourses];
 
-  //sort courses by implicit year
-  const sortCourses = (a: courseType, b: courseType) => {
-    const courseA = parseInt(a!.replace(/\D/g, "")) || 0;
-    const courseB = parseInt(b!.replace(/\D/g, "")) || 0;
-    return courseA - courseB;
-  };
-
-  return courses.sort(sortCourses);
+  return sortByImplicitYear(courses);
 };
 
 export type termType = "fall" | "spring" | "summer";
@@ -191,6 +184,17 @@ function getWorkTerm(courses: (string | null)[]) {
     if (WORKTERM_COURSES.includes(courseId || "")) workterm = courseId;
   });
   return workterm;
+}
+
+function sortByImplicitYear(courses: string[]) {
+  //sort courses by implicit year
+  const sortCourses = (a: courseType, b: courseType) => {
+    const courseA = parseInt(a!.replace(/\D/g, "")) || 0;
+    const courseB = parseInt(b!.replace(/\D/g, "")) || 0;
+    return courseA - courseB;
+  };
+
+  return courses.sort(sortCourses);
 }
 
 const ASSUME_COMPLETED = [

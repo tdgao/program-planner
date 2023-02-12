@@ -1,10 +1,9 @@
-import { tabClasses } from "@mui/joy/Tab";
+import { Typography } from "@mui/joy";
 import styled, { css } from "styled-components";
-import { AddCourses } from "./AddCourse/AddCourses";
+import { ProgramDisplay } from "./AddCourse/ProgramDisplay";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
-import { CourseList } from "./CourseList/CourseList";
 import { InfoTabs } from "./InfoTabs/InfoTabs";
-import { ProgramInfo } from "./ProgramInfo/ProgramInfo";
+import { ProgramDetails } from "./ProgramDetails/ProgramDetails";
 import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
 export const PageDiv = styled.div`
@@ -30,26 +29,18 @@ const AddCoursesDiv = styled.div`
   width: 500px;
   row-gap: 24px;
 `;
-const CourseListDiv = styled.div`
-  ${layoutStyles}
-`;
 const ProgramScheduleDiv = styled.div`
   ${layoutStyles}
 `;
-
 export const ProgramPlanner = () => {
   return (
     <PageDiv>
       <AddCoursesDiv>
-        <AddCourses />
         <InfoTabs
           courseInfoSlot={<CourseInfo />}
-          programInfoSlot={<ProgramInfo />}
+          programInfoSlot={<ProgramDetails />}
         />
       </AddCoursesDiv>
-      <CourseListDiv>
-        <CourseList />
-      </CourseListDiv>
       <ProgramScheduleDiv>
         <ProgramSchedule />
       </ProgramScheduleDiv>

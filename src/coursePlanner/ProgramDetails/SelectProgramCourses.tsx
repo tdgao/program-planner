@@ -4,7 +4,7 @@ import {
   defaultProgramCoursesAtom,
   programsObjType,
 } from "../ProgramPlannerAtoms";
-import { currentProgramAtom } from "./ProgramInfo";
+import { currentProgramAtom } from "./ProgramDetails";
 import parse, { domToReact } from "html-react-parser";
 import { Alert, Checkbox, Link, Sheet, Typography } from "@mui/joy";
 import { HtmlPrereqsDiv } from "../CourseInfo/CourseInfoContent";
@@ -75,16 +75,21 @@ export const SelectProgramCourses = () => {
 
   const htmlPrereqs = parse(html || "", htmlParseOptions);
   return (
-    <>
-      <Typography fontWeight={500}>Select your courses</Typography>
+    <div>
       <Alert startDecorator={<ErrorOutline />} color="warning">
-        <Typography level="body2">
-          <strong>Note:</strong> this app does not correctly select all the
-          required courses in your program.
-        </Typography>{" "}
+        <div>
+          <Typography level="body1">
+            Courses could be incorrectly selected
+          </Typography>
+          <Typography level="body3">
+            This app does not correctly select the required courses in your
+            program.
+          </Typography>
+        </div>
       </Alert>
+      <Typography fontWeight={500}>Select your courses</Typography>
       <HtmlPrereqsDiv>{htmlPrereqs}</HtmlPrereqsDiv>
-    </>
+    </div>
   );
 };
 

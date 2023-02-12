@@ -1,10 +1,10 @@
 import { Link, Typography } from "@mui/joy";
 import { useAtom } from "jotai";
-import { SectionDiv } from "./AddCourses";
 import { School } from "@mui/icons-material";
-import { currentProgramAtom } from "../ProgramInfo/ProgramInfo";
+import { currentProgramAtom } from "../ProgramDetails/ProgramDetails";
 import programsJsonObj from "../../assets/programs.json";
 import { programsObjType } from "../ProgramPlannerAtoms";
+import { SectionDiv } from "../CourseList/CourseList";
 const programsJson: programsObjType = programsJsonObj;
 
 export const ProgramDisplay = () => {

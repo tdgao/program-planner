@@ -2,8 +2,8 @@ import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import courses from "../assets/courses.json";
 import programs from "../assets/programs.json";
-import { currentProgramAtom } from "./ProgramInfo/ProgramInfo";
-import { programCoursesFamily } from "./ProgramInfo/SelectProgramCourses";
+import { currentProgramAtom } from "./ProgramDetails/ProgramDetails";
+import { programCoursesFamily } from "./ProgramDetails/SelectProgramCourses";
 
 export type requirementsType = any;
 

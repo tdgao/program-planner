@@ -2,13 +2,21 @@ import { CloseRounded } from "@mui/icons-material";
 import { FormControl, FormLabel, Input, Typography } from "@mui/joy";
 import { atom, useAtom } from "jotai";
 import styled, { css } from "styled-components";
-import { LayoutDiv, SectionDiv } from "../AddCourse/AddCourses";
 import { Course } from "../Course";
 import {
   addedCoursesAtom,
   currentProgramCoursesAtom,
 } from "../ProgramPlannerAtoms";
 import { courseType } from "../ProgramSchedule/ProgramSchedule";
+
+const LayoutDiv = styled.div`
+  display: grid;
+  row-gap: 16px;
+`;
+export const SectionDiv = styled.div`
+  display: grid;
+  row-gap: 8px;
+`;
 
 export const ScrollBarStyles = css`
   & {
@@ -49,6 +57,10 @@ const searchAtom = atom("");
 
 export const CourseList = () => {
   const [programCourses] = useAtom(currentProgramCoursesAtom);
+
+  const sortedProgramCourses = programCourses.sort((a, b) =>
+    a.localeCompare(b)
+  );
   const [addedCourses] = useAtom(addedCoursesAtom);
   const [search, setSearch] = useAtom(searchAtom);
 
@@ -86,7 +98,7 @@ export const CourseList = () => {
             Program courses
           </Typography>
           {/* TODO - remove the component margin */}
-          {programCourses
+          {sortedProgramCourses
             .filter(searchFilter)
             .map(
               (course: courseType) =>

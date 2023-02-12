@@ -6,7 +6,7 @@ import { ScrollBarStyles } from "../CourseList/CourseList";
 const TabContentDiv = styled.div`
   padding: 12px;
   box-sizing: border-box;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 100px);
   overflow-y: scroll;
   ${ScrollBarStyles}
 `;
@@ -39,23 +39,23 @@ export const InfoTabs = (props: InfoTabsProps) => {
   const { programInfoSlot, courseInfoSlot } = props;
   return (
     <Tabs defaultValue={0}>
-      <TabList variant="plain" sx={tabListStyles}>
-        <Tab>
-          <Typography level="h6" fontWeight={"500"}>
-            Course details
-          </Typography>
-        </Tab>
+      <TabList variant="soft">
         <Tab>
           <Typography level="h6" fontWeight={"500"}>
             Program details
           </Typography>
         </Tab>
+        <Tab>
+          <Typography level="h6" fontWeight={"500"}>
+            Course details
+          </Typography>
+        </Tab>
       </TabList>
       <TabPanel value={0}>
-        <TabContentDiv>{courseInfoSlot}</TabContentDiv>
+        <TabContentDiv>{programInfoSlot}</TabContentDiv>
       </TabPanel>
       <TabPanel value={1}>
-        <TabContentDiv>{programInfoSlot}</TabContentDiv>
+        <TabContentDiv>{courseInfoSlot}</TabContentDiv>
       </TabPanel>
     </Tabs>
   );
