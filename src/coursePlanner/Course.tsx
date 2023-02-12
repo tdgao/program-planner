@@ -5,7 +5,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/joy";
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { atomFamily, atomWithStorage } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
@@ -109,37 +109,53 @@ export const courseDataFamily = atomFamily(
 );
 
 export const activeCourseAtom = atom("");
+export const showCourseInfoAtom = atom(null, (get, set, courseId: string) => {
+  const activeCourse = get(activeCourseAtom);
+  const active = activeCourse === courseId;
+
+  if (courseId) {
+    const courseOpened = activeCourse && active;
+    const result = courseOpened ? "" : courseId;
+    set(courseInfoAtom, result);
+    set(activeCourseAtom, result);
+  }
+});
 
 interface CourseProps {
   term?: "fall" | "spring" | "summer";
   inSchedule?: boolean;
+  openTab?: boolean;
   children: string;
 }
 export const Course = (props: CourseProps) => {
-  const { children: courseId, term, inSchedule } = props;
+  const { children: courseId, term, inSchedule, openTab = true } = props;
   const theme = useTheme();
-  const [, setCourseInfo] = useAtom(courseInfoAtom);
-  const [courseData] = useAtom(courseDataFamily({ courseId: courseId }));
-  const forcedSchedule = courseData.scheduleSlot !== "auto";
-  const [activeCourse, setActiveCourse] = useAtom(activeCourseAtom);
-  const active = activeCourse === courseId;
-  const [, setTab] = useAtom(currentTabAtom);
 
+  const courseData = useAtomValue(courseDataFamily({ courseId: courseId }));
+  const activeCourse = useAtomValue(activeCourseAtom);
+  const showCourseInfo = useSetAtom(showCourseInfoAtom);
+  const setOpenTab = useSetAtom(currentTabAtom);
+
+  const active = activeCourse === courseId;
+  const forcedSchedule = courseData.scheduleSlot !== "auto";
   const offeringWarning =
     inSchedule && term && courseData.offered?.[term] === "MAYBE";
 
-  const showCourseInfo = () => {
-    if (courseId) {
-      const courseOpened = activeCourse && active;
-      setCourseInfo(courseOpened ? "" : courseId);
-      setActiveCourse(courseOpened ? "" : courseId);
-      !courseOpened && setTab(1);
-    }
+  const openCourseTab = () => {
+    const courseOpened = activeCourse && active;
+    !courseOpened && setOpenTab(1);
   };
 
   return (
     <LayoutDiv>
-      <CourseDiv onClick={showCourseInfo} active={active} theme={theme}>
+      <CourseDiv
+        onClick={() => {
+          showCourseInfo(courseId);
+          openTab && openCourseTab();
+        }}
+        active={active}
+        theme={theme}
+      >
         <Typography level="body1" sx={CourseTextStyles}>
           {courseId}
         </Typography>
