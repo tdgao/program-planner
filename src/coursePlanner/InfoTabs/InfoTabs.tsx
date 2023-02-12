@@ -1,5 +1,6 @@
 import { Tab, TabList, TabPanel, Tabs, Typography } from "@mui/joy";
 import { tabClasses } from "@mui/joy/Tab";
+import { atom, useAtom } from "jotai";
 import styled from "styled-components";
 import { ScrollBarStyles } from "../CourseList/CourseList";
 
@@ -35,10 +36,13 @@ interface InfoTabsProps {
   programInfoSlot: React.ReactNode;
 }
 
+export const currentTabAtom = atom(0);
+
 export const InfoTabs = (props: InfoTabsProps) => {
   const { programInfoSlot, courseInfoSlot } = props;
+  const [tab, setTab] = useAtom(currentTabAtom);
   return (
-    <Tabs defaultValue={0}>
+    <Tabs value={tab} onChange={(e, value) => setTab(value as number)}>
       <TabList variant="soft">
         <Tab>
           <Typography level="h6" fontWeight={"500"}>

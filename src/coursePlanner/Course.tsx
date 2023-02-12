@@ -11,6 +11,7 @@ import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
 import { CheckCircleOutlineRounded, ErrorOutline } from "@mui/icons-material";
+import { currentTabAtom } from "./InfoTabs/InfoTabs";
 
 const LayoutDiv = styled.div`
   display: flex;
@@ -122,6 +123,7 @@ export const Course = (props: CourseProps) => {
   const forcedSchedule = courseData.scheduleSlot !== "auto";
   const [activeCourse, setActiveCourse] = useAtom(activeCourseAtom);
   const active = activeCourse === courseId;
+  const [, setTab] = useAtom(currentTabAtom);
 
   const offeringWarning =
     inSchedule && term && courseData.offered?.[term] === "MAYBE";
@@ -130,6 +132,7 @@ export const Course = (props: CourseProps) => {
     if (courseId) {
       setCourseInfo(activeCourse && active ? "" : courseId);
       setActiveCourse(activeCourse && active ? "" : courseId);
+      setTab(1);
     }
   };
 
