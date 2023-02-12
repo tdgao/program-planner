@@ -1,13 +1,12 @@
 import { Autocomplete, FormControl, FormLabel, Link } from "@mui/joy";
 import { Typography } from "@mui/joy";
-import { atom, useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import styled from "styled-components";
 import { SelectProgramCourses } from "./SelectProgramCourses";
 import programsJsonObj from "../../assets/programs.json";
 import { Launch, School } from "@mui/icons-material";
-import { addedCoursesAtom, programsObjType } from "../ProgramPlannerAtoms";
-import { Course } from "../Course";
+import { programsObjType } from "../ProgramPlannerAtoms";
 import { AddCoursesInput } from "../AddCourse/AddCoursesInput";
 const programsJson: programsObjType = programsJsonObj;
 
@@ -30,7 +29,6 @@ export const currentProgramAtom = atomWithStorage(
 
 export const ProgramDetails = () => {
   const [currentProgram, setCurrentProgram] = useAtom(currentProgramAtom);
-  const addedCourses = useAtomValue(addedCoursesAtom);
 
   return (
     <LayoutDiv>
@@ -64,9 +62,7 @@ export const ProgramDetails = () => {
         </Link>
       </ProgramDiv>
 
-      <div>
-        <AddCoursesInput />
-      </div>
+      <AddCoursesInput />
 
       <SelectProgramCourses />
     </LayoutDiv>

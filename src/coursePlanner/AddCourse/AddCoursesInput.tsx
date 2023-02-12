@@ -30,6 +30,7 @@ const CoursesDiv = styled.div`
 const CourseDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  column-gap: 4px;
 `;
 
 const courseOptionsAtom = atom<courseObjType[]>([]);
@@ -64,11 +65,11 @@ export const AddCoursesInput = () => {
   const value = null;
 
   return (
-    <FormControl>
-      <FormLabel>
-        <Typography fontWeight={500}>Add courses</Typography>
-      </FormLabel>
-      <LayoutDiv>
+    <LayoutDiv>
+      <FormControl>
+        <FormLabel>
+          <Typography fontWeight={500}>Add courses</Typography>
+        </FormLabel>
         <Autocomplete
           placeholder="Search and add courses..."
           noOptionsText="Search courses, e.g MATH101"
@@ -83,26 +84,31 @@ export const AddCoursesInput = () => {
             course && addCourse(course.courseId);
           }}
         />
-        <CoursesDiv>
-          {addedCourses.map(
-            (course: string) =>
-              course && (
-                <CourseDiv key={course}>
-                  <Course>{course}</Course>
-                  <Chip
-                    onClick={() => removeCourse(course)}
-                    color="neutral"
-                    size="sm"
-                    variant="plain"
-                  >
-                    <Close sx={{ position: "relative", top: "2px" }} />
-                  </Chip>
-                </CourseDiv>
-              )
-          )}
-        </CoursesDiv>
-      </LayoutDiv>
-    </FormControl>
+      </FormControl>
+      <CoursesDiv>
+        {addedCourses.map(
+          (course: string) =>
+            course && (
+              <CourseDiv key={course}>
+                <Course>{course}</Course>
+                <Chip
+                  onClick={() => removeCourse(course)}
+                  color="neutral"
+                  size="sm"
+                  variant="plain"
+                >
+                  <Close
+                    sx={{
+                      position: "relative",
+                      top: "2px",
+                    }}
+                  />
+                </Chip>
+              </CourseDiv>
+            )
+        )}
+      </CoursesDiv>
+    </LayoutDiv>
   );
 };
 

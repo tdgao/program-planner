@@ -14,6 +14,11 @@ import { atomFamily, atomWithStorage } from "jotai/utils";
 
 const programsJson: programsObjType = programsJsonObj;
 
+const LayoutDiv = styled.div`
+  display: grid;
+  row-gap: 8px;
+`;
+
 type paramsType = {
   program: string;
   coursesToSchedule: string[];
@@ -73,18 +78,16 @@ export const SelectProgramCourses = () => {
 
   const htmlPrereqs = parse(html || "", htmlParseOptions);
   return (
-    <div>
-      <Alert startDecorator={<ErrorOutline />} color="warning">
-        <div>
-          <Typography level="body2">
-            This app does not correctly select the required courses in your
-            program.
-          </Typography>
-        </div>
-      </Alert>
+    <LayoutDiv>
       <Typography fontWeight={500}>Select your courses</Typography>
+      <Alert startDecorator={<ErrorOutline />} color="warning">
+        <Typography level="body2">
+          This app does not correctly select the required courses in your
+          program.
+        </Typography>
+      </Alert>
       <HtmlPrereqsDiv>{htmlPrereqs}</HtmlPrereqsDiv>
-    </div>
+    </LayoutDiv>
   );
 };
 
