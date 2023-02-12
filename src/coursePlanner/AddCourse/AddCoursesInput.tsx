@@ -4,18 +4,34 @@ import {
   Autocomplete,
   FormControl,
   FormLabel,
+  Chip,
 } from "@mui/joy";
-import { atom, useAtom } from "jotai";
-import { addCourseAtom, courseObjType } from "../ProgramPlannerAtoms";
+import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
+import {
+  addCourseAtom,
+  addedCoursesAtom,
+  courseObjType,
+  removeCourseAtom,
+} from "../ProgramPlannerAtoms";
 import coursesJson from "../../assets/courses.json";
 import styled from "styled-components";
+import { Course } from "../Course";
+import { Close } from "@mui/icons-material";
 
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 8px;
 `;
+const CoursesDiv = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  width: max-content;
+`;
+const CourseDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-const coursesToAddAtom = atom<courseObjType[]>([]);
 const courseOptionsAtom = atom<courseObjType[]>([]);
 const courses = Object.values(coursesJson);
 const coursePrefixes: string[] = [
@@ -39,19 +55,13 @@ const handleSetOptions = (
   else if (inputPrefix === "") setCourseOptions([]);
 };
 
-const addCourses = (
-  addCourse: (courseId: string) => void,
-  coursesToAdd: courseObjType[]
-) => {
-  coursesToAdd.forEach((course) => {
-    addCourse(course.courseId);
-  });
-};
-
 export const AddCoursesInput = () => {
-  const [, addCourse] = useAtom(addCourseAtom);
-  const [coursesToAdd, setCoursesToAdd] = useAtom(coursesToAddAtom);
+  const addCourse = useSetAtom(addCourseAtom);
+  const removeCourse = useSetAtom(removeCourseAtom);
+  const addedCourses = useAtomValue(addedCoursesAtom);
   const [courseOptions, setCourseOptions] = useAtom(courseOptionsAtom);
+
+  const value = null;
 
   return (
     <FormControl>
@@ -60,32 +70,37 @@ export const AddCoursesInput = () => {
       </FormLabel>
       <LayoutDiv>
         <Autocomplete
-          placeholder="Search courses..."
+          placeholder="Search and add courses..."
           noOptionsText="Search courses, e.g MATH101"
           size="sm"
-          multiple
-          value={coursesToAdd}
+          value={value}
           options={courseOptions}
           getOptionLabel={(option) => option.courseId}
           onInputChange={(e, inputVal) => {
             handleSetOptions(inputVal, setCourseOptions);
           }}
-          onChange={(e, newValue) => {
-            newValue && setCoursesToAdd(newValue);
+          onChange={(e, course) => {
+            course && addCourse(course.courseId);
           }}
         />
-        <Button
-          size="sm"
-          variant="soft"
-          color={coursesToAdd.length > 0 ? "primary" : "neutral"}
-          sx={{ width: "max-content" }}
-          onClick={() => {
-            addCourses(addCourse, coursesToAdd);
-            setCoursesToAdd([]);
-          }}
-        >
-          Add courses
-        </Button>
+        <CoursesDiv>
+          {addedCourses.map(
+            (course: string) =>
+              course && (
+                <CourseDiv key={course}>
+                  <Course>{course}</Course>
+                  <Chip
+                    onClick={() => removeCourse(course)}
+                    color="neutral"
+                    size="sm"
+                    variant="plain"
+                  >
+                    <Close sx={{ position: "relative", top: "2px" }} />
+                  </Chip>
+                </CourseDiv>
+              )
+          )}
+        </CoursesDiv>
       </LayoutDiv>
     </FormControl>
   );

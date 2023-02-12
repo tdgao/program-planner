@@ -47,7 +47,8 @@ export const addedCoursesAtom = atomWithStorage<string[]>(
 );
 
 export const addCourseAtom = atom(null, (get, set, course: string) => {
-  course && set(addedCoursesAtom, [...get(addedCoursesAtom), course]);
+  const addCourse = course && !get(addedCoursesAtom).includes(course);
+  addCourse && set(addedCoursesAtom, [...get(addedCoursesAtom), course]);
 });
 
 export const removeCourseAtom = atom(null, (get, set, course) => {

@@ -66,12 +66,6 @@ export const ProgramDetails = () => {
 
       <div>
         <AddCoursesInput />
-        <Typography level="body1" fontWeight="500" textColor="neutral.700">
-          Added courses
-        </Typography>
-        {addedCourses.map(
-          (course: string) => course && <Course key={course}>{course}</Course>
-        )}
       </div>
 
       <SelectProgramCourses />

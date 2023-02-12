@@ -1,13 +1,15 @@
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { useEffect } from "react";
 import { courseDataFamily, courseDataType } from "../Course";
 import { currentProgramAtom } from "../ProgramDetails/ProgramDetails";
+import { programCoursesFamily } from "../ProgramDetails/SelectProgramCourses";
 import {
   addedCoursesAtom,
   coursesAtom,
   coursesObjType,
   currentProgramCoursesAtom,
+  defaultProgramCoursesAtom,
 } from "../ProgramPlannerAtoms";
 import { getPrereqs, meetsPrereqs } from "./meetsPrereqs";
 import { courseType } from "./ProgramSchedule";
@@ -165,13 +167,21 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
 });
 
 export const useProgramSchedule = () => {
-  const [schedule] = useAtom(scheduleAtom);
-  const [, setSchedule] = useAtom(setScheduleAtom);
-  const [currentProgram] = useAtom(currentProgramAtom);
-  const [addedCourses] = useAtom(addedCoursesAtom);
+  const setSchedule = useSetAtom(setScheduleAtom);
+  const schedule = useAtomValue(scheduleAtom);
+  const currentProgram = useAtomValue(currentProgramAtom);
+  const addedCourses = useAtomValue(addedCoursesAtom);
+  const defaultProgramCourses = useAtomValue(defaultProgramCoursesAtom);
+  const programCourses = useAtomValue(
+    programCoursesFamily({
+      program: currentProgram,
+      coursesToSchedule: defaultProgramCourses,
+    })
+  );
+
   useEffect(() => {
     setSchedule();
-  }, [currentProgram, addedCourses]);
+  }, [currentProgram, programCourses, addedCourses]);
 
   return {
     schedule: schedule,

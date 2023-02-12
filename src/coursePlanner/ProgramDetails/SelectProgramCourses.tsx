@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import programsJsonObj from "../../assets/programs.json";
 import {
   defaultProgramCoursesAtom,
@@ -28,7 +28,7 @@ export const programCoursesFamily = atomFamily(
 
 export const SelectProgramCourses = () => {
   const [currentProgram] = useAtom(currentProgramAtom);
-  const [defaultProgramCourses] = useAtom(defaultProgramCoursesAtom);
+  const defaultProgramCourses = useAtomValue(defaultProgramCoursesAtom);
   const [programCourses, setProgramCourses] = useAtom(
     programCoursesFamily({
       program: currentProgram,
@@ -71,17 +71,12 @@ export const SelectProgramCourses = () => {
     },
   };
 
-  // Currenting at figuring out how to add manual select + auto select (selects all with "complete all of") program cources integrated in program requirements
-
   const htmlPrereqs = parse(html || "", htmlParseOptions);
   return (
     <div>
       <Alert startDecorator={<ErrorOutline />} color="warning">
         <div>
-          <Typography level="body1">
-            Courses could be incorrectly selected
-          </Typography>
-          <Typography level="body3">
+          <Typography level="body2">
             This app does not correctly select the required courses in your
             program.
           </Typography>
