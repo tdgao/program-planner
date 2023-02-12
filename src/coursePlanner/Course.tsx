@@ -130,9 +130,10 @@ export const Course = (props: CourseProps) => {
 
   const showCourseInfo = () => {
     if (courseId) {
-      setCourseInfo(activeCourse && active ? "" : courseId);
-      setActiveCourse(activeCourse && active ? "" : courseId);
-      setTab(1);
+      const courseOpened = activeCourse && active;
+      setCourseInfo(courseOpened ? "" : courseId);
+      setActiveCourse(courseOpened ? "" : courseId);
+      !courseOpened && setTab(1);
     }
   };
 
