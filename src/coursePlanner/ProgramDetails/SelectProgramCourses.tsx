@@ -6,11 +6,12 @@ import {
 } from "../ProgramPlannerAtoms";
 import { currentProgramAtom } from "./ProgramDetails";
 import parse, { domToReact } from "html-react-parser";
-import { Alert, Checkbox, Link, Sheet, Typography } from "@mui/joy";
+import { Alert, Chip, Link, Sheet, Typography } from "@mui/joy";
 import { HtmlPrereqsDiv } from "../CourseInfo/CourseInfoContent";
 import styled from "styled-components";
 import { ErrorOutline } from "@mui/icons-material";
 import { atomFamily, atomWithStorage } from "jotai/utils";
+import { Course } from "../Course";
 
 const programsJson: programsObjType = programsJsonObj;
 
@@ -51,6 +52,7 @@ export const SelectProgramCourses = () => {
           aTagNode.attribs.href;
 
         const courseId = aTagNode.children[0].data;
+        const inSchedule = programCourses.includes(courseId);
         return (
           <Sheet
             sx={{
@@ -58,18 +60,20 @@ export const SelectProgramCourses = () => {
               alignItems: "center",
               columnGap: "4px",
               width: "max-content",
+              py: "2px",
             }}
           >
-            <Checkbox
-              overlay
-              checked={programCourses.includes(courseId)}
-              onChange={() => {
+            <Chip
+              size="sm"
+              color={inSchedule ? "primary" : "neutral"}
+              variant={inSchedule ? "solid" : "outlined"}
+              onClick={() => {
                 setProgramCourses(toggleArrayItem(programCourses, courseId));
               }}
-            />
-            <Link href={href} target="_blank" rel="noopener">
-              {courseId}
-            </Link>
+            >
+              Add
+            </Chip>
+            <Course openTab={false}>{courseId}</Course>
           </Sheet>
         );
       }
