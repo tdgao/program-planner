@@ -7,9 +7,9 @@ import { ProgramDetails } from "./ProgramDetails/ProgramDetails";
 import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
 export const PageDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  column-gap: 48px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 32px;
   padding: 24px;
   max-height: 100vh;
   box-sizing: border-box;
@@ -24,7 +24,7 @@ const layoutStyles = css`
   padding: 0 12px;
 `;
 
-const AddCoursesDiv = styled.div`
+const InfoTabsDiv = styled.div`
   ${layoutStyles}
   width: 500px;
   row-gap: 24px;
@@ -35,12 +35,12 @@ const ProgramScheduleDiv = styled.div`
 export const ProgramPlanner = () => {
   return (
     <PageDiv>
-      <AddCoursesDiv>
+      <InfoTabsDiv>
         <InfoTabs
           courseInfoSlot={<CourseInfo />}
           programInfoSlot={<ProgramDetails />}
         />
-      </AddCoursesDiv>
+      </InfoTabsDiv>
       <ProgramScheduleDiv>
         <ProgramSchedule />
       </ProgramScheduleDiv>

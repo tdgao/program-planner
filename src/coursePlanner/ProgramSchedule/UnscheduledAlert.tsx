@@ -8,6 +8,7 @@ const alertStyles = {
   padding: "unset 24px",
   alignItems: "flex-start",
   maxWidth: "100%",
+  width: "420px",
 };
 const coursesStyles = {
   opacity: 0.8,

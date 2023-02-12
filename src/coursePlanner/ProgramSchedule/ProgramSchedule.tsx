@@ -13,11 +13,12 @@ import {
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 16px;
-  width: 400px;
 `;
 const YearDiv = styled.div`
   display: grid;
-  row-gap: 0px;
+  grid-template-rows: auto 1fr;
+  width: 380px;
+  min-height: 225px;
 `;
 const YearInnerDiv = styled.div`
   display: flex;
@@ -34,8 +35,11 @@ const TermDiv = styled.div`
   width: 100px;
 `;
 const ScheduleDiv = styled.div`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   row-gap: 16px;
+  column-gap: 24px;
   max-height: calc(100vh - 190px);
   overflow-y: scroll;
   ${ScrollBarStyles}
