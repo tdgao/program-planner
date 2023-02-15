@@ -30,7 +30,7 @@ export const ScrollBarStyles = css`
   }
 
   &::-webkit-scrollbar-track {
-    background: white;
+    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
