@@ -1,5 +1,6 @@
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { atomFamily } from "jotai/utils";
+import { atomWithStorage } from "jotai/utils";
 import { useEffect } from "react";
 import { courseDataFamily, courseDataType } from "../Course";
 import { currentProgramAtom } from "../ProgramDetails/ProgramDetails";
@@ -103,7 +104,8 @@ type paramType = {
   term?: string;
 };
 export const maxCoursesFamily = atomFamily(
-  (param: paramType) => atom({ value: param.value, term: param.term }),
+  (param: paramType) =>
+    atomWithStorage(param.id, { value: param.value, term: param.term }),
   (a: paramType, b: paramType) => a.id === b.id
 );
 
@@ -215,5 +217,6 @@ const ASSUME_COMPLETED = [
   "Chemistry 12",
   "Pre-Calculus 12 or Principles of Mathematics 12",
   "admission to BEng or BSEng program",
+  "Completed Principles of Mathematics 12 or Pre-Calculus 12 with a minimum grade of A (86%) ",
 ];
 const WORKTERM_COURSES = ["ENGR001", "ENGR002", "ENGR003", "ENGR004"];

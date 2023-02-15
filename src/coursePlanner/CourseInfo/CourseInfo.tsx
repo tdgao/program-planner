@@ -27,9 +27,12 @@ export const CourseInfo = () => {
       {!!courseInfo ? (
         <CourseInfoContent {...courseContentProps} />
       ) : (
-        <Typography level="body1">
-          Click on any course to show details
-        </Typography>
+        <>
+          <Typography level="mainHeading">Course</Typography>
+          <Typography level="body1">
+            Click on any course to show details
+          </Typography>
+        </>
       )}
     </LayoutDiv>
   );

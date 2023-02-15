@@ -73,7 +73,7 @@ export const SelectProgramCourses = () => {
             >
               Add
             </Chip>
-            <Course openTab={false}>{courseId}</Course>
+            <Course>{courseId}</Course>
           </Sheet>
         );
       }

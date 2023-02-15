@@ -32,15 +32,18 @@ export const ProgramDetails = () => {
 
   return (
     <LayoutDiv>
+      <Typography level="mainHeading">Program details</Typography>
+
       <ProgramDiv>
         <FormControl>
           <FormLabel>
-            <Typography fontWeight={500}>Your program</Typography>
+            <Typography fontWeight={500} endDecorator={<School />}>
+              Your program
+            </Typography>
           </FormLabel>
           <Autocomplete
-            variant="plain"
-            color="primary"
-            startDecorator={<School color="primary" />}
+            variant="outlined"
+            size="sm"
             sx={{ fontWeight: 500 }}
             options={programs}
             value={currentProgram}
@@ -55,7 +58,6 @@ export const ProgramDetails = () => {
           target="_blank"
           rel="noopener"
           endDecorator={<Launch fontSize="small" />}
-          color="neutral"
           sx={{ width: "max-content" }}
         >
           See program in UVic

@@ -118,7 +118,17 @@ export const CourseInfoContent = (props: CourseContentProps) => {
 
   return (
     <LayoutDiv>
-      <Typography level="mainHeading">{courseId}</Typography>
+      <Typography
+        level="mainHeading"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {courseId}
+        {buttonSlot}
+      </Typography>
       <ContentDiv>
         <SectionDiv>
           <Typography
@@ -128,7 +138,6 @@ export const CourseInfoContent = (props: CourseContentProps) => {
             sx={headerStyles}
           >
             {title}
-            {buttonSlot}
           </Typography>
           <LinkDiv
             href={url}

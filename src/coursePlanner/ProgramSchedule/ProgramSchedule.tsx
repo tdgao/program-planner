@@ -1,4 +1,4 @@
-import { Typography } from "@mui/joy";
+import { Chip, Link, Typography } from "@mui/joy";
 import { useAtom } from "jotai";
 import styled from "styled-components";
 import { Course } from "../Course";
@@ -13,6 +13,12 @@ import {
 const LayoutDiv = styled.div`
   display: grid;
   row-gap: 16px;
+`;
+
+const HeadingDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 const YearDiv = styled.div`
   display: grid;
@@ -64,7 +70,26 @@ export const ProgramSchedule = () => {
 
   return (
     <LayoutDiv>
-      <Typography level="mainHeading">Program Schedule</Typography>
+      <HeadingDiv>
+        <Typography
+          level="mainHeading"
+          endDecorator={
+            <Chip
+              size="sm"
+              color="info"
+              variant="outlined"
+              sx={{ position: "relative", top: "2px" }}
+            >
+              BETA
+            </Chip>
+          }
+        >
+          UVic Program Schedule
+        </Typography>
+        <Typography level="body1" fontFamily="monospace">
+          <Link>GitHub</Link>
+        </Typography>
+      </HeadingDiv>
 
       {unscheduledCourses.length > 0 && (
         <UnscheduledAlert unscheduledCourses={unscheduledCourses} />
