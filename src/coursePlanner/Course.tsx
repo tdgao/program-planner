@@ -29,10 +29,10 @@ const CourseDiv = styled.div<{ active: boolean; theme: Theme }>`
     active &&
     css`
       border-radius: 4px;
-      padding: 0 2px;
+      padding: 0 4px;
+      margin: 0 -4px;
       background-color: ${theme.vars.palette.info[200]};
     `}
-  transition: padding 200ms;
 `;
 const CourseTextStyles = {
   "&:hover": {
