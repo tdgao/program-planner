@@ -50,10 +50,6 @@ const ScheduleDiv = styled.div`
 
   // for filling up the rest of space
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 `;
 const ScheduleDivWrapper = styled.div`
   // for filling up the rest of space
