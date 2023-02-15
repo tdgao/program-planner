@@ -1,3 +1,5 @@
+import { ErrorOutline } from "@mui/icons-material";
+import { Alert } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
 import { atom, useAtom } from "jotai";
 import styled from "styled-components";
@@ -26,6 +28,13 @@ export const CourseInfo = () => {
     <LayoutDiv>
       {!!courseInfo ? (
         <CourseInfoContent {...courseContentProps} />
+      ) : courseId ? (
+        <>
+          <Typography level="mainHeading">Course</Typography>
+          <Alert color="warning" startDecorator={<ErrorOutline />}>
+            {courseId} does not exist in our system :/
+          </Alert>
+        </>
       ) : (
         <>
           <Typography level="mainHeading">Course</Typography>
