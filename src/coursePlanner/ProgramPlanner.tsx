@@ -21,10 +21,12 @@ const layoutStyles = css`
   display: grid;
   height: max-content;
   padding: 0 12px;
+  box-sizing: border-box;
 `;
 
 const ProgramScheduleDiv = styled.div`
   ${layoutStyles}
+  height: 100%;
 `;
 export const ProgramPlanner = () => {
   return (

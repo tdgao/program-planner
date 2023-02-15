@@ -11,7 +11,8 @@ import {
 } from "./useProgramSchedule";
 
 const LayoutDiv = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   row-gap: 16px;
 `;
 
@@ -46,11 +47,20 @@ const ScheduleDiv = styled.div`
   align-items: flex-start;
   row-gap: 16px;
   column-gap: 24px;
-  max-height: calc(100vh - 190px);
+
+  // for filling up the rest of space
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+const ScheduleDivWrapper = styled.div`
+  // for filling up the rest of space
+  flex: 1;
+  position: relative;
   overflow-y: scroll;
   ${ScrollBarStyles}
-  padding: 0 8px;
-  margin: 0 -8px;
 `;
 
 export type courseType = string | null;
@@ -95,56 +105,58 @@ export const ProgramSchedule = () => {
         <UnscheduledAlert unscheduledCourses={unscheduledCourses} />
       )}
 
-      <ScheduleDiv>
-        {schedule &&
-          schedule.map((year: yearType, i: number) => (
-            <YearDiv key={i} data-year={i + 1}>
-              <Typography level="h5" sx={{ ml: "4px" }}>
-                Year {i + 1}
-              </Typography>
+      <ScheduleDivWrapper>
+        <ScheduleDiv>
+          {schedule &&
+            schedule.map((year: yearType, i: number) => (
+              <YearDiv key={i} data-year={i + 1}>
+                <Typography level="h5" sx={{ ml: "4px" }}>
+                  Year {i + 1}
+                </Typography>
 
-              <YearInnerDiv>
-                {/* TODO refactor this to use one component/mapping */}
-                <TermDiv>
-                  <Typography fontWeight="500">Fall</Typography>
-                  <MaxCoursesInput id={`year-${i}-fall`} />
-                  {year.fall.courses.map(
-                    (course, i) =>
-                      course && (
-                        <Course key={i} term="fall" inSchedule>
-                          {course}
-                        </Course>
-                      )
-                  )}
-                </TermDiv>
-                <TermDiv>
-                  <Typography fontWeight="500">Spring</Typography>
-                  <MaxCoursesInput id={`year-${i}-spring`} />
-                  {year.spring.courses.map(
-                    (course, i) =>
-                      course && (
-                        <Course key={i} term="spring" inSchedule>
-                          {course}
-                        </Course>
-                      )
-                  )}
-                </TermDiv>
-                <TermDiv>
-                  <Typography fontWeight="500">Summer</Typography>
-                  <MaxCoursesInput id={`year-${i}-summer`} />
-                  {year.summer.courses.map(
-                    (course, i) =>
-                      course && (
-                        <Course key={i} term="summer" inSchedule>
-                          {course}
-                        </Course>
-                      )
-                  )}
-                </TermDiv>
-              </YearInnerDiv>
-            </YearDiv>
-          ))}
-      </ScheduleDiv>
+                <YearInnerDiv>
+                  {/* TODO refactor this to use one component/mapping */}
+                  <TermDiv>
+                    <Typography fontWeight="500">Fall</Typography>
+                    <MaxCoursesInput id={`year-${i}-fall`} />
+                    {year.fall.courses.map(
+                      (course, i) =>
+                        course && (
+                          <Course key={i} term="fall" inSchedule>
+                            {course}
+                          </Course>
+                        )
+                    )}
+                  </TermDiv>
+                  <TermDiv>
+                    <Typography fontWeight="500">Spring</Typography>
+                    <MaxCoursesInput id={`year-${i}-spring`} />
+                    {year.spring.courses.map(
+                      (course, i) =>
+                        course && (
+                          <Course key={i} term="spring" inSchedule>
+                            {course}
+                          </Course>
+                        )
+                    )}
+                  </TermDiv>
+                  <TermDiv>
+                    <Typography fontWeight="500">Summer</Typography>
+                    <MaxCoursesInput id={`year-${i}-summer`} />
+                    {year.summer.courses.map(
+                      (course, i) =>
+                        course && (
+                          <Course key={i} term="summer" inSchedule>
+                            {course}
+                          </Course>
+                        )
+                    )}
+                  </TermDiv>
+                </YearInnerDiv>
+              </YearDiv>
+            ))}
+        </ScheduleDiv>
+      </ScheduleDivWrapper>
     </LayoutDiv>
   );
 };
