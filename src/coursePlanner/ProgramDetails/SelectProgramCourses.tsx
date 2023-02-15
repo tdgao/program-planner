@@ -85,10 +85,7 @@ export const SelectProgramCourses = () => {
     <LayoutDiv>
       <Typography fontWeight={500}>Select your courses</Typography>
       <Alert startDecorator={<ErrorOutline />} color="warning">
-        <Typography level="body2">
-          This app does not correctly select the required courses in your
-          program.
-        </Typography>
+        This app does not correctly select the required courses in your program.
       </Alert>
       <Typography level="body1" component="span">
         <HtmlPrereqsDiv>{htmlPrereqs}</HtmlPrereqsDiv>
