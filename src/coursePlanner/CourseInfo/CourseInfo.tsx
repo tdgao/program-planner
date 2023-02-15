@@ -26,15 +26,8 @@ export const CourseInfo = () => {
 
   return (
     <LayoutDiv>
-      {!!courseInfo ? (
+      {!!courseId ? (
         <CourseInfoContent {...courseContentProps} />
-      ) : courseId ? (
-        <>
-          <Typography level="mainHeading">Course</Typography>
-          <Alert color="warning" startDecorator={<ErrorOutline />}>
-            {courseId} does not exist in our system :/
-          </Alert>
-        </>
       ) : (
         <>
           <Typography level="mainHeading">Course</Typography>

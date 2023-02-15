@@ -1,9 +1,14 @@
-import { Button, Link, Sheet, Switch, Tooltip } from "@mui/joy";
+import { Alert, Button, Link, Sheet, Switch, Tooltip } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
 import { atom, useAtom, useAtomValue } from "jotai";
 import styled from "styled-components";
 import Launch from "@mui/icons-material/Launch";
-import { CloseRounded, InfoOutlined, Check } from "@mui/icons-material";
+import {
+  CloseRounded,
+  InfoOutlined,
+  Check,
+  ErrorOutline,
+} from "@mui/icons-material";
 import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
 import { courseObjType } from "../ProgramPlannerAtoms";
@@ -72,7 +77,6 @@ export const CourseInfoContent = (props: CourseContentProps) => {
   const htmlParseOptions = {
     replace: (domNode: any) => {
       if (domNode?.name === "a") {
-        console.log(domNode);
         const href =
           "https://www.uvic.ca/calendar/undergrad/index.php" +
           domNode.attribs.href;
@@ -116,11 +120,11 @@ export const CourseInfoContent = (props: CourseContentProps) => {
   };
 
   // parse course info
-  const title = courseInfo.title;
-  const url = courseInfo.url;
-  const prereqs = JSON.stringify(courseInfo.parsedRequirements[0], null, 2);
+  const title = courseInfo?.title || null;
+  const url = courseInfo?.url || null;
+  const prereqs = JSON.stringify(courseInfo?.parsedRequirements[0], null, 2);
   const htmlPrereqs = parse(
-    courseInfo.htmlRequirements || "",
+    courseInfo?.htmlRequirements || "",
     htmlParseOptions
   );
 
@@ -153,6 +157,12 @@ export const CourseInfoContent = (props: CourseContentProps) => {
       onChange={() => setShowCode(!showCode)}
     />
   );
+  const noCourseInfoAlert = (
+    <Alert color="warning" startDecorator={<ErrorOutline />}>
+      This course does not exist in our system :/ <br />
+      You can still manually schedule it
+    </Alert>
+  );
 
   return (
     <LayoutDiv>
@@ -169,6 +179,7 @@ export const CourseInfoContent = (props: CourseContentProps) => {
       </Typography>
       <ContentDiv>
         <SectionDiv>
+          {!courseInfo && noCourseInfoAlert}
           <Typography
             level="body1"
             textColor="neutral.700"
@@ -177,17 +188,20 @@ export const CourseInfoContent = (props: CourseContentProps) => {
           >
             {title}
           </Typography>
-          <LinkDiv
-            href={url}
-            target="_blank"
-            rel="noopener"
-            endDecorator={<Launch fontSize="small" />}
-          >
-            See course in UVic
-          </LinkDiv>
+          {url && (
+            <LinkDiv
+              href={url}
+              target="_blank"
+              rel="noopener"
+              endDecorator={<Launch fontSize="small" />}
+            >
+              See course in UVic
+            </LinkDiv>
+          )}
         </SectionDiv>
         <PlaceInSchedule courseId={courseId} />
         <CourseOfferings courseId={courseId} />
+        {/* TODO - can strip out prereqs div into a component */}
         <PrereqsDiv>
           <Typography level="body1" component="span">
             <>

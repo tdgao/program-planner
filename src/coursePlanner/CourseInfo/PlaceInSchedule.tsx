@@ -58,6 +58,8 @@ export const PlaceInSchedule = (props: PlaceInScheduleProps) => {
         value={courseData.scheduleSlot}
         onChange={(e, data) =>
           data &&
+          // TODO if scheduleSlot not auto, ensure it is added to programCourses or addedCourses
+          // otherwise it is confusing be cause it wont be scheduled
           setCourseData({
             ...courseData,
             scheduleSlot: data,
