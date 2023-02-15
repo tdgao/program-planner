@@ -1,16 +1,16 @@
-import { Button, Link, Switch } from "@mui/joy";
+import { Button, Link, Sheet, Switch, Tooltip } from "@mui/joy";
 import Typography from "@mui/joy/Typography";
-import { atom, useAtom } from "jotai";
+import { atom, useAtom, useAtomValue } from "jotai";
 import styled from "styled-components";
 import Launch from "@mui/icons-material/Launch";
-import { CloseRounded } from "@mui/icons-material";
+import { CloseRounded, InfoOutlined, Check } from "@mui/icons-material";
 import { PlaceInSchedule } from "./PlaceInSchedule";
 import { courseInfoAtom } from "./CourseInfo";
-import { ScrollBarStyles } from "../CourseList/CourseList";
 import { courseObjType } from "../ProgramPlannerAtoms";
 import { activeCourseAtom, courseDataFamily } from "../Course";
 import parse from "html-react-parser";
 import { CourseOfferings } from "./CourseOfferings";
+import { scheduledCoursesAtom } from "../ProgramSchedule/useProgramSchedule";
 
 const LayoutDiv = styled.div`
   display: grid;
@@ -44,6 +44,7 @@ const headerStyles = {
   justifyContent: "space-between",
   alignItems: "center",
 };
+const infoIconStyles = { position: "relative", top: "1px" };
 export const HtmlPrereqsDiv = styled.div`
   a,
   a:visited {
@@ -55,16 +56,6 @@ export const HtmlPrereqsDiv = styled.div`
 `;
 
 const showCodeAtom = atom(false);
-const htmlParseOptions = {
-  replace: (domNode: any) => {
-    if (domNode.attribs && domNode.name === "a") {
-      domNode.attribs.href =
-        "https://www.uvic.ca/calendar/undergrad/index.php" +
-        domNode.attribs.href;
-      return domNode;
-    }
-  },
-};
 
 export interface CourseContentProps {
   courseInfo: courseObjType;
@@ -74,8 +65,55 @@ export const CourseInfoContent = (props: CourseContentProps) => {
   const { courseInfo, courseId } = props;
   const [courseData] = useAtom(courseDataFamily({ courseId: courseId }));
   const [, setCourse] = useAtom(courseInfoAtom);
-  const [, setActiveCourse] = useAtom(activeCourseAtom);
+  const [activeCourse, setActiveCourse] = useAtom(activeCourseAtom);
   const [showCode, setShowCode] = useAtom(showCodeAtom);
+  const scheduledCourses = useAtomValue(scheduledCoursesAtom);
+
+  const htmlParseOptions = {
+    replace: (domNode: any) => {
+      if (domNode?.name === "a") {
+        console.log(domNode);
+        const href =
+          "https://www.uvic.ca/calendar/undergrad/index.php" +
+          domNode.attribs.href;
+
+        const aTagNode = domNode;
+        const aTagCourseId = aTagNode.children?.[0].data;
+        const scheduled = scheduledCourses.includes(aTagCourseId);
+
+        const iconBackground = activeCourse === aTagCourseId && {
+          backgroundColor: "info.200",
+        };
+
+        return (
+          <Sheet
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              columnGap: "4px",
+              width: "max-content",
+              py: "2px",
+            }}
+          >
+            <Link underline="always" href={href} target="_blank">
+              {aTagCourseId}
+            </Link>
+            {scheduled && (
+              <Check
+                color="success"
+                sx={{
+                  borderRadius: "8px",
+                  ...iconBackground,
+                }}
+                onMouseEnter={() => setActiveCourse(aTagCourseId)}
+                onMouseLeave={() => setActiveCourse(courseId)}
+              />
+            )}
+          </Sheet>
+        );
+      }
+    },
+  };
 
   // parse course info
   const title = courseInfo.title;
@@ -158,7 +196,21 @@ export const CourseInfoContent = (props: CourseContentProps) => {
                 fontWeight={500}
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
-                Prerequisites {showCodeSlot}
+                <Typography
+                  endDecorator={
+                    <Tooltip
+                      title={`Prerequisite conditions are only checked for "Complete 1 of..." and "Complete all of..." `}
+                      placement="top"
+                      sx={{ width: "300px" }}
+                      enterDelay={250}
+                    >
+                      <InfoOutlined sx={infoIconStyles} />
+                    </Tooltip>
+                  }
+                >
+                  Prerequisites
+                </Typography>
+                {showCodeSlot}
               </Typography>
               {showCode ? (
                 <PrereqsPre>

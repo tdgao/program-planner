@@ -112,6 +112,7 @@ export const maxCoursesFamily = atomFamily(
 export const numYearsAtom = atom(7);
 export const scheduleAtom = atom<any>([]);
 export const unscheduledCoursesAtom = atom<courseType[]>([]);
+export const scheduledCoursesAtom = atom<courseType[]>([]);
 export const setScheduleAtom = atom(null, (get, set, _) => {
   console.log("running set schedule");
   const numYears = get(numYearsAtom);
@@ -164,6 +165,7 @@ export const setScheduleAtom = atom(null, (get, set, _) => {
     return year;
   });
 
+  set(scheduledCoursesAtom, curSchedule.completed);
   set(unscheduledCoursesAtom, scheduleCourses);
   set(scheduleAtom, schedule);
 });

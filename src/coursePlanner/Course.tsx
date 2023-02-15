@@ -45,6 +45,7 @@ const checkIcon = (
     title="Course is manually slotted" // TODO better tooltip copy
     variant="solid"
     placement="top"
+    enterDelay={250}
   >
     <CheckCircleOutlineRounded color="primary" />
   </Tooltip>
@@ -54,6 +55,7 @@ const warningIcon = (
     title="This course may not be offered"
     variant="solid"
     placement="top"
+    enterDelay={250}
   >
     <ErrorOutline color="warning" />
   </Tooltip>
