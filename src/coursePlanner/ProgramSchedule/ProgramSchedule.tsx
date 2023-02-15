@@ -104,55 +104,67 @@ export const ProgramSchedule = () => {
       <ScheduleDivWrapper>
         <ScheduleDiv>
           {schedule &&
-            schedule.map((year: yearType, i: number) => (
-              <YearDiv key={i} data-year={i + 1}>
-                <Typography level="h5" sx={{ ml: "4px" }}>
-                  Year {i + 1}
-                </Typography>
+            schedule.map((year: yearType, i: number) => {
+              if (noCoursesInYear(year)) return null;
 
-                <YearInnerDiv>
-                  {/* TODO refactor this to use one component/mapping */}
-                  <TermDiv>
-                    <Typography fontWeight="500">Fall</Typography>
-                    <MaxCoursesInput id={`year-${i}-fall`} />
-                    {year.fall.courses.map(
-                      (course, i) =>
-                        course && (
-                          <Course key={i} term="fall" inSchedule>
-                            {course}
-                          </Course>
-                        )
-                    )}
-                  </TermDiv>
-                  <TermDiv>
-                    <Typography fontWeight="500">Spring</Typography>
-                    <MaxCoursesInput id={`year-${i}-spring`} />
-                    {year.spring.courses.map(
-                      (course, i) =>
-                        course && (
-                          <Course key={i} term="spring" inSchedule>
-                            {course}
-                          </Course>
-                        )
-                    )}
-                  </TermDiv>
-                  <TermDiv>
-                    <Typography fontWeight="500">Summer</Typography>
-                    <MaxCoursesInput id={`year-${i}-summer`} />
-                    {year.summer.courses.map(
-                      (course, i) =>
-                        course && (
-                          <Course key={i} term="summer" inSchedule>
-                            {course}
-                          </Course>
-                        )
-                    )}
-                  </TermDiv>
-                </YearInnerDiv>
-              </YearDiv>
-            ))}
+              return (
+                <YearDiv key={i} data-year={i + 1}>
+                  <Typography level="h5" sx={{ ml: "4px" }}>
+                    Year {i + 1}
+                  </Typography>
+
+                  <YearInnerDiv>
+                    {/* TODO refactor this to use one component/mapping */}
+                    <TermDiv>
+                      <Typography fontWeight="500">Fall</Typography>
+                      <MaxCoursesInput id={`year-${i}-fall`} />
+                      {year.fall.courses.map(
+                        (course, i) =>
+                          course && (
+                            <Course key={i} term="fall" inSchedule>
+                              {course}
+                            </Course>
+                          )
+                      )}
+                    </TermDiv>
+                    <TermDiv>
+                      <Typography fontWeight="500">Spring</Typography>
+                      <MaxCoursesInput id={`year-${i}-spring`} />
+                      {year.spring.courses.map(
+                        (course, i) =>
+                          course && (
+                            <Course key={i} term="spring" inSchedule>
+                              {course}
+                            </Course>
+                          )
+                      )}
+                    </TermDiv>
+                    <TermDiv>
+                      <Typography fontWeight="500">Summer</Typography>
+                      <MaxCoursesInput id={`year-${i}-summer`} />
+                      {year.summer.courses.map(
+                        (course, i) =>
+                          course && (
+                            <Course key={i} term="summer" inSchedule>
+                              {course}
+                            </Course>
+                          )
+                      )}
+                    </TermDiv>
+                  </YearInnerDiv>
+                </YearDiv>
+              );
+            })}
         </ScheduleDiv>
       </ScheduleDivWrapper>
     </LayoutDiv>
   );
 };
+
+function noCoursesInYear(year: yearType) {
+  return (
+    year.fall.courses.every((item) => item === null) &&
+    year.spring.courses.every((item) => item === null) &&
+    year.summer.courses.every((item) => item === null)
+  );
+}
