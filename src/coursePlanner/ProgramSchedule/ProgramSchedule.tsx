@@ -93,7 +93,9 @@ export const ProgramSchedule = () => {
           UVic Program Schedule
         </Typography>
         <Typography level="body1" fontFamily="monospace">
-          <Link>GitHub</Link>
+          <Link href="https://github.com/tdgao/program-planner" target="_blank">
+            GitHub
+          </Link>
         </Typography>
       </HeadingDiv>
 
