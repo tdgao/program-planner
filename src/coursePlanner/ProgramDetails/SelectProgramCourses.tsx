@@ -90,7 +90,9 @@ export const SelectProgramCourses = () => {
           program.
         </Typography>
       </Alert>
-      <HtmlPrereqsDiv>{htmlPrereqs}</HtmlPrereqsDiv>
+      <Typography level="body1" component="span">
+        <HtmlPrereqsDiv>{htmlPrereqs}</HtmlPrereqsDiv>
+      </Typography>
     </LayoutDiv>
   );
 };
