@@ -155,7 +155,7 @@ export const Course = (props: CourseProps) => {
   return (
     <LayoutDiv>
       <Tooltip
-        title={coursesJson?.[courseId].title || courseId}
+        title={coursesJson?.[courseId]?.title || courseId}
         variant="solid"
         placement="top"
         enterDelay={750}

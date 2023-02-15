@@ -107,7 +107,7 @@ export const ProgramSchedule = () => {
         <ScheduleDiv>
           {schedule &&
             schedule.map((year: yearType, i: number) => {
-              if (noCoursesInYear(year)) return null;
+              if (noCoursesInYear(year) && i > 3) return null;
 
               return (
                 <YearDiv key={i} data-year={i + 1}>
