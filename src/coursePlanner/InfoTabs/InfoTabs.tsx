@@ -7,7 +7,9 @@ import { ScrollBarStyles } from "../CourseList/CourseList";
 export const TabContentDiv = styled.div`
   padding: 12px;
   box-sizing: border-box;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 40px);
+  padding-top: 0;
+  /* height: 100%; */
   width: 480px;
   overflow-y: scroll;
   ${ScrollBarStyles}

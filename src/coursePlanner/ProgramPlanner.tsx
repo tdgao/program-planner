@@ -9,7 +9,7 @@ export const PageDiv = styled.div`
   display: grid;
   grid-template-columns: auto auto 1fr;
   column-gap: 32px;
-  padding: 24px;
+  padding: 12px 24px;
   max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
