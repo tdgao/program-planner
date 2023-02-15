@@ -109,6 +109,10 @@ export const CourseInfoContent = (props: CourseContentProps) => {
                   borderRadius: "8px",
                   ...iconBackground,
                 }}
+                // onClick={() => {
+                //   setActiveCourse(aTagCourseId);
+                //   setCourse(aTagCourseId);
+                // }}
                 onMouseEnter={() => setActiveCourse(aTagCourseId)}
                 onMouseLeave={() => setActiveCourse(courseId)}
               />

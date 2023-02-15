@@ -10,8 +10,12 @@ import { atomFamily, atomWithStorage } from "jotai/utils";
 import styled, { css } from "styled-components";
 import { courseInfoAtom } from "./CourseInfo/CourseInfo";
 import courseOfferedJson from "../assets/courseOffered.json";
+import _coursesJson from "../assets/courses.json";
 import { CheckCircleOutlineRounded, ErrorOutline } from "@mui/icons-material";
 import { currentTabAtom } from "./InfoTabs/InfoTabs";
+import { coursesObjType } from "./ProgramPlannerAtoms";
+
+const coursesJson: coursesObjType = _coursesJson;
 
 const LayoutDiv = styled.div`
   display: flex;
@@ -150,18 +154,27 @@ export const Course = (props: CourseProps) => {
 
   return (
     <LayoutDiv>
-      <CourseDiv
-        onClick={() => {
-          showCourseInfo(courseId);
-          openTab && openCourseTab();
-        }}
-        active={active}
-        theme={theme}
+      <Tooltip
+        title={coursesJson?.[courseId].title || courseId}
+        variant="solid"
+        placement="top"
+        enterDelay={750}
+        enterNextDelay={750}
+        leaveDelay={200}
       >
-        <Typography level="body1" sx={CourseTextStyles}>
-          {courseId}
-        </Typography>
-      </CourseDiv>
+        <CourseDiv
+          onClick={() => {
+            showCourseInfo(courseId);
+            openTab && openCourseTab();
+          }}
+          active={active}
+          theme={theme}
+        >
+          <Typography level="body1" sx={CourseTextStyles}>
+            {courseId}
+          </Typography>
+        </CourseDiv>
+      </Tooltip>
       {forcedSchedule && checkIcon}
       {offeringWarning && !forcedSchedule && warningIcon}
     </LayoutDiv>
