@@ -37,9 +37,7 @@ const PanelsDiv = styled.div`
 `;
 const PanelDiv = styled.div`
   ${layoutStyles}
-  ${ScrollBarStyles}
   width: 480px;
-  overflow-y: scroll;
 `;
 
 const ProgramScheduleDiv = styled.div`

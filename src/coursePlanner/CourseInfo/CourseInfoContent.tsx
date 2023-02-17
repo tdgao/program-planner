@@ -16,16 +16,22 @@ import { activeCourseAtom, courseDataFamily } from "../Course";
 import parse from "html-react-parser";
 import { CourseOfferings } from "./CourseOfferings";
 import { scheduledCoursesAtom } from "../ProgramSchedule/useProgramSchedule";
+import { ScrollBarStyles } from "../CourseList/CourseList";
 
 const LayoutDiv = styled.div`
   display: grid;
-  row-gap: 0px;
+  row-gap: 4px;
 `;
 const ContentDiv = styled.div`
   width: 100%;
   display: grid;
   row-gap: 24px;
   grid-template-rows: max-content max-content max-content;
+  overflow-y: scroll;
+  max-height: calc(100vh - 65px);
+  padding-top: 8px;
+
+  ${ScrollBarStyles}
 `;
 const SectionDiv = styled.div`
   display: grid;
