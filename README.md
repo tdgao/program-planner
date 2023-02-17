@@ -7,7 +7,7 @@ To use the program planner
 1. Select your program
 2. Add the courses you want to take
 3. Ensure your courses are scheduled by clicking on the course and checking prereqs and offerings
-   1. **Note:** if the course cannot be schedule for whatever reason, you can override the auto scheduling by setting it’s schedule slot
+   - **Note:** if the course cannot be schedule for whatever reason, you can override the auto scheduling by setting it’s schedule slot
 4. Play around with the options!
 
 # Development
