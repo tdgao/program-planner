@@ -5,19 +5,20 @@ import { ScrollBarStyles } from "./CourseList/CourseList";
 import { ProgramDetails } from "./ProgramDetails/ProgramDetails";
 import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
-const breakpoint = "1300px";
+const maxBreakpoint = "1450px";
 
 export const PageDiv = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
+  justify-content: center;
   column-gap: 24px;
   padding: 12px 24px;
   box-sizing: border-box;
+  height: 100vh;
   max-height: 100vh;
   overflow: hidden;
 
   font-family: Arial, Helvetica, sans-serif;
-  @media (max-width: ${breakpoint}) {
+  @media (max-width: ${maxBreakpoint}) {
     padding: 12px 8px;
   }
 `;
@@ -30,7 +31,7 @@ const layoutStyles = css`
 const PanelsDiv = styled.div`
   display: flex;
   max-height: calc(100vh - 24px);
-  @media (max-width: ${breakpoint}) {
+  @media (max-width: ${maxBreakpoint}) {
     width: calc(100vw - 460px);
   }
 `;
@@ -46,6 +47,7 @@ const ProgramScheduleDiv = styled.div`
   display: grid;
   height: max-content;
   height: 100%;
+  width: 820px;
 `;
 export const ProgramPlanner = () => {
   return (

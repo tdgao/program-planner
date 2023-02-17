@@ -44,6 +44,7 @@ const TermDiv = styled.div`
 const ScheduleDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  max-width: 800px;
   align-items: flex-start;
   row-gap: 16px;
   column-gap: 24px;
