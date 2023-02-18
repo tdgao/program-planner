@@ -1,7 +1,6 @@
-import { Typography } from "@mui/joy";
 import styled, { css } from "styled-components";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
-import { ScrollBarStyles } from "./CourseList/CourseList";
+import { ProgramPlannerModal } from "./Modal";
 import { ProgramDetails } from "./ProgramDetails/ProgramDetails";
 import { ProgramSchedule } from "./ProgramSchedule/ProgramSchedule";
 
@@ -10,7 +9,7 @@ const maxBreakpoint = "1450px";
 export const PageDiv = styled.div`
   display: flex;
   justify-content: center;
-  column-gap: 24px;
+  column-gap: 12px;
   padding: 12px 24px;
   box-sizing: border-box;
   height: 100vh;
@@ -40,6 +39,13 @@ const PanelDiv = styled.div`
   width: 480px;
 `;
 
+const LineDiv = styled.div`
+  height: calc(100vh - 100px);
+  width: 1px;
+  margin: auto 0;
+  background-color: #ececec;
+`;
+
 const ProgramScheduleDiv = styled.div`
   ${layoutStyles}
   display: grid;
@@ -47,6 +53,7 @@ const ProgramScheduleDiv = styled.div`
   height: 100%;
   width: 820px;
 `;
+
 export const ProgramPlanner = () => {
   return (
     <PageDiv>
@@ -58,9 +65,11 @@ export const ProgramPlanner = () => {
           <CourseInfo />
         </PanelDiv>
       </PanelsDiv>
+      <LineDiv />
       <ProgramScheduleDiv>
         <ProgramSchedule />
       </ProgramScheduleDiv>
+      <ProgramPlannerModal />
     </PageDiv>
   );
 };

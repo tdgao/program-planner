@@ -1,14 +1,28 @@
-import { Autocomplete, FormControl, FormLabel, Link } from "@mui/joy";
+import {
+  Autocomplete,
+  Button,
+  Chip,
+  FormControl,
+  FormLabel,
+  Link,
+  Sheet,
+} from "@mui/joy";
 import { Typography } from "@mui/joy";
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import styled from "styled-components";
 import { SelectProgramCourses } from "./SelectProgramCourses";
 import programsJsonObj from "../../assets/programs.json";
-import { Launch, School } from "@mui/icons-material";
+import {
+  HelpOutline,
+  Launch,
+  QuestionMarkOutlined,
+  School,
+} from "@mui/icons-material";
 import { programsObjType } from "../ProgramPlannerAtoms";
 import { AddCoursesInput } from "../AddCourse/AddCoursesInput";
 import { ScrollBarStyles } from "../CourseList/CourseList";
+import { modalOpenAtom } from "../Modal";
 const programsJson: programsObjType = programsJsonObj;
 
 const LayoutDiv = styled.div`
@@ -39,10 +53,28 @@ export const currentProgramAtom = atomWithStorage(
 
 export const ProgramDetails = () => {
   const [currentProgram, setCurrentProgram] = useAtom(currentProgramAtom);
+  const [, setModalOpen] = useAtom(modalOpenAtom);
 
   return (
     <LayoutDiv>
-      <Typography level="mainHeading">Program details</Typography>
+      <Sheet
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography level="mainHeading">Program details</Typography>
+        <Chip
+          size="md"
+          color="info"
+          variant="plain"
+          onClick={() => setModalOpen(true)}
+          endDecorator={<HelpOutline />}
+        >
+          How to use
+        </Chip>
+      </Sheet>
       <ScrollDiv>
         <ProgramDiv>
           <FormControl>

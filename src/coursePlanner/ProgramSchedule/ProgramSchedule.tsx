@@ -94,7 +94,11 @@ export const ProgramSchedule = () => {
           UVic Program Schedule
         </Typography>
         <Typography level="body1" fontFamily="monospace">
-          <Link href="https://github.com/tdgao/program-planner" target="_blank">
+          <Link
+            href="https://github.com/tdgao/program-planner"
+            target="_blank"
+            sx={{ position: "relative", top: "2px" }}
+          >
             GitHub
           </Link>
         </Typography>
