@@ -67,6 +67,7 @@ export const SelectProgramCourses = () => {
               size="sm"
               color={inSchedule ? "primary" : "neutral"}
               variant={inSchedule ? "solid" : "outlined"}
+              sx={{ width: "55px", textAlign: "center" }}
               onClick={() => {
                 setProgramCourses(toggleArrayItem(programCourses, courseId));
               }}
