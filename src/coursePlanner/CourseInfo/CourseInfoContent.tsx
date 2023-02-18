@@ -30,7 +30,7 @@ const ContentDiv = styled.div`
   overflow-y: scroll;
   max-height: calc(100vh - 65px);
   padding-top: 8px;
-
+  padding-right: 4px;
   ${ScrollBarStyles}
 `;
 const SectionDiv = styled.div`

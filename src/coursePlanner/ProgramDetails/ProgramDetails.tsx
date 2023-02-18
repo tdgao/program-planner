@@ -36,6 +36,7 @@ const ScrollDiv = styled.div`
   overflow-y: scroll;
   max-height: calc(100vh - 90px);
   padding-top: 8px;
+  padding-right: 4px;
 
   ${ScrollBarStyles}
 `;

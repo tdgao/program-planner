@@ -10,7 +10,7 @@ export const PageDiv = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 12px;
-  padding: 12px 24px;
+  padding: 12px;
   box-sizing: border-box;
   height: 100vh;
   max-height: 100vh;
