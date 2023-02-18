@@ -14,7 +14,12 @@ import styled from "styled-components";
 import { ScrollBarStyles } from "./CourseList/CourseList";
 
 export const modalOpenAtom = atomWithStorage("ModalOpen", true);
-
+const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 8px;
+`;
 const ListsDiv = styled.div`
   ul,
   ol {
@@ -86,14 +91,25 @@ export const ProgramPlannerModal = () => {
               How to use
             </Typography>
             {howToUseHtml}
-            <Button
-              color="info"
-              variant="soft"
-              onClick={() => setShowInfo((prev) => !prev)}
-              sx={{ width: "max-content" }}
-            >
-              Additional tip and info
-            </Button>
+            <ButtonsDiv>
+              <Button
+                color="info"
+                variant="plain"
+                onClick={() => setShowInfo((prev) => !prev)}
+                sx={{ width: "max-content" }}
+              >
+                Additional tip and info
+              </Button>
+              <Button
+                color="danger"
+                variant="soft"
+                onClick={() => setModalOpen(false)}
+                sx={{ width: "max-content" }}
+              >
+                Close
+              </Button>
+            </ButtonsDiv>
+
             {showInfo && (
               <Sheet
                 color="info"
