@@ -1,6 +1,6 @@
 # UVic Program Planner
 
-This is an app to help schedule your program courses. The schedule is automatically filled by following parameters: course prerequisites, course offering, and max courses to take in a term.
+This is an app to help schedule your program courses. The schedule is automatically filled by following parameters: course prerequisites, course offering, and max courses in a term.
 
 # Development
 
