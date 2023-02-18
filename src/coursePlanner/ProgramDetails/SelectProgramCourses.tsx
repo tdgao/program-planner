@@ -71,7 +71,7 @@ export const SelectProgramCourses = () => {
                 setProgramCourses(toggleArrayItem(programCourses, courseId));
               }}
             >
-              Add
+              {inSchedule ? "Added" : "Add"}
             </Chip>
             <Course>{courseId}</Course>
           </Sheet>
