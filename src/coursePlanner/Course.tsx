@@ -154,27 +154,18 @@ export const Course = (props: CourseProps) => {
 
   return (
     <LayoutDiv>
-      <Tooltip
-        title={coursesJson?.[courseId]?.title || courseId}
-        variant="solid"
-        placement="top"
-        enterDelay={750}
-        enterNextDelay={750}
-        leaveDelay={200}
+      <CourseDiv
+        onClick={() => {
+          showCourseInfo(courseId);
+          openTab && openCourseTab();
+        }}
+        active={active}
+        theme={theme}
       >
-        <CourseDiv
-          onClick={() => {
-            showCourseInfo(courseId);
-            openTab && openCourseTab();
-          }}
-          active={active}
-          theme={theme}
-        >
-          <Typography level="body1" sx={CourseTextStyles}>
-            {courseId}
-          </Typography>
-        </CourseDiv>
-      </Tooltip>
+        <Typography level="body1" sx={CourseTextStyles}>
+          {courseId}
+        </Typography>
+      </CourseDiv>
       {forcedSchedule && checkIcon}
       {offeringWarning && !forcedSchedule && warningIcon}
     </LayoutDiv>
