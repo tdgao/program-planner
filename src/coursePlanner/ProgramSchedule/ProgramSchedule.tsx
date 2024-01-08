@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Course } from "../Course";
 import { ScrollBarStyles } from "../CourseList/CourseList";
 import { MaxCoursesInput } from "./MaxCoursesInput";
+import { ImportExport } from "./ImportExport";
+
 import { UnscheduledAlert } from "./UnscheduledAlert";
 import {
   unscheduledCoursesAtom,
@@ -19,7 +21,8 @@ const LayoutDiv = styled.div`
 const HeadingDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 12px;
 `;
 const YearDiv = styled.div`
   display: grid;
@@ -77,32 +80,14 @@ export const ProgramSchedule = () => {
 
   return (
     <LayoutDiv>
-      <HeadingDiv>
-        <Typography
-          level="mainHeading"
-          endDecorator={
-            <Chip
-              size="sm"
-              color="info"
-              variant="outlined"
-              sx={{ position: "relative", top: "2px" }}
-            >
-              BETA
-            </Chip>
-          }
-        >
-          UVic Program Schedule
-        </Typography>
-        <Typography level="body1" fontFamily="monospace">
-          <Link
-            href="https://github.com/tdgao/program-planner"
-            target="_blank"
-            sx={{ position: "relative", top: "2px" }}
-          >
+      <Typography level="body1" fontFamily="monospace">
+        <HeadingDiv>
+          <ImportExport />
+          <Link href="https://github.com/tdgao/program-planner" target="_blank">
             GitHub
           </Link>
-        </Typography>
-      </HeadingDiv>
+        </HeadingDiv>
+      </Typography>
 
       {unscheduledCourses.length > 0 && (
         <UnscheduledAlert unscheduledCourses={unscheduledCourses} />

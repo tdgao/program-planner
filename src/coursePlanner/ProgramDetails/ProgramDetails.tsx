@@ -65,7 +65,21 @@ export const ProgramDetails = () => {
           alignItems: "center",
         }}
       >
-        <Typography level="mainHeading">Program details</Typography>
+        <Typography
+          level="mainHeading"
+          endDecorator={
+            <Chip
+              size="sm"
+              color="info"
+              variant="outlined"
+              sx={{ position: "relative", top: "2px" }}
+            >
+              BETA
+            </Chip>
+          }
+        >
+          UVic Program Planner
+        </Typography>
         <Chip
           size="md"
           color="info"
